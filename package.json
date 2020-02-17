@@ -1,0 +1,19 @@
+{
+  "name": "webpack-dashboard",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/deeppatel234/webpack-dashboard.git"
+  },
+  "author": "Deep Patel <deeppatel234@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/deeppatel234/webpack-dashboard/issues"
+  },
+  "homepage": "https://github.com/deeppatel234/webpack-dashboard#readme"
+}
