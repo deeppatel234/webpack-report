@@ -34,7 +34,7 @@ class WebpackDashboard {
 
   progressCallBack(percentage, message) {
     this.clientData.progress = {
-      percentage,
+      percentage: parseInt(percentage * 100, 10),
       message,
     };
 
