@@ -1,40 +1,72 @@
 const webpack = require('webpack');
 const server = require('./server');
+const utils = require('./utils');
 
 class WebpackDashboard {
-  constructor(opts = {}) {
-    // const currentWorkingDirectory = process.cwd();
-    opts.host = opts.host || 'localhost';
-    opts.port = parseInt(opts.port || 3030, 10);
+  constructor(props = {}) {
+    this.options = props;
 
-    this.options = opts;
+    this.options.host = props.host || 'localhost';
+    this.options.port = parseInt(props.port || 5060, 10);
+
+    const packageJson = utils.getPackageJson(this.options.packageJsonPath);
 
     this.isServerStarted = false;
+    this.clientData = {
+      packageJson,
+      progress: {
+        percentage: 0,
+        message: null,
+      },
+      stateData: {},
+    };
   }
 
   doneCallBack(stats) {
-    // console.log(stats.toJson())
-    console.log('complete');
+    this.clientData.stateData = stats.toJson();
+
+    if (!this.isServerStarted) {
+      return;
+    }
+
+    server.io.emit('data', this.clientData);
+  }
+
+  progressCallBack(percentage, message) {
+    this.clientData.progress = {
+      percentage,
+      message,
+    };
+
+    if (!this.isServerStarted) {
+      return;
+    }
+
+    server.io.emit('data', this.clientData);
   }
 
   startServer() {
     const { port, host } = this.options;
+    const { http, io } = server;
 
-    server.http.listen(port, host, function() {
+    http.listen(port, host, () => {
       console.log(`Starting dashboard on: http://${host}:${port}`);
+      this.isServerStarted = true;
+
+      io.on('connection', socket => {
+        socket.emit('data', this.clientData);
+      });
     });
   }
 
   apply(compiler) {
     this.startServer();
 
-    compiler.apply(
-      new webpack.ProgressPlugin((percentage, message) => {
-        console.log(percentage, message);
-      }),
-    );
-
     const doneCallBack = this.doneCallBack.bind(this);
+    const progressCallBack = this.progressCallBack.bind(this);
+
+    compiler.apply(new webpack.ProgressPlugin(progressCallBack));
+
     if (compiler.hooks) {
       compiler.hooks.done.tapAsync('my-webpack-dashboard', doneCallBack);
     } else {

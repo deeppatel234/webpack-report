@@ -1,11 +1,10 @@
 const express = require('express');
 const app = express();
 
-const PATHS = require('../../config/paths');
-
 const http = require('http').createServer(app);
-
 const io = require('socket.io')(http);
+
+const PATHS = require('../../config/paths');
 
 app.use(express.static(PATHS.DIST_DIR));
 
