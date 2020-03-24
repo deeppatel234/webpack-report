@@ -1,0 +1,76 @@
+{
+  "extends": [
+    "airbnb",
+    "prettier",
+    "prettier/react",
+    "plugin:jsx-a11y/recommended"
+  ],
+  "plugins": ["react", "prettier", "jsx-a11y"],
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true,
+      "generators": true
+    }
+  },
+  "env": {
+    "browser": true,
+    "commonjs": true,
+    "es6": true,
+    "jest": true,
+    "node": true
+  },
+  "settings": {
+    "import/ignore": [
+      "node_modules",
+      "\\.(json|css|jpg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm)$"
+    ],
+    "import/extensions": [".js"],
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".json"]
+      },
+      "webpack": {
+        "config": "config/webpack.dev.js"
+      }
+    },
+    "react": {
+      "version": "16.13.0"
+    }
+  },
+  "globals": {
+    "window": true,
+    "document": true,
+    "localStorage": true,
+    "FormData": true,
+    "FileReader": true,
+    "Blob": true,
+    "navigator": true
+  },
+  "rules": {
+    "react/jsx-filename-extension": [
+      1,
+      {
+        "extensions": [".js", ".jsx"]
+      }
+    ],
+    "import/no-unresolved": [
+      "error",
+      {
+        "ignore": ["test-utils"]
+      }
+    ],
+    "no-console": "off",
+    "react/prop-types": 0,
+    "no-underscore-dangle": 0,
+    "import/imports-first": ["error", "absolute-first"],
+    "import/newline-after-import": "error",
+    "prettier/prettier": "error",
+    "import/no-extraneous-dependencies": 0,
+    "jsx-a11y/click-events-have-key-events": 0,
+    "react/jsx-props-no-spreading": 0,
+    "import/prefer-default-export": 0
+  }
+}
