@@ -5,8 +5,9 @@ export const Card = styled.div`
   display: inline-block;
   border-radius: 4px;
   padding: 12px;
-  border: 1px solid rgba(0, 0, 0, 0.12);
+  border: 1px solid ${props => props.theme.palette.cardBorderColor};
   margin: 12px;
+  background-color: ${props => props.theme.palette.cardBackground};
 
   ${props =>
     props.background &&

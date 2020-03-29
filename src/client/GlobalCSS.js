@@ -3,13 +3,14 @@ import { Global, css } from '@emotion/core';
 import { useTheme } from 'emotion-theming';
 
 const GlobalStyle = () => {
-  const { typography } = useTheme();
+  const { typography, palette } = useTheme();
 
   return (
     <Global
       styles={css`
         body {
           ${typography.body}
+          color: ${palette.text}
         }
 
         html,

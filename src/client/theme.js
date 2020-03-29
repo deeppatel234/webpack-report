@@ -17,13 +17,38 @@ const FontWeight = {
 };
 
 const palette = {
-  white: '#ffffff',
-  black: '#000000',
-  warning: '#faad14',
-  error: '#DC3545',
-  text: 'rgba(0,0,0,.85)',
-  muted: '#6c757d',
-  icon: '#555',
+  light: {
+    white: '#ffffff',
+    black: '#000000',
+    dark: '#000000',
+    light: '#ffffff',
+    warning: '#faad14',
+    error: '#DC3545',
+    info: '#17a2b8',
+    text: 'rgba(0,0,0,.85)',
+    muted: '#6c757d',
+    icon: '#555',
+    background: '#fff',
+    cardBackground: '#fff',
+    cardBorderColor: 'rgba(0,0,0,0.12)',
+    headerBackground: '#3d4977',
+  },
+  dark: {
+    white: '#ffffff',
+    black: '#000000',
+    dark: '#ffffff',
+    light: '#000000',
+    warning: '#faad14',
+    error: '#DC3545',
+    info: '#17a2b8',
+    text: '#fff',
+    muted: '#ffffff',
+    icon: '#ffffff',
+    background: '#212121',
+    cardBackground: '#333333',
+    cardBorderColor: 'rgba(255, 255, 255, 0.12)',
+    headerBackground: '#333333',
+  },
 };
 
 const typography = {
@@ -58,7 +83,6 @@ const typography = {
     lineHeight: 1.5,
     fontWeight: FontWeight.REGULAR,
     fontFamily: FontFamily,
-    color: palette.text,
   },
   label: {
     fontSize: pxToRem(12),
@@ -76,6 +100,12 @@ const typography = {
 };
 
 export const theme = {
-  typography,
-  palette,
+  light: {
+    typography,
+    palette: palette.light,
+  },
+  dark: {
+    typography,
+    palette: palette.dark,
+  },
 };

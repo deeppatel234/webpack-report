@@ -5,8 +5,7 @@ export const HeaderWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: #3d4977;
-  color: white;
+  background-color: ${props => props.theme.palette.headerBackground};
   padding: 14px;
   font-size: 0.9rem;
 `;
