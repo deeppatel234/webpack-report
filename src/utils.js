@@ -1,5 +1,6 @@
 const importFrom = require('import-from');
 const fs = require('fs');
+const ANSIToHtml = require('ansi-to-html');
 
 const getPackageJson = packageJsonPath => {
   let path = packageJsonPath;
@@ -23,6 +24,18 @@ const getPackageJson = packageJsonPath => {
   };
 };
 
+const formateState = state => {
+  const newState = state;
+  const newFormat = { newline: true, escapeXML: true, colors: true };
+  const formatter = new ANSIToHtml(newFormat);
+
+  newState.warnings = newState.warnings.map(w => formatter.toHtml(w));
+  newState.errors = newState.errors.map(e => formatter.toHtml(e));
+
+  return state;
+};
+
 module.exports = {
   getPackageJson,
+  formateState,
 };

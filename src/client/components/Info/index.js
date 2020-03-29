@@ -1,0 +1,46 @@
+import React, { useContext } from 'react';
+import { Redirect, Link } from 'react-router-dom';
+
+import AppContext from 'src/AppContext';
+import Typography from 'UI/Typography';
+import Card from 'UI/Card';
+
+import LeftCircle from 'UI/Icons/LeftCircle';
+
+import { InfoWrapper, InfoHeader, InfoBody } from './styled';
+
+const Info = ({ match }) => {
+  const { stateData } = useContext(AppContext);
+  const {
+    params: { type },
+  } = match;
+
+  if (!['errors', 'warnings'].includes(type)) {
+    return <Redirect to="/" />;
+  }
+
+  const infoList = stateData[type] || [];
+  const color = type === 'errors' ? 'error' : 'warning';
+
+  return (
+    <InfoWrapper>
+      <InfoHeader>
+        <Link to="/">
+          <LeftCircle width="2rem" />
+        </Link>
+        <Typography variant="h4">{type}</Typography>
+      </InfoHeader>
+      <InfoBody>
+        {infoList.map(info => (
+          <Card key={info} borderColor={color}>
+            <Typography color={color}>
+              <div dangerouslySetInnerHTML={{ __html: info }} />
+            </Typography>
+          </Card>
+        ))}
+      </InfoBody>
+    </InfoWrapper>
+  );
+};
+
+export default Info;

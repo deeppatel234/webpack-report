@@ -1,33 +1,50 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { HashRouter, Route } from 'react-router-dom';
 
-import Header from '../Header';
+import Header from 'Components/Header';
+import Info from 'Components/Info';
+import AppContext from 'src/AppContext';
 
-import StatisticsCard from '../UI/StatisticsCard';
-import WarningIcon from '../UI/Icons/Warning';
-import CloseCircleIcon from '../UI/Icons/CloseCircle';
+import StatisticsCard from 'UI/StatisticsCard';
+import WarningIcon from 'UI/Icons/Warning';
+import CloseCircleIcon from 'UI/Icons/CloseCircle';
 
 import { DashboardWrapper } from './styled';
 
 const Dashboard = () => {
+  const { stateData } = useContext(AppContext);
+  const { errors, warnings } = stateData;
+
   return (
-    <DashboardWrapper>
-      <Header />
+    <>
       <StatisticsCard
+        to="/info/warnings"
         icon={<WarningIcon width="2.3rem" />}
         color="warning"
         header="Warnings"
-        text="25"
+        text={warnings.length}
         width="200px"
       />
       <StatisticsCard
+        to="/info/errors"
         icon={<CloseCircleIcon width="2.3rem" />}
         color="error"
         header="Errors"
-        text="25"
+        text={errors.length}
         width="200px"
       />
-    </DashboardWrapper>
+    </>
   );
 };
 
-export default Dashboard;
+export default () => {
+  return (
+    <DashboardWrapper>
+      <Header />
+      <HashRouter>
+        <Route exact path="/" component={Dashboard} />
+        <Route exact path="/info/:type" component={Info} />
+      </HashRouter>
+    </DashboardWrapper>
+  );
+};

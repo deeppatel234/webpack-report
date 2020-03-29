@@ -5,9 +5,9 @@ import ArrowRight from '../Icons/ArrowRight';
 
 import { CardWrapper, InfoWrapper, ContentWrapper } from './styled';
 
-const StatisticsCard = ({ icon, color, header, text, width }) => {
+const StatisticsCard = ({ icon, header, text, ...props }) => {
   return (
-    <CardWrapper color={color} width={width}>
+    <CardWrapper {...props}>
       <ContentWrapper flexStart>
         {icon}
         <InfoWrapper>
