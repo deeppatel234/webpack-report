@@ -1,10 +1,9 @@
 const merge = require('webpack-merge');
 
-const CompressionPlugin = require('compression-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const WorkboxPlugin = require('workbox-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 const common = require('./webpack.common.js');
 const PATHS = require('./paths');
@@ -46,6 +45,7 @@ module.exports = merge(common, {
     },
   },
   plugins: [
+    new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       filename: `${PATHS.DIST_DIR}/index.html`,
       template: `${PATHS.PUBLIC_DIR}/index.html`,
@@ -54,15 +54,6 @@ module.exports = merge(common, {
         collapseWhitespace: true,
         minifyJS: true,
       },
-    }),
-    new CompressionPlugin({
-      filename: '[path].gz[query]',
-      algorithm: 'gzip',
-      test: /\.js$|\.css$/,
-    }),
-    new WorkboxPlugin.GenerateSW({
-      swDest: 'serviceWorker.js',
-      skipWaiting: true,
     }),
   ],
 });

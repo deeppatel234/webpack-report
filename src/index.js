@@ -1,6 +1,7 @@
 const webpack = require('webpack');
 const server = require('./server');
 const utils = require('./utils');
+const ANSIToHtml = require('ansi-to-html');
 
 class WebpackDashboard {
   constructor(props = {}) {
@@ -23,8 +24,15 @@ class WebpackDashboard {
   }
 
   doneCallBack(stats) {
-    this.clientData.stateData = stats.toJson();
+    this.clientData.stateData = stats.toJson({
+      color: true,
+    });
 
+    const newFormat = { newline: true, escapeXML: true, colors: true };
+    const formatter = new ANSIToHtml(newFormat);
+    this.clientData.stateData.warnings = this.clientData.stateData.warnings.map(
+      error => formatter.toHtml(error),
+    );
     if (!this.isServerStarted) {
       return;
     }

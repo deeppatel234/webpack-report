@@ -1,6 +1,5 @@
 const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const PATHS = require('./paths');
@@ -73,7 +72,6 @@ module.exports = {
     },
   },
   plugins: [
-    new CleanWebpackPlugin(),
     new CopyWebpackPlugin([{ from: PATHS.PUBLIC_DIR, to: PATHS.DIST_DIR }]),
     new MiniCssExtractPlugin({
       filename: 'static/css/[name].[hash].css',
