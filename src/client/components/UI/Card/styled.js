@@ -8,7 +8,6 @@ export const CardElement = styled.div`
   border-radius: 4px;
   padding: 12px;
   border: 1px solid ${props => props.theme.palette.cardBorderColor};
-  margin: 12px;
   background-color: ${props => props.theme.palette.cardBackground};
 
   ${props =>
@@ -30,6 +29,12 @@ export const CardElement = styled.div`
     `}
 
   ${props =>
+    props.margin &&
+    css`
+      margin: ${props.margin};
+    `}
+
+  ${props =>
     props.borderColor &&
     css`
       border-color: ${props.theme.palette[props.borderColor]};
@@ -41,7 +46,6 @@ export const CardLinkElement = styled(Link)`
   border-radius: 4px;
   padding: 12px;
   border: 1px solid ${props => props.theme.palette.cardBorderColor};
-  margin: 12px;
   background-color: ${props => props.theme.palette.cardBackground};
   text-decoration: none;
 
@@ -61,6 +65,12 @@ export const CardLinkElement = styled(Link)`
     props.width &&
     css`
       width: ${props.width};
+    `}
+
+  ${props =>
+    props.margin &&
+    css`
+      margin: ${props.margin};
     `}
 
   ${props =>

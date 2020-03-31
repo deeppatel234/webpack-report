@@ -31,6 +31,7 @@
     "@emotion/styled": "^10.0.27",
     "ansi-to-html": "^0.6.14",
     "emotion-theming": "^10.0.27",
+    "filesize": "^6.1.0",
     "lodash": "^4.17.15",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",

@@ -13,6 +13,7 @@ export const InfoHeader = styled.div`
   align-items: center;
   border-bottom: 1px solid ${props => props.theme.palette.cardBorderColor};
   padding: 8px 16px;
+  margin-bottom: 6px;
 
   svg {
     margin-right: 16px;

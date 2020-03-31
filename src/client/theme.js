@@ -94,7 +94,7 @@ const typography = {
     lineHeight: 1,
   },
   helpText: {
-    fontSize: pxToRem(12),
+    fontSize: pxToRem(10),
     fontWeight: FontWeight.REGULAR,
   },
 };

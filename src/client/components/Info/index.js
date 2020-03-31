@@ -32,7 +32,7 @@ const Info = ({ match }) => {
       </InfoHeader>
       <InfoBody>
         {infoList.map(info => (
-          <Card key={info} borderColor={color}>
+          <Card key={info} borderColor={color} margin="6px 12px">
             <Typography color={color}>
               <div dangerouslySetInnerHTML={{ __html: info }} />
             </Typography>
