@@ -76,7 +76,7 @@ const Statistics = () => {
       <StatisticsCard
         icon={<ImageFileIcon width="2.3rem" />}
         color="info"
-        header="Total Static Files Size"
+        header="Total Media Files Size"
         text={size(totalStaticFileSize)}
       />
       <StatisticsCard

@@ -60,14 +60,34 @@ const getFileType = name => {
   }
 };
 
-const formateState = state => {
-  const newState = state;
-  const newFormat = { newline: true, escapeXML: true, colors: true };
-  const formatter = new ANSIToHtml(newFormat);
+const computePackageSize = moduleList => {
+  const nodeModules = moduleList
+    .filter(n => n.name.startsWith('./node_modules'))
+    .map(n => {
+      return {
+        name: n.name.split('/')[2],
+        module: n,
+      };
+    })
+    .reduce((acc, n) => {
+      const { totalSize, modules } = acc[n.name] || {
+        totalSize: 0,
+        modules: [],
+      };
 
-  newState.warnings = newState.warnings.map(w => formatter.toHtml(w));
-  newState.errors = newState.errors.map(e => formatter.toHtml(e));
+      return {
+        ...acc,
+        [n.name]: {
+          totalSize: totalSize + n.module.size,
+          modules: [...modules, n.module],
+        },
+      };
+    }, {});
 
+  return nodeModules;
+};
+
+const computeDashboardState = state => {
   const dashboardState = {
     totalJSSize: 0,
     totalCSSSize: 0,
@@ -77,7 +97,7 @@ const formateState = state => {
     initialCSSSize: 0,
   };
 
-  newState.assets.forEach(({ name, size }) => {
+  state.assets.forEach(({ name, size }) => {
     if (!isValidName(name)) {
       return true;
     }
@@ -93,17 +113,19 @@ const formateState = state => {
     }
 
     dashboardState.totalAssetsSize += size;
+
+    return true;
   });
 
   const entrypointCallBack = (acc, name) => {
-    const asset = newState.assets.find(a => a.name === name);
+    const asset = state.assets.find(a => a.name === name);
     if (asset) {
       return acc + asset.size;
     }
     return acc;
   };
 
-  Object.values(newState.entrypoints).forEach(({ assets }) => {
+  Object.values(state.entrypoints).forEach(({ assets }) => {
     const jsFiles = assets.filter(
       a => getFileType(a) === FILE_TYPES.JAVASCRIPT,
     );
@@ -113,7 +135,28 @@ const formateState = state => {
     dashboardState.initialCSSSize = cssFiles.reduce(entrypointCallBack, 0);
   });
 
-  newState.dashboardState = dashboardState;
+  return dashboardState;
+};
+
+const removeSourceFromModule = moduleList => {
+  return moduleList.map(m => {
+    if (m.source) {
+      delete m.source;
+    }
+    return m;
+  });
+};
+
+const formateState = state => {
+  const newState = state;
+  const newFormat = { newline: true, escapeXML: true, colors: true };
+  const formatter = new ANSIToHtml(newFormat);
+
+  newState.modules = removeSourceFromModule(newState.modules);
+  newState.warnings = newState.warnings.map(w => formatter.toHtml(w));
+  newState.errors = newState.errors.map(e => formatter.toHtml(e));
+  newState.dashboardState = computeDashboardState(newState);
+  newState.packageSize = computePackageSize(newState.modules);
 
   return newState;
 };
@@ -122,3 +165,115 @@ module.exports = {
   getPackageJson,
   formateState,
 };
+
+// const mod = appData.stateData.modules
+// .filter(n => n.name.indexOf('node_modules') !== -1)
+// .map(n => {
+//   return {
+//     name: n.name.split('/')[2],
+//     module: n,
+//   };
+// })
+// .reduce((acc, n) => {
+//   const { totalSize, modules } = acc[n.name] || {
+//     totalSize: 0,
+//     modules: [],
+//   };
+
+//   const sum = totalSize + n.module.size;
+//   return {
+//     ...acc,
+//     [n.name]: {
+//       totalSize: sum,
+//       modules: [...modules, n.module],
+//     },
+//   };
+// }, {});
+
+// console.log(mod);
+
+// const { dependencies } = appData.packageJson;
+
+// console.log('dependencies', dependencies);
+
+// const filtedDependancy = Object.keys(dependencies).filter(d => !!mod[d]);
+
+// console.log('filtedDependancy', filtedDependancy);
+
+// const nonListedDeps = Object.keys(mod).filter(
+// m => !filtedDependancy.includes(m),
+// );
+
+// // console.log('nonListedDeps', nonListedDeps);
+
+// nonListedDeps.forEach(d => {
+// const f = mod[d].modules.map(({ issuerName, id }) => {
+//   if (!issuerName) {
+//     return false;
+//   }
+
+//   if (issuerName.indexOf('node_modules') === -1) {
+//     return false;
+//   }
+
+//   return { id, package: issuerName.split('/')[2] };
+// });
+
+// f.forEach(dd => {
+//   if (!dd) {
+//     return false;
+//   }
+
+//   if (mod[dd.package]) {
+//     mod[dd.package].modules.push(mod[d].modules.find(m => m.id === dd.id));
+
+//     mod[d].modules = mod[d].modules.filter(m => m.id !== dd.id);
+//   }
+// });
+// // console.log(f);
+// });
+
+// Object.keys(mod).forEach(m => {
+// if (mod[m].modules.length === 0) {
+//   delete mod[m];
+// }
+// });
+
+// console.log(mod);
+
+// const filtedDependancy1 = Object.keys(dependencies).filter(d => !!mod[d]);
+
+// const nonListedDeps1 = Object.keys(mod).filter(m =>
+// !filtedDependancy1.includes(m),
+// );
+
+// console.log('nonListedDeps 1', nonListedDeps1);
+
+// nonListedDeps.forEach(d => {
+//   const f = mod[d].modules.map(({ issuerName, id }) => {
+//     if (!issuerName) {
+//       return false;
+//     }
+
+//     if (issuerName.indexOf('node_modules') === -1) {
+//       return false;
+//     }
+
+//     return { id, package: issuerName.split('/')[2] };
+//   });
+
+//   f.forEach(dd => {
+//     if (!dd) {
+//       return false;
+//     }
+
+//     if (mod[dd.package]) {
+//       mod[dd.package].modules.push(mod[d].modules.find(m => m.id === dd.id));
+
+//       mod[d].modules = mod[d].modules.filter(m => m.id !== dd.id);
+//     }
+//   });
+//   // console.log(f);
+// });
+
+// console.log(mod);

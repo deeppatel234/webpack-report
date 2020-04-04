@@ -27,6 +27,7 @@
   },
   "homepage": "https://github.com/deeppatel234/webpack-dashboard#readme",
   "dependencies": {
+    "@antv/g2": "^4.0.3",
     "@emotion/core": "^10.0.28",
     "@emotion/styled": "^10.0.27",
     "ansi-to-html": "^0.6.14",
@@ -36,7 +37,6 @@
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-router-dom": "^5.1.2",
-    "react-spring": "^8.0.27",
     "socket.io": "^2.3.0",
     "socket.io-client": "^2.3.0"
   },
