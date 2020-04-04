@@ -6,8 +6,10 @@ import { ThemeProvider } from 'emotion-theming';
 
 import AppContext from './AppContext';
 import AppThemeContext from './AppThemeContext';
-import ProgressOverlay from './components/ProgressOverlay';
-import Dashboard from './components/Dashboard';
+
+import Pages from './pages';
+import ProgressOverlay from './pages/ProgressOverlay';
+
 import GlobalCSS from './GlobalCSS';
 import { theme as themeConfig } from './theme';
 import { getThemeFromLocal, setThemeInLocal } from './utils';
@@ -57,7 +59,7 @@ const App = () => {
             id="appData"
             displayName="App Data"
           />
-          {isAppLoaded ? <Dashboard /> : <ProgressOverlay />}
+          {isAppLoaded ? <Pages /> : <ProgressOverlay />}
         </ThemeProvider>
       </AppThemeContext.Provider>
     </AppContext.Provider>

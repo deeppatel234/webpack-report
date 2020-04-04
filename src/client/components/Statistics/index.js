@@ -50,6 +50,7 @@ const Statistics = () => {
         text={timeConversion(time)}
       />
       <StatisticsCard
+        to="/assets/totaljsfiles"
         icon={<JavascriptIcon width="2.3rem" />}
         header="Total Javascript Size"
         text={size(totalJSSize)}
