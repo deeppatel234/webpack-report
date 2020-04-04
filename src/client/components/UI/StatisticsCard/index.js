@@ -5,9 +5,9 @@ import ArrowRight from '../Icons/ArrowRight';
 
 import { CardWrapper, InfoWrapper, ContentWrapper } from './styled';
 
-const StatisticsCard = ({ icon, header, text, className, ...props }) => {
+const StatisticsCard = ({ icon, header, text, className, to, ...props }) => {
   return (
-    <CardWrapper className={`statistics-card ${className}`} {...props}>
+    <CardWrapper className={`statistics-card ${className}`} to={to} {...props}>
       <ContentWrapper flexStart>
         {icon}
         <InfoWrapper>
@@ -17,9 +17,11 @@ const StatisticsCard = ({ icon, header, text, className, ...props }) => {
           <Typography variant="h6">{text}</Typography>
         </InfoWrapper>
       </ContentWrapper>
-      <ContentWrapper>
-        <ArrowRight color="icon" />
-      </ContentWrapper>
+      {to && (
+        <ContentWrapper>
+          <ArrowRight color="icon" />
+        </ContentWrapper>
+      )}
     </CardWrapper>
   );
 };
