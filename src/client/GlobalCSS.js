@@ -10,7 +10,7 @@ const GlobalStyle = () => {
       styles={css`
         body {
           ${typography.body}
-          color: ${palette.text}
+          color: ${palette.text};
         }
 
         html,

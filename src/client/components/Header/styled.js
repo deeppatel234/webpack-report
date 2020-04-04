@@ -6,7 +6,7 @@ export const HeaderWrapper = styled.div`
   align-items: center;
   justify-content: space-between;
   background-color: ${props => props.theme.palette.headerBackground};
-  padding: 14px;
+  padding: 8px 14px;
   font-size: 0.9rem;
 `;
 
@@ -21,3 +21,14 @@ export const ProjectName = styled(Typography)`
 export const VersionName = styled(Typography)`
   margin-left: 8px;
 `;
+
+export const ThemeButton = styled.div`
+  padding: 4px;
+  border-radius: 50%;
+  transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.25);
+  }
+`;
+

@@ -3,8 +3,10 @@ import React, { useContext } from 'react';
 import AppContext from '../../AppContext';
 import AppThemeContext from '../../AppThemeContext';
 import Typography from '../UI/Typography';
+import LightThemeIcon from '../UI/Icons/LightTheme';
+import DarkThemeIcon from '../UI/Icons/DarkTheme';
 
-import { HeaderWrapper, HeaderCol, ProjectName, VersionName } from './styled';
+import { HeaderWrapper, HeaderCol, ProjectName, VersionName, ThemeButton } from './styled';
 
 const Header = () => {
   const { packageJson, stateData } = useContext(AppContext);
@@ -24,8 +26,21 @@ const Header = () => {
         )}
       </HeaderCol>
       <HeaderCol>
-        <button onClick={toggleTheme}>{theme}</button>
-        <Typography>{webpackVersion}</Typography>
+        <ThemeButton onClick={toggleTheme}>
+          {
+            theme === 'light' ? (
+              <LightThemeIcon
+                color="white"
+                width="1.5rem"
+              />
+            ) : (
+              <DarkThemeIcon
+                color="white"
+                width="1.5rem"
+              />
+            )
+          }
+        </ThemeButton>
       </HeaderCol>
     </HeaderWrapper>
   );
