@@ -44,10 +44,10 @@ const Statistics = () => {
             key={key}
             to={`/assets/${key}`}
             icon={<Icon width={iconWidth} />}
-            header={displayName}
             text={size(dashboardState[key].size)}
             color="info"
             {...props}
+            header={displayName}
           />
         ),
       )}

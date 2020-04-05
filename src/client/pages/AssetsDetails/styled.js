@@ -13,6 +13,7 @@ export const DetailsWrapper = styled.div`
 export const SideBar = styled.div`
   display: flex;
   flex-direction: column;
+  overflow: auto;
   border-right: 1px solid ${props => props.theme.palette.cardBorderColor};
 `;
 
