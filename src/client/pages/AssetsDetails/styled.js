@@ -7,6 +7,7 @@ import Typography from 'Components/Typography';
 export const DetailsWrapper = styled.div`
   flex: 1;
   display: flex;
+  min-height: 0;
 `;
 
 export const SideBar = styled.div`
@@ -18,7 +19,7 @@ export const SideBar = styled.div`
 export const Body = styled.div`
   flex: 1;
   overflow: auto;
-  padding: 16px;
+  padding: 32px;
 `;
 
 export const Title = styled(Typography)`
@@ -50,4 +51,7 @@ export const InfoWrapper = styled.div`
   display: inline-flex;
   flex-direction: column;
   margin-left: 14px;
+`;
+
+export const TableWrapper = styled.div`
 `;

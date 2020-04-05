@@ -8,3 +8,9 @@ export const IconSvg = styled.svg`
       color: ${props.theme.palette[props.color]};
     `}
 `;
+
+export const SortArrowWrapper = styled.span`
+  display: inline-flex;
+  flex-direction: column;
+  margin: 0 8px;
+`;

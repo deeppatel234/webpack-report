@@ -6,6 +6,9 @@ import { size } from 'src/utils';
 
 import Typography from 'Components/Typography';
 import SizeChart from 'Components/SizeChart';
+import NofileIcon from 'Components/Icons/NoFile';
+import Table from 'Components/Table';
+import Empty from 'Components/Empty';
 
 import {
   DetailsWrapper,
@@ -14,7 +17,13 @@ import {
   ListItem,
   InfoWrapper,
   Title,
+  TableWrapper,
 } from './styled';
+
+const headers = [
+  { key: 'name', header: 'Name', sort: true },
+  { key: 'size', header: 'Size', fileSize: true, sort: true },
+];
 
 const AssetsDetails = ({ match }) => {
   const { stateData } = useContext(AppContext);
@@ -24,7 +33,7 @@ const AssetsDetails = ({ match }) => {
     params: { type },
   } = match;
 
-  // const assetsData = ASSETS_TYPE.find(({ key }) => type === key);
+  const assetsData = ASSETS_TYPE.find(({ key }) => type === key);
 
   return (
     <DetailsWrapper>
@@ -47,7 +56,23 @@ const AssetsDetails = ({ match }) => {
         )}
       </SideBar>
       <Body>
-        <SizeChart id={type} data={dashboardState[type].assets} />
+        {dashboardState[type].assets.length ? (
+          <>
+            <SizeChart id={type} data={dashboardState[type].assets} />
+            <TableWrapper>
+              <Table
+                searchKey="name"
+                title={assetsData.header}
+                headers={headers}
+                data={dashboardState[type].assets}
+              />
+            </TableWrapper>
+          </>
+        ) : (
+          <Empty message="No Assets Found">
+            <NofileIcon width="3rem" />
+          </Empty>
+        )}
       </Body>
     </DetailsWrapper>
   );

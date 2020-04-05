@@ -101,13 +101,19 @@ const typography = {
   },
 };
 
+const getRGBAColor = code => {
+  return a => `rgba(${code}, ${code}, ${code}, ${a})`;
+};
+
 export const theme = {
   light: {
     typography,
+    rgbaColor: getRGBAColor(0),
     palette: palette.light,
   },
   dark: {
     typography,
+    rgbaColor: getRGBAColor(255),
     palette: palette.dark,
   },
 };
