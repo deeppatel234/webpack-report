@@ -2,10 +2,10 @@ import React, { useContext } from 'react';
 import { Redirect, Link } from 'react-router-dom';
 
 import AppContext from 'src/AppContext';
-import Typography from 'UI/Typography';
-import Card from 'UI/Card';
+import Typography from 'Components/Typography';
+import Card from 'Components/Card';
 
-import LeftCircle from 'UI/Icons/LeftCircle';
+import LeftCircle from 'Components/Icons/LeftCircle';
 
 import { InfoWrapper, InfoHeader, InfoBody } from './styled';
 

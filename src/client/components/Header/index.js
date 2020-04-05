@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom';
 
 import AppContext from 'src/AppContext';
 import AppThemeContext from 'src/AppThemeContext';
-import Typography from 'UI/Typography';
-import LightThemeIcon from 'UI/Icons/LightTheme';
-import DarkThemeIcon from 'UI/Icons/DarkTheme';
+import Typography from 'Components/Typography';
+import LightThemeIcon from 'Components/Icons/LightTheme';
+import DarkThemeIcon from 'Components/Icons/DarkTheme';
 
 import {
   HeaderWrapper,

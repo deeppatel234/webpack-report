@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
 import AppContext from 'src/AppContext';
 
-import StatisticsCard from 'UI/StatisticsCard';
-import WarningIcon from 'UI/Icons/Warning';
-import CloseCircleIcon from 'UI/Icons/CloseCircle';
-import TimeIcon from 'UI/Icons/Time';
+import StatisticsCard from 'Components/StatisticsCard';
+import WarningIcon from 'Components/Icons/Warning';
+import CloseCircleIcon from 'Components/Icons/CloseCircle';
+import TimeIcon from 'Components/Icons/Time';
 
 import { ASSETS_TYPE } from 'src/const';
 

@@ -69,7 +69,6 @@ module.exports = {
     extensions: ['.js', '.jsx'],
     alias: {
       src: PATHS.CLIENT_DIR,
-      UI: PATHS.UI_DIR,
       Components: PATHS.COMPONENTS_DIR,
     },
   },

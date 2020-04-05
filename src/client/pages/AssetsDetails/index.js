@@ -4,7 +4,7 @@ import AppContext from 'src/AppContext';
 import { ASSETS_TYPE } from 'src/const';
 import { size } from 'src/utils';
 
-import Typography from 'UI/Typography';
+import Typography from 'Components/Typography';
 import SizeChart from 'Components/SizeChart';
 
 import {

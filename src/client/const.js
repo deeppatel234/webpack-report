@@ -1,7 +1,7 @@
-import JavascriptIcon from 'UI/Icons/Javascript';
-import CSSIcon from 'UI/Icons/CSS';
-import FileIcon from 'UI/Icons/File';
-import ImageFileIcon from 'UI/Icons/ImageFile';
+import JavascriptIcon from 'Components/Icons/Javascript';
+import CSSIcon from 'Components/Icons/CSS';
+import FileIcon from 'Components/Icons/File';
+import ImageFileIcon from 'Components/Icons/ImageFile';
 
 export const ASSETS_TYPE = [
   {

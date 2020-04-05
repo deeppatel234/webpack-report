@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import Typography from '../UI/Typography';
+import Typography from 'Components/Typography';
 
 export const HeaderWrapper = styled.div`
   display: flex;

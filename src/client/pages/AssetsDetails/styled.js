@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import { css } from '@emotion/core';
 import { NavLink } from 'react-router-dom';
 
-import Typography from 'UI/Typography';
+import Typography from 'Components/Typography';
 
 export const DetailsWrapper = styled.div`
   flex: 1;
