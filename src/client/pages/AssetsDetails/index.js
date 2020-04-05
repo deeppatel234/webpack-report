@@ -67,7 +67,7 @@ const AssetsDetails = ({ match }) => {
             <TableWrapper>
               <Table
                 searchKey="name"
-                title={assetsData.header}
+                title={`${assetsData.header} (${dashboardState[type].assets.length})`}
                 headers={headers}
                 data={dashboardState[type].assets}
               />
