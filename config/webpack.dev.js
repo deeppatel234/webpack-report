@@ -5,7 +5,7 @@ const detect = require('detect-port');
 const common = require('./webpack.common.js');
 const PATHS = require('./paths');
 
-const PORT = parseInt(process.env.PORT, 10) || 8000;
+const PORT = parseInt(process.env.PORT, 10) || 5070;
 const HOST = process.env.HOST || '0.0.0.0';
 
 module.exports = async () => {
@@ -26,7 +26,7 @@ module.exports = async () => {
       historyApiFallback: true,
       hot: true,
       compress: true,
-      writeToDisk: true,
+      writeToDisk: false,
     },
     plugins: [
       new HtmlWebpackPlugin({
