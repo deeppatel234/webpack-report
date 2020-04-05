@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
-import AppContext from 'src/AppContext';
+import { Redirect } from 'react-router-dom';
 
+import AppContext from 'src/AppContext';
 import { ASSETS_TYPE } from 'src/const';
 import { size } from 'src/utils';
 
@@ -32,6 +33,10 @@ const AssetsDetails = ({ match }) => {
   const {
     params: { type },
   } = match;
+
+  if (!dashboardState[type]) {
+    return <Redirect to={`/assets/${ASSETS_TYPE[0].key}`} />;
+  }
 
   const assetsData = ASSETS_TYPE.find(({ key }) => type === key);
 

@@ -16,7 +16,7 @@ const Pages = () => {
         <Header />
         <Route exact path="/" component={Dashboard} />
         <Route exact path="/info/:type" component={Info} />
-        <Route exact path="/assets/:type" component={AssetsDetails} />
+        <Route exact path="/assets/:type?" component={AssetsDetails} />
       </HashRouter>
     </PageWrapper>
   );

@@ -13,6 +13,7 @@ import {
   ProjectName,
   VersionName,
   ThemeButton,
+  NavLinks,
 } from './styled';
 
 const Header = () => {
@@ -36,6 +37,10 @@ const Header = () => {
         )}
       </HeaderCol>
       <HeaderCol>
+        <NavLinks exact to="/">
+          Dashboard
+        </NavLinks>
+        <NavLinks to="/assets">Assets</NavLinks>
         <ThemeButton onClick={toggleTheme}>
           {theme === 'light' ? (
             <LightThemeIcon color="white" width="1.5rem" />
