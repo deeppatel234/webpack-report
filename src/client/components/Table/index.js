@@ -100,8 +100,12 @@ const Table = ({ headers, data, title, searchKey }) => {
           {tableData.map(d => {
             return (
               <tr key={d[searchKey]}>
-                {headers.map(({ key, fileSize }) => (
-                  <td key={key}>{fileSize ? size(d[key]) : d[key]}</td>
+                {headers.map(({ key, fileSize, render }) => (
+                  <td key={key}>
+                    {render
+                      ? render({ data: d[key], rowData: d, key })
+                      : (fileSize ? size(d[key]) : d[key])}
+                  </td>
                 ))}
               </tr>
             );

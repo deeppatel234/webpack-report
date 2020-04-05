@@ -2,13 +2,14 @@ import styled from '@emotion/styled';
 import { css } from '@emotion/core';
 
 export const TableWrapper = styled.div`
+  width: 100%;
 `;
 
 export const Header = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 24px 0;
+  padding-bottom: 24px;
 `;
 
 export const TableElement = styled.table`
@@ -24,6 +25,7 @@ export const TableElement = styled.table`
   td {
     text-align: left;
     padding: 12px;
+    word-break: break-all;
   }
 
   thead {

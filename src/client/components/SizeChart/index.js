@@ -94,7 +94,7 @@ const SizeChart = ({ id, data }) => {
     chart.render();
   }, [id]);
 
-  return <div id={graphId} ref={graphRef} />;
+  return <div id={graphId} className="size-graph" ref={graphRef} />;
 };
 
 export default SizeChart;

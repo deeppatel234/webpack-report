@@ -179,11 +179,21 @@ const removeSourceFromModule = moduleList => {
   });
 };
 
+const extractSubModules = moduleList => {
+  return moduleList.reduce((acc, moduleItem) => {
+    if (moduleItem.modules) {
+      return [...acc, ...moduleItem.modules];
+    }
+    return [...acc, moduleItem];
+  }, []);
+};
+
 const formateState = state => {
   const newState = state;
   const newFormat = { newline: true, escapeXML: true, colors: true };
   const formatter = new ANSIToHtml(newFormat);
 
+  newState.modules = extractSubModules(newState.modules);
   newState.modules = removeSourceFromModule(newState.modules);
   newState.warnings = newState.warnings.map(w => formatter.toHtml(w));
   newState.errors = newState.errors.map(e => formatter.toHtml(e));

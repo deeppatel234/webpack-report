@@ -14,4 +14,12 @@ export const PageWrapper = styled.div`
   .css {
     color: #264de4;
   }
+
+  .nodejs {
+    color: #6cc24a;
+  }
+
+  .size-graph {
+    padding-bottom: 24px;
+  }
 `;

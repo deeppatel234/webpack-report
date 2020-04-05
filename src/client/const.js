@@ -1,6 +1,7 @@
 import JavascriptIcon from 'Components/Icons/Javascript';
 import CSSIcon from 'Components/Icons/CSS';
 import FileIcon from 'Components/Icons/File';
+import NodeJSIcon from 'Components/Icons/NodeJS';
 import ImageFileIcon from 'Components/Icons/ImageFile';
 
 export const ASSETS_TYPE = [
@@ -45,5 +46,21 @@ export const ASSETS_TYPE = [
     displayName: 'Total Media Files Size',
     header: 'All Media Files',
     icon: ImageFileIcon,
+  },
+];
+
+export const MODULE_TYPE = [
+  {
+    key: '/modules/all',
+    displayName: 'All Modules',
+    header: 'All Modules',
+    icon: FileIcon,
+  },
+  {
+    key: '/modules/node_modules',
+    displayName: 'Node Modules',
+    header: 'Node Modules',
+    icon: NodeJSIcon,
+    className: 'nodejs',
   },
 ];
