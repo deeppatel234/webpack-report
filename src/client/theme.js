@@ -32,6 +32,7 @@ const palette = {
     cardBackground: '#fff',
     cardBorderColor: 'rgba(0,0,0,0.12)',
     headerBackground: '#3d4977',
+    hover: 'rgba(0,0,0,0.04)',
   },
   dark: {
     white: '#ffffff',
@@ -48,6 +49,7 @@ const palette = {
     cardBackground: '#333333',
     cardBorderColor: 'rgba(255, 255, 255, 0.12)',
     headerBackground: '#333333',
+    hover: 'rgba(255,255,255,0.12)',
   },
 };
 

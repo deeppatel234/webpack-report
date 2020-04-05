@@ -1,10 +1,11 @@
 import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
 
-import AppContext from '../../AppContext';
-import AppThemeContext from '../../AppThemeContext';
-import Typography from '../UI/Typography';
-import LightThemeIcon from '../UI/Icons/LightTheme';
-import DarkThemeIcon from '../UI/Icons/DarkTheme';
+import AppContext from 'src/AppContext';
+import AppThemeContext from 'src/AppThemeContext';
+import Typography from 'UI/Typography';
+import LightThemeIcon from 'UI/Icons/LightTheme';
+import DarkThemeIcon from 'UI/Icons/DarkTheme';
 
 import {
   HeaderWrapper,
@@ -22,7 +23,9 @@ const Header = () => {
   return (
     <HeaderWrapper>
       <HeaderCol>
-        <Typography color="white">Webpack Dashboard</Typography>
+        <Link to="/">
+          <Typography color="white">Webpack Dashboard</Typography>
+        </Link>
         {name && (
           <>
             <ProjectName color="white">{name}</ProjectName>

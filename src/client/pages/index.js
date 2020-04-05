@@ -12,8 +12,8 @@ import { PageWrapper } from './styled';
 const Pages = () => {
   return (
     <PageWrapper>
-      <Header />
       <HashRouter>
+        <Header />
         <Route exact path="/" component={Dashboard} />
         <Route exact path="/info/:type" component={Info} />
         <Route exact path="/assets/:type" component={AssetsDetails} />

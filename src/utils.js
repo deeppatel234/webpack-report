@@ -89,12 +89,30 @@ const computePackageSize = moduleList => {
 
 const computeDashboardState = state => {
   const dashboardState = {
-    totalJSSize: 0,
-    totalCSSSize: 0,
-    totalStaticFileSize: 0,
-    totalAssetsSize: 0,
-    initialJSSize: 0,
-    initialCSSSize: 0,
+    totalJSSize: {
+      size: 0,
+      assets: [],
+    },
+    totalCSSSize: {
+      size: 0,
+      assets: [],
+    },
+    totalStaticFileSize: {
+      size: 0,
+      assets: [],
+    },
+    totalAssetsSize: {
+      size: 0,
+      assets: [],
+    },
+    initialJSSize: {
+      size: 0,
+      assets: [],
+    },
+    initialCSSSize: {
+      size: 0,
+      assets: [],
+    },
   };
 
   state.assets.forEach(({ name, size }) => {
@@ -105,21 +123,29 @@ const computeDashboardState = state => {
     const fileType = getFileType(name);
 
     if (fileType === FILE_TYPES.JAVASCRIPT) {
-      dashboardState.totalJSSize += size;
+      dashboardState.totalJSSize.size += size;
+      dashboardState.totalJSSize.assets.push({ name, size });
     } else if (fileType === FILE_TYPES.CSS) {
-      dashboardState.totalCSSSize += size;
+      dashboardState.totalCSSSize.size += size;
+      dashboardState.totalCSSSize.assets.push({ name, size });
     } else {
-      dashboardState.totalStaticFileSize += size;
+      dashboardState.totalStaticFileSize.size += size;
+      dashboardState.totalStaticFileSize.assets.push({ name, size });
     }
 
-    dashboardState.totalAssetsSize += size;
+    dashboardState.totalAssetsSize.size += size;
+    dashboardState.totalAssetsSize.assets.push({ name, size });
 
     return true;
   });
 
-  const entrypointCallBack = (acc, name) => {
+  const entrypointCallBack = key => (acc, name) => {
     const asset = state.assets.find(a => a.name === name);
     if (asset) {
+      dashboardState[key].assets.push({
+        name: asset.name,
+        size: asset.size,
+      });
       return acc + asset.size;
     }
     return acc;
@@ -131,8 +157,14 @@ const computeDashboardState = state => {
     );
     const cssFiles = assets.filter(a => getFileType(a) === FILE_TYPES.CSS);
 
-    dashboardState.initialJSSize = jsFiles.reduce(entrypointCallBack, 0);
-    dashboardState.initialCSSSize = cssFiles.reduce(entrypointCallBack, 0);
+    dashboardState.initialJSSize.size = jsFiles.reduce(
+      entrypointCallBack('initialJSSize'),
+      0,
+    );
+    dashboardState.initialCSSSize.size = cssFiles.reduce(
+      entrypointCallBack('initialCSSSize'),
+      0,
+    );
   });
 
   return dashboardState;
