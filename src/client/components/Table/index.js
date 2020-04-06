@@ -9,16 +9,31 @@ import SortArrow from 'Components/Icons/SortArrow';
 import SearchIcon from 'Components/Icons/Search';
 import Input from 'Components/Input';
 
-import { TableElement, HeaderWrapper, TableWrapper, Header } from './styled';
+import {
+  TableElement,
+  HeaderWrapper,
+  TableWrapper,
+  Header,
+  SubRowWrapper,
+  TableRow,
+} from './styled';
 
 const SORT_ORDER = {
   ASC: 'asc',
   DESC: 'desc',
 };
 
-const Table = ({ headers, data, title, searchKey }) => {
+const Table = ({
+  headers,
+  data,
+  title,
+  searchKey,
+  subRow: SubRow,
+  summary: Summary,
+}) => {
   const [tableData, setTableData] = useState(data);
   const [masterData, setMasterData] = useState(data);
+  const [showSubRow, setShowSubRow] = useState({});
   const [sortData, setSortData] = useState({});
   const [searchText, setSearchText] = useState('');
 
@@ -26,6 +41,7 @@ const Table = ({ headers, data, title, searchKey }) => {
     setTableData(data);
     setMasterData(data);
     setSortData({});
+    setShowSubRow({});
   }, [data]);
 
   useEffect(() => {
@@ -61,17 +77,29 @@ const Table = ({ headers, data, title, searchKey }) => {
     setTableData(filteredData);
   };
 
+  const toggleSubRow = key => {
+    const coptData = { ...showSubRow };
+    if (coptData[key]) {
+      delete coptData[key];
+    } else {
+      coptData[key] = true;
+    }
+    setShowSubRow(coptData);
+  };
+
   return (
     <TableWrapper>
       <Header>
         <Typography variant="h5">{title}</Typography>
-        <Input
-          width="250px"
-          value={searchText}
-          onChange={onChangeSearch}
-          suffix={<SearchIcon />}
-          placeholder="Search..."
-        />
+        {searchKey && (
+          <Input
+            width="250px"
+            value={searchText}
+            onChange={onChangeSearch}
+            suffix={<SearchIcon />}
+            placeholder="Search..."
+          />
+        )}
       </Header>
       <TableElement>
         <thead>
@@ -98,19 +126,41 @@ const Table = ({ headers, data, title, searchKey }) => {
         </thead>
         <tbody>
           {tableData.map(d => {
+            const rowKey = d[searchKey];
             return (
-              <tr key={d[searchKey]}>
-                {headers.map(({ key, fileSize, render }) => (
-                  <td key={key}>
-                    {render
-                      ? render({ data: d[key], rowData: d, key })
-                      : (fileSize ? size(d[key]) : d[key])}
-                  </td>
-                ))}
-              </tr>
+              <>
+                <TableRow
+                  key={rowKey}
+                  clickable={!!SubRow}
+                  isSubRowOpen={!!showSubRow[rowKey]}
+                  onClick={() => toggleSubRow(rowKey)}
+                >
+                  {headers.map(({ key, fileSize, render, className }) => (
+                    <td key={key} className={className}>
+                      {render
+                        ? render({ data: d[key], rowData: d, key })
+                        : fileSize
+                        ? size(d[key])
+                        : d[key]}
+                    </td>
+                  ))}
+                </TableRow>
+                {SubRow && showSubRow[rowKey] && (
+                  <TableRow disableHover noBorder>
+                    <SubRowWrapper colSpan={headers.length}>
+                      <SubRow rowData={d} />
+                    </SubRowWrapper>
+                  </TableRow>
+                )}
+              </>
             );
           })}
         </tbody>
+        {Summary && (
+          <tfoot>
+            <Summary tableData={tableData} />
+          </tfoot>
+        )}
       </TableElement>
     </TableWrapper>
   );

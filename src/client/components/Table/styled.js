@@ -34,14 +34,8 @@ export const TableElement = styled.table`
     }
   }
 
-  tbody {
-    tr {
-      border-bottom: 1px solid ${props => props.theme.rgbaColor(0.12)};
-
-      &:hover {
-        background-color: ${props => props.theme.rgbaColor(0.12)};
-      }
-    }
+  .underline {
+    text-decoration: underline;
   }
 `;
 
@@ -55,4 +49,38 @@ export const HeaderWrapper = styled.div`
     css`
       cursor: pointer;
     `}
+`;
+
+export const TableRow = styled.tr`
+  ${props =>
+    !props.noBorder &&
+    css`
+      border-bottom: 1px solid ${props.theme.rgbaColor(0.12)};
+    `}
+
+  ${props =>
+    props.clickable &&
+    css`
+      cursor: pointer;
+    `}
+
+  ${props =>
+    props.isSubRowOpen &&
+    css`
+      border-bottom: none;
+    `}
+
+  ${props =>
+    !props.disableHover &&
+    css`
+      &:hover {
+        background-color: ${props.theme.rgbaColor(0.12)};
+      }
+    `}
+`;
+
+export const SubRowWrapper = styled.td`
+  width: 100%;
+  padding: 32px 18px;
+  background-color: ${props => props.theme.rgbaColor(0.04)};
 `;
