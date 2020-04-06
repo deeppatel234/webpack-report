@@ -28,13 +28,13 @@ const headers = [
 
 const AssetsDetails = ({ match }) => {
   const { stateData } = useContext(AppContext);
-  const { dashboardState } = stateData;
+  const { assetsState } = stateData;
 
   const {
     params: { type },
   } = match;
 
-  if (!dashboardState[type]) {
+  if (!assetsState[type]) {
     return <Redirect to={`/assets/${ASSETS_TYPE[0].key}`} />;
   }
 
@@ -53,7 +53,7 @@ const AssetsDetails = ({ match }) => {
                   {displayName}
                 </Typography>
                 <Typography weight="600">
-                  {size(dashboardState[key].size)}
+                  {size(assetsState[key].size)}
                 </Typography>
               </InfoWrapper>
             </ListItem>
@@ -61,15 +61,15 @@ const AssetsDetails = ({ match }) => {
         )}
       </SideBar>
       <Body>
-        {dashboardState[type].assets.length ? (
+        {assetsState[type].assets.length ? (
           <>
-            <SizeChart id={type} data={dashboardState[type].assets} />
+            <SizeChart id={type} data={assetsState[type].assets} />
             <TableWrapper>
               <Table
                 searchKey="name"
-                title={`${assetsData.header} (${dashboardState[type].assets.length})`}
+                title={`${assetsData.header} (${assetsState[type].assets.length})`}
                 headers={headers}
-                data={dashboardState[type].assets}
+                data={assetsState[type].assets}
               />
             </TableWrapper>
           </>

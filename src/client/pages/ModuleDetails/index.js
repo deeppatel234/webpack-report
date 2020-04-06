@@ -2,8 +2,9 @@ import React, { useContext } from 'react';
 import { Route } from 'react-router-dom';
 
 import AppContext from 'src/AppContext';
-import { MODULE_TYPE } from 'src/const';
 
+import FileIcon from 'Components/Icons/File';
+import NodeJSIcon from 'Components/Icons/NodeJS';
 import Typography from 'Components/Typography';
 
 import TotalModles from './TotalModules';
@@ -18,38 +19,40 @@ import {
   Title,
 } from './styled';
 
+const SideBarItem = ({ to, displayName, value, icon: Icon, ...props }) => (
+  <ListItem color="info" to={to} {...props}>
+    <Icon width="1.5rem" />
+    <InfoWrapper>
+      <Typography color="muted" variant="helpText" uppercase>
+        {displayName}
+      </Typography>
+      <Typography weight="600">{value}</Typography>
+    </InfoWrapper>
+  </ListItem>
+);
+
 const ModuleDetails = () => {
   const { stateData } = useContext(AppContext);
 
-  const { modules, packageSize } = stateData;
-
-  const packageJsonLength = Object.keys(packageSize).length;
-  const packageJsonModules = Object.keys(packageSize).reduce((acc, key) => {
-    return acc + packageSize[key].modules.length;
-  }, 0);
-
-  const values = {
-    '/modules/all': modules.length,
-    '/modules/node_modules': `${packageJsonModules} (${packageJsonLength})`,
-  };
+  const { moduleState } = stateData;
 
   return (
     <DetailsWrapper>
       <SideBar>
         <Title variant="h5">Modules</Title>
-        {MODULE_TYPE.map(
-          ({ key, displayName, icon: Icon, iconWidth, ...props }) => (
-            <ListItem key={key} color="info" to={key} {...props}>
-              <Icon width="1.5rem" />
-              <InfoWrapper>
-                <Typography color="muted" variant="helpText" uppercase>
-                  {displayName}
-                </Typography>
-                <Typography weight="600">{values[key]}</Typography>
-              </InfoWrapper>
-            </ListItem>
-          ),
-        )}
+        <SideBarItem
+          to="/modules/all"
+          displayName="All Modules"
+          icon={FileIcon}
+          value={moduleState.totalModules}
+        />
+        <SideBarItem
+          to="/modules/node_modules"
+          displayName="Node Modules"
+          icon={NodeJSIcon}
+          className="nodejs"
+          value={`${moduleState.totalPackagesModule} (${moduleState.totalPackages})`}
+        />
       </SideBar>
       <Body>
         <Route path="/modules/all" component={TotalModles} />

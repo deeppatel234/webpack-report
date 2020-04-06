@@ -5,6 +5,8 @@ import StatisticsCard from 'Components/StatisticsCard';
 import WarningIcon from 'Components/Icons/Warning';
 import CloseCircleIcon from 'Components/Icons/CloseCircle';
 import TimeIcon from 'Components/Icons/Time';
+import FileIcon from 'Components/Icons/File';
+import NodeJSIcon from 'Components/Icons/NodeJS';
 
 import { ASSETS_TYPE } from 'src/const';
 
@@ -14,7 +16,7 @@ import { StatisticsWrapper } from './styled';
 
 const Statistics = () => {
   const { stateData } = useContext(AppContext);
-  const { errors, warnings, time, dashboardState } = stateData;
+  const { errors, warnings, time, assetsState, moduleState } = stateData;
 
   return (
     <StatisticsWrapper>
@@ -44,13 +46,27 @@ const Statistics = () => {
             key={key}
             to={`/assets/${key}`}
             icon={<Icon width={iconWidth} />}
-            text={size(dashboardState[key].size)}
+            text={size(assetsState[key].size)}
             color="info"
             {...props}
             header={displayName}
           />
         ),
       )}
+      <StatisticsCard
+        to="/modules/all"
+        icon={<FileIcon width="2.3rem" />}
+        text={moduleState.totalModules}
+        color="info"
+        header="All Modules"
+      />
+      <StatisticsCard
+        to="/modules/node_modules"
+        icon={<NodeJSIcon width="2.3rem" />}
+        text={`${moduleState.totalPackagesModule} (${moduleState.totalPackages})`}
+        className="nodejs"
+        header="Node Modules"
+      />
     </StatisticsWrapper>
   );
 };
