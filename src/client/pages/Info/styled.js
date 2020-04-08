@@ -1,28 +1,56 @@
+import { NavLink } from 'react-router-dom';
+
 import styled from '@emotion/styled';
+import { css } from '@emotion/core';
 
 export const InfoWrapper = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
   min-height: 0;
-  padding: 16px 40px 0 40px;
+  padding: 0 16px;
 `;
 
 export const InfoHeader = styled.div`
   display: flex;
-  align-items: center;
-  border-bottom: 1px solid ${props => props.theme.palette.cardBorderColor};
-  padding: 8px 16px;
-  margin-bottom: 6px;
-
-  svg {
-    margin-right: 16px;
-  }
+  padding: 12px;
 `;
 
 export const InfoBody = styled.div`
   flex: 1;
-  display: flex;
-  flex-direction: column;
   overflow: auto;
+
+  .cards {
+    display: table-caption;
+  }
+`;
+
+export const ListWrapper = styled.div`
+  margin-bottom: 18px;
+`;
+
+export const ListItem = styled(NavLink)`
+  display: inline-flex;
+  padding: 8px 16px;
+  width: 120px;
+  margin-right: 12px;
+  border-radius: 3px;
+  border: 1px solid ${props => props.theme.palette.cardBorderColor};
+  cursor: pointer;
+
+  ${props =>
+    props.color &&
+    css`
+      color: ${props.theme.palette[props.color]};
+    `}
+
+  &.active, &:hover {
+    background-color: ${props => props.theme.palette.hover};
+  }
+`;
+
+export const ListInfo = styled.div`
+  display: inline-flex;
+  flex-direction: column;
+  margin-left: 14px;
 `;

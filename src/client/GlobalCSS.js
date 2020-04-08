@@ -28,6 +28,7 @@ const GlobalStyle = () => {
 
         *::-webkit-scrollbar {
           width: 8px;
+          height: 8px;
           background-color: ${rgbaColor(0.12)};
         }
 
