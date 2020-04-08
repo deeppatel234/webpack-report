@@ -7,6 +7,7 @@ export const EmptyElement = styled.div`
   width: 100%;
   height: 100%;
   justify-content: center;
+  padding: 30px 0;
 
   color: ${props => props.theme.rgbaColor(0.4)};
 `;

@@ -8,6 +8,7 @@ import Typography from 'Components/Typography';
 import SortArrow from 'Components/Icons/SortArrow';
 import SearchIcon from 'Components/Icons/Search';
 import Input from 'Components/Input';
+import Empty from 'Components/Empty';
 
 import {
   TableElement,
@@ -125,6 +126,13 @@ const Table = ({
           </tr>
         </thead>
         <tbody>
+          {!tableData.length ? (
+            <tr>
+              <td colSpan={headers.length}>
+                <Empty message="No Data Found" />
+              </td>
+            </tr>
+          ) : null}
           {tableData.map(d => {
             const rowKey = d[searchKey];
             return (
@@ -156,7 +164,7 @@ const Table = ({
             );
           })}
         </tbody>
-        {Summary && (
+        {Summary && !!tableData.length && (
           <tfoot>
             <Summary tableData={tableData} />
           </tfoot>
