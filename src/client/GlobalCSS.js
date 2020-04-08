@@ -3,7 +3,7 @@ import { Global, css } from '@emotion/core';
 import { useTheme } from 'emotion-theming';
 
 const GlobalStyle = () => {
-  const { typography, palette } = useTheme();
+  const { typography, palette, rgbaColor } = useTheme();
 
   return (
     <Global
@@ -24,6 +24,16 @@ const GlobalStyle = () => {
         a {
           text-decoration: none;
           color: inherit;
+        }
+
+        *::-webkit-scrollbar {
+          width: 8px;
+          background-color: ${rgbaColor(0.12)};
+        }
+
+        *::-webkit-scrollbar-thumb {
+          border-radius: 8px;
+          background-color: ${rgbaColor(0.5)};
         }
       `}
     />

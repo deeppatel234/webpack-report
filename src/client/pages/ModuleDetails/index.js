@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Redirect } from 'react-router-dom';
 
 import AppContext from 'src/AppContext';
 
@@ -31,10 +31,20 @@ const SideBarItem = ({ to, displayName, value, icon: Icon, ...props }) => (
   </ListItem>
 );
 
-const ModuleDetails = () => {
+const moduleRoutes = ['all', 'node_modules'];
+
+const ModuleDetails = ({ match }) => {
   const { stateData } = useContext(AppContext);
 
   const { moduleState } = stateData;
+
+  const {
+    params: { type },
+  } = match;
+
+  if (!moduleRoutes.includes(type)) {
+    return <Redirect to={`/modules/${moduleRoutes[0]}`} />;
+  }
 
   return (
     <DetailsWrapper>

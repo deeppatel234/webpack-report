@@ -31,6 +31,7 @@ const moduleHeaders = [
     header: 'Name',
     sort: true,
   },
+  { key: 'chunks', header: 'Chunks', sort: true },
   { key: 'size', header: 'Size', fileSize: true, sort: true },
 ];
 
