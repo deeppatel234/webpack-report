@@ -62,7 +62,7 @@ const computeAssetsState = state => {
     },
   };
 
-  state.assets.forEach(({ name, size }) => {
+  state.assets.forEach(({ name, size, chunks }) => {
     if (!isValidName(name)) {
       return true;
     }
@@ -71,17 +71,17 @@ const computeAssetsState = state => {
 
     if (fileType === FILE_TYPES.JAVASCRIPT) {
       assetsState.totalJSSize.size += size;
-      assetsState.totalJSSize.assets.push({ name, size });
+      assetsState.totalJSSize.assets.push({ name, size, chunks });
     } else if (fileType === FILE_TYPES.CSS) {
       assetsState.totalCSSSize.size += size;
-      assetsState.totalCSSSize.assets.push({ name, size });
+      assetsState.totalCSSSize.assets.push({ name, size, chunks });
     } else {
       assetsState.totalStaticFileSize.size += size;
-      assetsState.totalStaticFileSize.assets.push({ name, size });
+      assetsState.totalStaticFileSize.assets.push({ name, size, chunks });
     }
 
     assetsState.totalAssetsSize.size += size;
-    assetsState.totalAssetsSize.assets.push({ name, size });
+    assetsState.totalAssetsSize.assets.push({ name, size, chunks });
 
     return true;
   });
@@ -92,6 +92,7 @@ const computeAssetsState = state => {
       assetsState[key].assets.push({
         name: asset.name,
         size: asset.size,
+        chunks: asset.chunks,
       });
       return acc + asset.size;
     }
@@ -117,6 +118,18 @@ const computeAssetsState = state => {
   return assetsState;
 };
 
+const removeUnusedAssetsData = assets => {
+  return assets.map(a => {
+    return {
+      name: a.name,
+      size: a.size,
+      chunks: a.chunks,
+      emitted: a.emitted,
+    };
+  });
+};
+
 module.exports = {
   computeAssetsState,
+  removeUnusedAssetsData,
 };

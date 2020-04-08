@@ -58,7 +58,7 @@ const ModuleSummary = ({ tableData }) => {
 const ModuleDetails = () => {
   const { stateData } = useContext(AppContext);
   const [list, setList] = useState([]);
-  const { packageSize } = stateData;
+  const { packageSize, moduleState } = stateData;
 
   useEffect(() => {
     if (!_isEmpty(packageSize)) {
@@ -82,17 +82,12 @@ const ModuleDetails = () => {
     );
   }
 
-  const packageJsonLength = Object.keys(packageSize).length;
-  const packageJsonModules = Object.keys(packageSize).reduce((acc, key) => {
-    return acc + packageSize[key].modules.length;
-  }, 0);
-
   return (
     <>
       <SizeChart id="node_modules" data={list} />
       <Table
         searchKey="name"
-        title={`Node Modules (${packageJsonModules} - ${packageJsonLength} packages)`}
+        title={`Node Modules (${moduleState.totalPackagesModule} - ${moduleState.totalPackages} packages)`}
         subRow={Modules}
         summary={ModuleSummary}
         headers={headers}

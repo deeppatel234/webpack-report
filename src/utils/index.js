@@ -2,14 +2,14 @@ const importFrom = require('import-from');
 const fs = require('fs');
 const ANSIToHtml = require('ansi-to-html');
 
-const { computeAssetsState } = require('./assets');
+const { computeAssetsState, removeUnusedAssetsData } = require('./assets');
 
 const {
   computePackageSize,
   extractSubModules,
-  removeSourceFromModule,
   computeModuleState,
-  convertModulesByKey,
+  removeUnusedModuleData,
+  removeUnusedChunkData,
 } = require('./modules');
 
 const getPackageJson = packageJsonPath => {
@@ -34,8 +34,25 @@ const getPackageJson = packageJsonPath => {
   };
 };
 
+const removeUnusedStateData = state => {
+  return {
+    errors: state.errors,
+    warnings: state.warnings,
+    version: state.version,
+    hash: state.hash,
+    time: state.time,
+    builtAt: state.builtAt,
+    publicPath: state.publicPath,
+    outputPath: state.outputPath,
+    assets: removeUnusedAssetsData(state.assets),
+    entrypoints: state.entrypoints,
+    chunks: removeUnusedChunkData(state.chunks),
+    modules: removeUnusedModuleData(extractSubModules(state.modules)),
+  };
+};
+
 const formateState = state => {
-  const newState = state;
+  const newState = removeUnusedStateData(state);
 
   // errors and warnings
   const newFormat = { newline: true, escapeXML: true, colors: true };
@@ -44,11 +61,8 @@ const formateState = state => {
   newState.errors = newState.errors.map(e => formatter.toHtml(e));
 
   // modules
-  newState.modules = extractSubModules(newState.modules);
-  newState.modules = removeSourceFromModule(newState.modules);
   newState.packageSize = computePackageSize(newState.modules);
   newState.moduleState = computeModuleState(newState);
-  // newState.modules = convertModulesByKey(newState.modules);
 
   // assets
   newState.assetsState = computeAssetsState(newState);

@@ -16,6 +16,7 @@ export const ASSETS_TYPE = [
     header: 'Javascript Files',
     icon: JavascriptIcon,
     className: 'javascript',
+    showChunks: true,
   },
   {
     key: 'totalCSSSize',
@@ -24,6 +25,7 @@ export const ASSETS_TYPE = [
     icon: CSSIcon,
     className: 'css',
     iconWidth: '2.2rem',
+    showChunks: true,
   },
   {
     key: 'initialJSSize',
@@ -31,6 +33,7 @@ export const ASSETS_TYPE = [
     header: 'Initial Javascript Files',
     icon: JavascriptIcon,
     className: 'javascript',
+    showChunks: true,
   },
   {
     key: 'initialCSSSize',
@@ -39,6 +42,7 @@ export const ASSETS_TYPE = [
     icon: CSSIcon,
     className: 'css',
     iconWidth: '2.2rem',
+    showChunks: true,
   },
   {
     key: 'totalStaticFileSize',

@@ -7,14 +7,15 @@ import Empty from 'Components/Empty';
 
 const headers = [
   { key: 'name', header: 'Name', sort: true },
+  { key: 'chunks', header: 'Chunks', sort: true },
   { key: 'size', header: 'Size', fileSize: true, sort: true },
 ];
 
 const ModuleDetails = () => {
   const { stateData } = useContext(AppContext);
-  const modulesList = stateData.modules;
+  const { modules } = stateData;
 
-  if (!modulesList.length) {
+  if (!modules.length) {
     return (
       <Empty message="No Modules Found">
         <NofileIcon width="3rem" />
@@ -25,9 +26,9 @@ const ModuleDetails = () => {
   return (
     <Table
       searchKey="name"
-      title={`All Modules (${modulesList.length})`}
+      title={`All Modules (${modules.length})`}
       headers={headers}
-      data={modulesList}
+      data={modules}
     />
   );
 };

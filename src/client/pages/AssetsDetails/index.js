@@ -26,6 +26,12 @@ const headers = [
   { key: 'size', header: 'Size', fileSize: true, sort: true },
 ];
 
+const chunksHeaders = [
+  { key: 'name', header: 'Name', sort: true },
+  { key: 'chunks', header: 'Chunks', sort: true },
+  { key: 'size', header: 'Size', fileSize: true, sort: true },
+];
+
 const AssetsDetails = ({ match }) => {
   const { stateData } = useContext(AppContext);
   const { assetsState } = stateData;
@@ -68,7 +74,7 @@ const AssetsDetails = ({ match }) => {
               <Table
                 searchKey="name"
                 title={`${assetsData.header} (${assetsState[type].assets.length})`}
-                headers={headers}
+                headers={assetsData.showChunks ? chunksHeaders : headers}
                 data={assetsState[type].assets}
               />
             </TableWrapper>

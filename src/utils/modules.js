@@ -27,19 +27,14 @@ const computePackageSize = moduleList => {
   return nodeModules;
 };
 
-const removeSourceFromModule = moduleList => {
-  return moduleList.map(m => {
-    if (m.source) {
-      delete m.source;
-    }
-    return m;
-  });
-};
-
 const extractSubModules = moduleList => {
   return moduleList.reduce((acc, moduleItem) => {
     if (moduleItem.modules) {
-      return [...acc, ...moduleItem.modules];
+      const mods = moduleItem.modules.map(m => ({
+        ...m,
+        chunks: moduleItem.chunks,
+      }));
+      return [...acc, ...mods];
     }
     return [...acc, moduleItem];
   }, []);
@@ -64,122 +59,44 @@ const computeModuleState = state => {
   return moduleState;
 };
 
+const removeUnusedModuleData = modules => {
+  return modules.map(m => {
+    return {
+      id: m.id,
+      name: m.name,
+      size: m.size,
+      chunks: m.chunks,
+      issuer: m.issuer,
+      issuerId: m.issuerId,
+      issuerName: m.issuerName,
+    };
+  });
+};
+
+const removeUnusedChunkData = chunks => {
+  return chunks.map(c => {
+    return {
+      id: c.id,
+      initial: c.initial,
+      entry: c.entry,
+      size: c.size,
+      names: c.names,
+      files: c.files,
+      hash: c.hash,
+      children: c.children,
+      parents: c.parents,
+      siblings: c.siblings,
+      origins: c.origins,
+      modules: removeUnusedModuleData(extractSubModules(c.modules)),
+    };
+  });
+};
+
 module.exports = {
   computePackageSize,
   extractSubModules,
-  removeSourceFromModule,
   computeModuleState,
   convertModulesByKey,
+  removeUnusedModuleData,
+  removeUnusedChunkData,
 };
-
-// const mod = appData.stateData.modules
-// .filter(n => n.name.indexOf('node_modules') !== -1)
-// .map(n => {
-//   return {
-//     name: n.name.split('/')[2],
-//     module: n,
-//   };
-// })
-// .reduce((acc, n) => {
-//   const { totalSize, modules } = acc[n.name] || {
-//     totalSize: 0,
-//     modules: [],
-//   };
-
-//   const sum = totalSize + n.module.size;
-//   return {
-//     ...acc,
-//     [n.name]: {
-//       totalSize: sum,
-//       modules: [...modules, n.module],
-//     },
-//   };
-// }, {});
-
-// console.log(mod);
-
-// const { dependencies } = appData.packageJson;
-
-// console.log('dependencies', dependencies);
-
-// const filtedDependancy = Object.keys(dependencies).filter(d => !!mod[d]);
-
-// console.log('filtedDependancy', filtedDependancy);
-
-// const nonListedDeps = Object.keys(mod).filter(
-// m => !filtedDependancy.includes(m),
-// );
-
-// // console.log('nonListedDeps', nonListedDeps);
-
-// nonListedDeps.forEach(d => {
-// const f = mod[d].modules.map(({ issuerName, id }) => {
-//   if (!issuerName) {
-//     return false;
-//   }
-
-//   if (issuerName.indexOf('node_modules') === -1) {
-//     return false;
-//   }
-
-//   return { id, package: issuerName.split('/')[2] };
-// });
-
-// f.forEach(dd => {
-//   if (!dd) {
-//     return false;
-//   }
-
-//   if (mod[dd.package]) {
-//     mod[dd.package].modules.push(mod[d].modules.find(m => m.id === dd.id));
-
-//     mod[d].modules = mod[d].modules.filter(m => m.id !== dd.id);
-//   }
-// });
-// // console.log(f);
-// });
-
-// Object.keys(mod).forEach(m => {
-// if (mod[m].modules.length === 0) {
-//   delete mod[m];
-// }
-// });
-
-// console.log(mod);
-
-// const filtedDependancy1 = Object.keys(dependencies).filter(d => !!mod[d]);
-
-// const nonListedDeps1 = Object.keys(mod).filter(m =>
-// !filtedDependancy1.includes(m),
-// );
-
-// console.log('nonListedDeps 1', nonListedDeps1);
-
-// nonListedDeps.forEach(d => {
-//   const f = mod[d].modules.map(({ issuerName, id }) => {
-//     if (!issuerName) {
-//       return false;
-//     }
-
-//     if (issuerName.indexOf('node_modules') === -1) {
-//       return false;
-//     }
-
-//     return { id, package: issuerName.split('/')[2] };
-//   });
-
-//   f.forEach(dd => {
-//     if (!dd) {
-//       return false;
-//     }
-
-//     if (mod[dd.package]) {
-//       mod[dd.package].modules.push(mod[d].modules.find(m => m.id === dd.id));
-
-//       mod[d].modules = mod[d].modules.filter(m => m.id !== dd.id);
-//     }
-//   });
-//   // console.log(f);
-// });
-
-// console.log(mod);
