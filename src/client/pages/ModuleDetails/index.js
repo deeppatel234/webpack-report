@@ -5,10 +5,12 @@ import AppContext from 'src/AppContext';
 
 import FileIcon from 'Components/Icons/File';
 import NodeJSIcon from 'Components/Icons/NodeJS';
+import DuplicateIcon from 'Components/Icons/Duplicate';
 import Typography from 'Components/Typography';
 
 import TotalModles from './TotalModules';
 import NodeModules from './NodeModules';
+import DuplicateModules from './DuplicateModules';
 
 import {
   DetailsWrapper,
@@ -31,7 +33,7 @@ const SideBarItem = ({ to, displayName, value, icon: Icon, ...props }) => (
   </ListItem>
 );
 
-const moduleRoutes = ['all', 'node_modules'];
+const moduleRoutes = ['all', 'node-modules', 'duplicate-modules'];
 
 const ModuleDetails = ({ match }) => {
   const { stateData } = useContext(AppContext);
@@ -57,16 +59,24 @@ const ModuleDetails = ({ match }) => {
           value={moduleState.totalModules}
         />
         <SideBarItem
-          to="/modules/node_modules"
+          to="/modules/node-modules"
           displayName="Node Modules"
           icon={NodeJSIcon}
           className="nodejs"
           value={`${moduleState.totalPackagesModule} (${moduleState.totalPackages})`}
         />
+        <SideBarItem
+          to="/modules/duplicate-modules"
+          displayName="Duplicate Modules"
+          icon={DuplicateIcon}
+          color="info"
+          value={moduleState.duplicateModules}
+        />
       </SideBar>
       <Body>
         <Route path="/modules/all" component={TotalModles} />
-        <Route path="/modules/node_modules" component={NodeModules} />
+        <Route path="/modules/node-modules" component={NodeModules} />
+        <Route path="/modules/duplicate-modules" component={DuplicateModules} />
       </Body>
     </DetailsWrapper>
   );

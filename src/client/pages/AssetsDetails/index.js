@@ -23,7 +23,13 @@ import {
 
 const headers = [
   { key: 'name', header: 'Name', sort: true },
-  { key: 'size', header: 'Size', fileSize: true, sort: true },
+  {
+    key: 'size',
+    header: 'Size',
+    fileSize: true,
+    sort: true,
+    className: 'size-column',
+  },
 ];
 
 // const chunksHeaders = [

@@ -22,4 +22,8 @@ export const PageWrapper = styled.div`
   .size-graph {
     padding-bottom: 24px;
   }
+
+  .size-column {
+    white-space: nowrap;
+  }
 `;

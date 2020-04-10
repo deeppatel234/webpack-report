@@ -22,7 +22,13 @@ const headers = [
     className: 'underline',
     render: ({ data }) => `${data.length}`,
   },
-  { key: 'size', header: 'Size', fileSize: true, sort: true },
+  {
+    key: 'size',
+    header: 'Size',
+    fileSize: true,
+    sort: true,
+    className: 'size-column',
+  },
 ];
 
 const moduleHeaders = [
@@ -32,7 +38,13 @@ const moduleHeaders = [
     sort: true,
   },
   { key: 'chunks', header: 'Chunks', sort: true },
-  { key: 'size', header: 'Size', fileSize: true, sort: true },
+  {
+    key: 'size',
+    header: 'Size',
+    fileSize: true,
+    sort: true,
+    className: 'size-column',
+  },
 ];
 
 const Modules = ({ rowData }) => {

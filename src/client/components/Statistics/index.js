@@ -7,6 +7,7 @@ import CloseCircleIcon from 'Components/Icons/CloseCircle';
 import TimeIcon from 'Components/Icons/Time';
 import FileIcon from 'Components/Icons/File';
 import NodeJSIcon from 'Components/Icons/NodeJS';
+import DuplicateIcon from 'Components/Icons/Duplicate';
 
 import { ASSETS_TYPE } from 'src/const';
 
@@ -61,11 +62,18 @@ const Statistics = () => {
         header="All Modules"
       />
       <StatisticsCard
-        to="/modules/node_modules"
+        to="/modules/node-modules"
         icon={<NodeJSIcon width="2.3rem" />}
         text={`${moduleState.totalPackagesModule} (${moduleState.totalPackages})`}
         className="nodejs"
         header="Node Modules"
+      />
+      <StatisticsCard
+        to="/modules/duplicate-modules"
+        icon={<DuplicateIcon width="2.3rem" />}
+        text={moduleState.duplicateModules}
+        color="info"
+        header="Duplicate Modules"
       />
     </StatisticsWrapper>
   );

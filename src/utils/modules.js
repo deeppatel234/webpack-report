@@ -50,7 +50,12 @@ const computeModuleState = state => {
     0,
   );
 
+  const duplicateModules = state.modules.filter(
+    m => m.chunks && m.chunks.length > 1,
+  );
+
   const moduleState = {
+    duplicateModules: duplicateModules.length,
     totalModules: state.modules.length,
     totalPackagesModule: packageJsonModules,
     totalPackages: Object.keys(state.packageSize).length,
