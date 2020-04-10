@@ -6,6 +6,7 @@ import NofileIcon from 'Components/Icons/NoFile';
 import Table from 'Components/Table';
 import Empty from 'Components/Empty';
 import SizeChart from 'Components/SizeChart';
+import InfoIcon from 'Components/Icons/Info';
 
 import { size } from 'src/utils';
 
@@ -21,7 +22,6 @@ const headers = [
     key: 'modules',
     header: 'Modules',
     sort: true,
-    className: 'underline',
     render: ({ data }) => `${data.length}`,
   },
   {
@@ -30,6 +30,11 @@ const headers = [
     fileSize: true,
     sort: true,
     className: 'size-column',
+  },
+  {
+    key: 'info',
+    render: () => <InfoIcon />,
+    className: 'info-column',
   },
 ];
 

@@ -43,6 +43,7 @@ const Table = ({
     setMasterData(data);
     setSortData({});
     setShowSubRow({});
+    setSearchText('');
   }, [data]);
 
   useEffect(() => {

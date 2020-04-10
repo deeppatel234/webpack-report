@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Icon from './icon';
+import Icon from './Icon';
 
 const LeftCircle = props => {
   return (
