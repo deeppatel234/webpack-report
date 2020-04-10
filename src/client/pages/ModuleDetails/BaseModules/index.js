@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 
 import NofileIcon from 'Components/Icons/NoFile';
-import Table from 'Components/Table';
 import Empty from 'Components/Empty';
 
 import JavascriptIcon from 'Components/Icons/Javascript';
@@ -10,18 +9,9 @@ import FileIcon from 'Components/Icons/File';
 
 import Typography from 'Components/Typography';
 
-import { Wrapper, ListWrapper, ListItem, InfoWrapper } from './styled';
+import ModuleTable from '../ModuleTable';
 
-const headers = [
-  { key: 'name', header: 'Name', sort: true },
-  {
-    key: 'size',
-    header: 'Size',
-    fileSize: true,
-    sort: true,
-    className: 'size-column',
-  },
-];
+import { Wrapper, ListWrapper, ListItem, InfoWrapper } from './styled';
 
 const BadgeItem = ({ displayName, value, icon: Icon, ...props }) => (
   <ListItem color="info" {...props}>
@@ -90,10 +80,8 @@ const BaseModules = ({ modules, moduleString = 'Modules' }) => {
           onClick={() => setFilter('css')}
         />
       </ListWrapper>
-      <Table
-        searchKey="name"
+      <ModuleTable
         title={`${title[activeFilter] || 'All'} ${moduleString}`}
-        headers={headers}
         data={filteredData}
       />
     </Wrapper>

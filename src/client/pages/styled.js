@@ -26,4 +26,8 @@ export const PageWrapper = styled.div`
   .size-column {
     white-space: nowrap;
   }
+
+  .info-column {
+    text-align: right;
+  }
 `;

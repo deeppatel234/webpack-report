@@ -9,6 +9,8 @@ import SizeChart from 'Components/SizeChart';
 
 import { size } from 'src/utils';
 
+import ModuleTable from '../ModuleTable';
+
 const headers = [
   {
     key: 'name',
@@ -31,34 +33,16 @@ const headers = [
   },
 ];
 
-const moduleHeaders = [
-  {
-    key: 'name',
-    header: 'Name',
-    sort: true,
-  },
-  { key: 'chunks', header: 'Chunks', sort: true },
-  {
-    key: 'size',
-    header: 'Size',
-    fileSize: true,
-    sort: true,
-    className: 'size-column',
-  },
-];
-
 const Modules = ({ rowData }) => {
   return (
-    <Table
-      searchKey="name"
+    <ModuleTable
       title={`${rowData.name} (${rowData.modules.length})`}
-      headers={moduleHeaders}
       data={rowData.modules}
     />
   );
 };
 
-const ModuleSummary = ({ tableData }) => {
+const NodeModuleSummary = ({ tableData }) => {
   const totalSize = tableData.reduce((acc, t) => acc + t.size, 0);
   return (
     <tr>
@@ -68,7 +52,7 @@ const ModuleSummary = ({ tableData }) => {
   );
 };
 
-const ModuleDetails = () => {
+const NodeModules = () => {
   const { stateData } = useContext(AppContext);
   const [list, setList] = useState([]);
   const { packageSize, moduleState } = stateData;
@@ -102,7 +86,7 @@ const ModuleDetails = () => {
         searchKey="name"
         title={`Node Modules (${moduleState.totalPackagesModule} - ${moduleState.totalPackages} packages)`}
         subRow={Modules}
-        summary={ModuleSummary}
+        summary={NodeModuleSummary}
         headers={headers}
         data={list}
       />
@@ -110,4 +94,4 @@ const ModuleDetails = () => {
   );
 };
 
-export default ModuleDetails;
+export default NodeModules;

@@ -32,8 +32,8 @@ const Table = ({
   subRow: SubRow,
   summary: Summary,
 }) => {
-  const [tableData, setTableData] = useState(data);
-  const [masterData, setMasterData] = useState(data);
+  const [tableData, setTableData] = useState([]);
+  const [masterData, setMasterData] = useState([]);
   const [showSubRow, setShowSubRow] = useState({});
   const [sortData, setSortData] = useState({});
   const [searchText, setSearchText] = useState('');

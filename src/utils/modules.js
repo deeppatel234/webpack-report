@@ -74,6 +74,10 @@ const removeUnusedModuleData = modules => {
       issuer: m.issuer,
       issuerId: m.issuerId,
       issuerName: m.issuerName,
+      reasons: m.reasons,
+      built: m.built,
+      cacheable: m.cacheable,
+      prefetched: m.prefetched,
     };
   });
 };
