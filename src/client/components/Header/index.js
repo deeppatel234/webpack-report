@@ -42,6 +42,7 @@ const Header = () => {
         </NavLinks>
         <NavLinks to="/assets">Assets</NavLinks>
         <NavLinks to="/modules">Modules</NavLinks>
+        <NavLinks to="/chunks">Chunks</NavLinks>
         <ThemeButton onClick={toggleTheme}>
           {theme === 'light' ? (
             <LightThemeIcon color="white" width="1.5rem" />
