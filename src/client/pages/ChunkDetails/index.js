@@ -15,6 +15,7 @@ import {
   SideBar,
   Body,
   Title,
+  ChunkWrapper,
 } from 'Components/Styles';
 
 import ModuleTable from '../ModuleDetails/ModuleTable';
@@ -122,23 +123,31 @@ const ChunkDetails = ({ match }) => {
           <tr>
             <th>children</th>
             <td colSpan="3">
-              {chunkData.children.map(c => (
-                <ChunkLink to={`/chunks/${c}`}>{c}</ChunkLink>
-              ))}
+              <div>
+                <ChunkWrapper>
+                  {chunkData.children.map(c => (
+                    <ChunkLink to={`/chunks/${c}`}>{c}</ChunkLink>
+                  ))}
+                </ChunkWrapper>
+              </div>
             </td>
             <th>parents</th>
             <td colSpan="3">
-              {chunkData.parents.map(c => (
-                <ChunkLink to={`/chunks/${c}`}>{c}</ChunkLink>
-              ))}
+              <ChunkWrapper>
+                {chunkData.parents.map(c => (
+                  <ChunkLink to={`/chunks/${c}`}>{c}</ChunkLink>
+                ))}
+              </ChunkWrapper>
             </td>
           </tr>
           <tr>
             <th>siblings</th>
             <td colSpan="3">
-              {chunkData.siblings.map(c => (
-                <ChunkLink to={`/chunks/${c}`}>{c}</ChunkLink>
-              ))}
+              <ChunkWrapper>
+                {chunkData.siblings.map(c => (
+                  <ChunkLink to={`/chunks/${c}`}>{c}</ChunkLink>
+                ))}
+              </ChunkWrapper>
             </td>
             <th>origins</th>
             <td colSpan="3">

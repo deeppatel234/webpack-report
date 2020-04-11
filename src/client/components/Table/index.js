@@ -9,6 +9,7 @@ import SortArrow from 'Components/Icons/SortArrow';
 import SearchIcon from 'Components/Icons/Search';
 import Input from 'Components/Input';
 import Empty from 'Components/Empty';
+import { Loader, LoaderWrapper } from 'Components/Styles';
 
 import {
   TableElement,
@@ -39,6 +40,7 @@ const Table = ({
   const [showSubRow, setShowSubRow] = useState({});
   const [sortData, setSortData] = useState({});
   const [searchText, setSearchText] = useState('');
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     setTableData(data);
@@ -46,6 +48,7 @@ const Table = ({
     setSortData({});
     setShowSubRow({});
     setSearchText('');
+    setLoading(false);
   }, [data]);
 
   useEffect(() => {
@@ -109,74 +112,81 @@ const Table = ({
           />
         )}
       </Header>
-      <TableElement>
-        <thead>
-          <tr>
-            {headers.map(({ key, header, sort }) => (
-              <th key={key}>
-                <HeaderWrapper
-                  sort={sort}
-                  onClick={() => (sort ? onHeaderClick(key) : {})}
-                >
-                  {header}
-                  {sort && (
-                    <SortArrow
-                      active={
-                        sortData.key === key &&
-                        (sortData.order === SORT_ORDER.ASC ? 'up' : 'down')
-                      }
-                    />
-                  )}
-                </HeaderWrapper>
-              </th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {!tableData.length ? (
+      {loading && (
+        <LoaderWrapper>
+          <Loader />
+        </LoaderWrapper>
+      )}
+      {!loading && (
+        <TableElement>
+          <thead>
             <tr>
-              <td colSpan={headers.length}>
-                <Empty message="No Data Found" />
-              </td>
+              {headers.map(({ key, header, sort }) => (
+                <th key={key}>
+                  <HeaderWrapper
+                    sort={sort}
+                    onClick={() => (sort ? onHeaderClick(key) : {})}
+                  >
+                    {header}
+                    {sort && (
+                      <SortArrow
+                        active={
+                          sortData.key === key &&
+                          (sortData.order === SORT_ORDER.ASC ? 'up' : 'down')
+                        }
+                      />
+                    )}
+                  </HeaderWrapper>
+                </th>
+              ))}
             </tr>
-          ) : null}
-          {tableData.map(d => {
-            const rowKey = d[searchKey];
-            return (
-              <>
-                <TableRow
-                  key={rowKey}
-                  clickable={!!SubRow}
-                  isSubRowOpen={!!showSubRow[rowKey]}
-                  onClick={() => toggleSubRow(rowKey)}
-                >
-                  {headers.map(({ key, fileSize, render, className }) => (
-                    <td key={key} className={className}>
-                      {render
-                        ? render({ data: d[key], rowData: d, key, rowProps })
-                        : fileSize
-                        ? size(d[key])
-                        : d[key]}
-                    </td>
-                  ))}
-                </TableRow>
-                {SubRow && showSubRow[rowKey] && (
-                  <TableRow disableHover noBorder>
-                    <SubRowWrapper colSpan={headers.length}>
-                      <SubRow rowData={d} {...subRowProps} />
-                    </SubRowWrapper>
+          </thead>
+          <tbody>
+            {!tableData.length ? (
+              <tr>
+                <td colSpan={headers.length}>
+                  <Empty message="No Data Found" />
+                </td>
+              </tr>
+            ) : null}
+            {tableData.map(d => {
+              const rowKey = d[searchKey];
+              return (
+                <>
+                  <TableRow
+                    key={rowKey}
+                    clickable={!!SubRow}
+                    isSubRowOpen={!!showSubRow[rowKey]}
+                    onClick={() => toggleSubRow(rowKey)}
+                  >
+                    {headers.map(({ key, fileSize, render, className }) => (
+                      <td key={key} className={className}>
+                        {render
+                          ? render({ data: d[key], rowData: d, key, rowProps })
+                          : fileSize
+                          ? size(d[key])
+                          : d[key]}
+                      </td>
+                    ))}
                   </TableRow>
-                )}
-              </>
-            );
-          })}
-        </tbody>
-        {Summary && !!tableData.length && (
-          <tfoot>
-            <Summary tableData={tableData} />
-          </tfoot>
-        )}
-      </TableElement>
+                  {SubRow && showSubRow[rowKey] && (
+                    <TableRow disableHover noBorder>
+                      <SubRowWrapper colSpan={headers.length}>
+                        <SubRow rowData={d} {...subRowProps} />
+                      </SubRowWrapper>
+                    </TableRow>
+                  )}
+                </>
+              );
+            })}
+          </tbody>
+          {Summary && !!tableData.length && (
+            <tfoot>
+              <Summary tableData={tableData} />
+            </tfoot>
+          )}
+        </TableElement>
+      )}
     </TableWrapper>
   );
 };

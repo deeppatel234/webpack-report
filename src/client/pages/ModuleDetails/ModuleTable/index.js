@@ -6,7 +6,7 @@ import Modal from 'Components/Modal';
 
 import InfoIcon from 'Components/Icons/Info';
 
-import { DetailsTable, ChunkLink } from 'Components/Styles';
+import { DetailsTable, ChunkLink, ChunkWrapper } from 'Components/Styles';
 
 const headers = [
   { key: 'name', header: 'Name', sort: true },
@@ -57,9 +57,11 @@ const ModuleDetails = ({ rowData, onClickReason }) => {
         <tr>
           <th>chunks</th>
           <td colSpan="3">
-            {rowData.chunks.map(n => (
-              <ChunkLink to={`/chunks/${n}`}>{n}</ChunkLink>
-            ))}
+            <ChunkWrapper>
+              {rowData.chunks.map(n => (
+                <ChunkLink to={`/chunks/${n}`}>{n}</ChunkLink>
+              ))}
+            </ChunkWrapper>
           </td>
           <th>prefetched</th>
           <td>{rowData.prefetched ? 'Yes' : 'No'}</td>
