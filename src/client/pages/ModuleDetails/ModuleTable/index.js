@@ -57,11 +57,10 @@ const ModuleDetails = ({ rowData, onClickReason }) => {
         <tr>
           <th>chunks</th>
           <td colSpan="3">
-            {[1, 44, 32, 2].map(n => (
+            {rowData.chunks.map(n => (
               <ChunkLink to={`/chunks/${n}`}>{n}</ChunkLink>
             ))}
           </td>
-          {/* <td colSpan="3">{rowData.chunks.join(' ')}</td> */}
           <th>prefetched</th>
           <td>{rowData.prefetched ? 'Yes' : 'No'}</td>
         </tr>
@@ -120,7 +119,7 @@ const ModuleTable = props => {
             />
           )}
         </Modal.Body>
-        <Modal.Footer reverse>
+        <Modal.Footer center>
           <CloseButton onClick={onCloseReason}>Close</CloseButton>
         </Modal.Footer>
       </Modal>

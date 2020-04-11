@@ -21,7 +21,8 @@ export const InfoBody = styled.div`
   overflow: auto;
 
   .cards {
-    display: table-caption;
+    display: block;
+    overflow: auto;
   }
 `;
 

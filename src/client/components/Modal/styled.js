@@ -74,6 +74,12 @@ export const ModalBody = styled.div`
   flex: 1;
   padding: 12px;
   overflow: auto;
+
+  ${props =>
+    props.minWidth &&
+    css`
+      min-width: ${props.minWidth};
+    `}
 `;
 
 export const ModalFooter = styled.div`
@@ -84,6 +90,12 @@ export const ModalFooter = styled.div`
     props.reverse &&
     css`
       flex-direction: row-reverse;
+    `}
+
+  ${props =>
+    props.center &&
+    css`
+      justify-content: center;
     `}
 
   button {

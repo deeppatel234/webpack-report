@@ -24,7 +24,7 @@ export const ASSETS_TYPE = [
     header: 'CSS Files',
     icon: CSSIcon,
     className: 'css',
-    iconWidth: '2.2rem',
+    iconWidth: '1.9rem',
     showChunks: true,
   },
   {
@@ -41,7 +41,7 @@ export const ASSETS_TYPE = [
     header: 'Initial CSS Files',
     icon: CSSIcon,
     className: 'css',
-    iconWidth: '2.2rem',
+    iconWidth: '1.9rem',
     showChunks: true,
   },
   {

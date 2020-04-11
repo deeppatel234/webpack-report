@@ -81,6 +81,10 @@ const Table = ({
   };
 
   const toggleSubRow = key => {
+    if (!SubRow) {
+      return;
+    }
+
     const coptData = { ...showSubRow };
     if (coptData[key]) {
       delete coptData[key];
