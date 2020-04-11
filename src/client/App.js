@@ -9,6 +9,7 @@ import AppThemeContext from './AppThemeContext';
 
 import Pages from './pages';
 import ProgressOverlay from './pages/ProgressOverlay';
+import LoadingScreen from './pages/ProgressOverlay/LoadingScreen';
 
 import GlobalCSS from './GlobalCSS';
 import { theme as themeConfig } from './theme';
@@ -18,8 +19,6 @@ const { port, hostname } = document.location;
 
 // TODO: change with port
 const socket = io(`${hostname}:${5060}`);
-
-console.log(themeConfig);
 
 const DEFAULT_THEME = getThemeFromLocal() || 'light';
 
@@ -44,7 +43,7 @@ const App = () => {
   };
 
   if (isLoading) {
-    return null;
+    return <LoadingScreen />;
   }
 
   const isAppLoaded =

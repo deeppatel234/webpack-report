@@ -74,6 +74,10 @@ export const ChunkWrapper = styled.div`
   flex-wrap: wrap;
 `;
 
+export const WordBreak = styled.div`
+  word-break: break-word;
+`;
+
 export const ChunkLink = styled(Link)`
   margin: 4px;
   padding: 4px 8px;
@@ -97,7 +101,7 @@ export const LoaderWrapper = styled.div`
 export const Loader = styled.div`
   border: 3px solid #f3f3f3;
   border-radius: 50%;
-  border-top: 3px solid ${props => props.theme.palette.info};
+  border-top: 3px solid #17a2b8;
   width: 20px;
   height: 20px;
   animation: ${spin} 2s linear infinite;

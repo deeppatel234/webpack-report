@@ -12,7 +12,7 @@ import DuplicateIcon from 'Components/Icons/Duplicate';
 import Modal from 'Components/Modal';
 import Table from 'Components/Table';
 
-import { DetailsTable } from 'Components/Styles';
+import { DetailsTable, WordBreak } from 'Components/Styles';
 
 import { ASSETS_TYPE } from 'src/const';
 
@@ -129,7 +129,9 @@ const Dashboard = () => {
               </InfoButton>
             </td>
             <th>Output Path</th>
-            <td>{stateData.outputPath}</td>
+            <td>
+              <WordBreak>{stateData.outputPath}</WordBreak>
+            </td>
             <th>Hash</th>
             <td>{stateData.hash}</td>
           </tr>
