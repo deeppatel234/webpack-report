@@ -1,4 +1,6 @@
 const webpack = require('webpack');
+const opener = require('opener');
+
 const server = require('./server');
 const utils = require('./utils');
 
@@ -8,6 +10,7 @@ class WebpackDashboard {
 
     this.options.host = props.host || 'localhost';
     this.options.port = parseInt(props.port || 5060, 10);
+    this.options.open = true;
 
     const packageJson = utils.getPackageJson(this.options.packageJsonPath);
 
@@ -50,12 +53,16 @@ class WebpackDashboard {
   }
 
   startServer() {
-    const { port, host } = this.options;
+    const { port, host, open } = this.options;
     const { http, io } = server;
 
     http.listen(port, host, () => {
       console.log(`Starting dashboard on: http://${host}:${port}`);
       this.isServerStarted = true;
+
+      if (open) {
+        opener(`http://${host}:${port}`);
+      }
 
       io.on('connection', socket => {
         socket.emit('data', this.clientData);
