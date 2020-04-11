@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import Table from 'Components/Table';
 import Typography from 'Components/Typography';
+import Modal from 'Components/Modal';
 
 import InfoIcon from 'Components/Icons/Info';
 
-import { ModuleDetailsTable, ChunkLink } from './styled';
+import { ModuleDetailsTable, ChunkLink, CloseButton } from './styled';
 
 const headers = [
   { key: 'name', header: 'Name', sort: true },
@@ -20,6 +21,24 @@ const headers = [
     key: 'info',
     render: () => <InfoIcon />,
     className: 'info-column',
+  },
+];
+
+const reasonHeader = [
+  { key: 'moduleName', header: 'Module Name', sort: true },
+  {
+    key: 'type',
+    header: 'Type',
+    sort: true,
+  },
+  {
+    key: 'userRequest',
+    header: 'User Request',
+    sort: true,
+  },
+  {
+    key: 'loc',
+    header: 'LOC',
   },
 ];
 
@@ -72,18 +91,48 @@ const ModuleDetails = ({ rowData, onClickReason }) => {
 };
 
 const ModuleTable = props => {
+  const [modalData, setModalData] = useState({ visible: false, data: [] });
+
   const onClickReason = reasons => {
-    console.log(reasons);
+    setModalData({
+      visible: true,
+      data: reasons,
+    });
+  };
+
+  const onCloseReason = () => {
+    setModalData({
+      visible: false,
+      data: [],
+    });
   };
 
   return (
-    <Table
-      searchKey="name"
-      headers={headers}
-      subRow={ModuleDetails}
-      subRowProps={{ onClickReason }}
-      {...props}
-    />
+    <>
+      <Modal visible={modalData.visible} onClose={onCloseReason}>
+        <Modal.Body>
+          {modalData.visible && (
+            <Table
+              title="Reasons"
+              searchKey="moduleName"
+              headers={reasonHeader}
+              data={modalData.data}
+            />
+          )}
+        </Modal.Body>
+        <Modal.Footer reverse>
+          <CloseButton onClick={onCloseReason}>Close</CloseButton>
+        </Modal.Footer>
+      </Modal>
+
+      <Table
+        searchKey="name"
+        headers={headers}
+        subRow={ModuleDetails}
+        subRowProps={{ onClickReason }}
+        {...props}
+      />
+    </>
   );
 };
 
