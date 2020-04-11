@@ -46,8 +46,8 @@ export const ASSETS_TYPE = [
   },
   {
     key: 'totalStaticFileSize',
-    displayName: 'Total Media Files Size',
-    header: 'All Media Files',
+    displayName: 'Other Files Size',
+    header: 'Other Files',
     icon: ImageFileIcon,
   },
 ];
