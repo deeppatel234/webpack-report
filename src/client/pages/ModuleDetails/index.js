@@ -7,19 +7,13 @@ import FileIcon from 'Components/Icons/File';
 import NodeJSIcon from 'Components/Icons/NodeJS';
 import DuplicateIcon from 'Components/Icons/Duplicate';
 import Typography from 'Components/Typography';
+import { DetailsWrapper, SideBar, Body, Title } from 'Components/Styles';
 
 import TotalModles from './TotalModules';
 import NodeModules from './NodeModules';
 import DuplicateModules from './DuplicateModules';
 
-import {
-  DetailsWrapper,
-  SideBar,
-  Body,
-  ListItem,
-  InfoWrapper,
-  Title,
-} from './styled';
+import { ListItem, InfoWrapper } from './styled';
 
 const SideBarItem = ({ to, displayName, value, icon: Icon, ...props }) => (
   <ListItem color="info" to={to} {...props}>

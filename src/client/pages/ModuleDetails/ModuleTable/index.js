@@ -6,7 +6,7 @@ import Modal from 'Components/Modal';
 
 import InfoIcon from 'Components/Icons/Info';
 
-import { ModuleDetailsTable, ChunkLink } from './styled';
+import { DetailsTable, ChunkLink } from 'Components/Styles';
 
 const headers = [
   { key: 'name', header: 'Name', sort: true },
@@ -45,7 +45,7 @@ const reasonHeader = [
 const ModuleDetails = ({ rowData, onClickReason }) => {
   return (
     <div>
-      <ModuleDetailsTable>
+      <DetailsTable>
         <tr>
           <th>id</th>
           <td>{rowData.id}</td>
@@ -84,7 +84,7 @@ const ModuleDetails = ({ rowData, onClickReason }) => {
             </Typography>
           </td>
         </tr>
-      </ModuleDetailsTable>
+      </DetailsTable>
     </div>
   );
 };

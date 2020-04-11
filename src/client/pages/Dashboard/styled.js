@@ -36,39 +36,3 @@ export const InfoButton = styled.span`
   color: ${props => props.theme.palette.info};
   cursor: pointer;
 `;
-
-export const DetailsTable = styled.table`
-  width: 100%;
-  font-size: 12px;
-  border-collapse: collapse;
-
-  tr {
-    border-bottom: 1px solid ${props => props.theme.rgbaColor(0.04)};
-
-    &:first-of-type {
-      border-top: 1px solid ${props => props.theme.rgbaColor(0.04)};
-    }
-  }
-
-  td {
-    word-break: unset;
-  }
-
-  th {
-    white-space: nowrap;
-    background: ${props => props.theme.rgbaColor(0.04)};
-  }
-
-  th,
-  td {
-    padding: 8px;
-
-    &:first-child {
-      border-left: 1px solid ${props => props.theme.rgbaColor(0.04)};
-    }
-
-    &:last-child {
-      border-right: 1px solid ${props => props.theme.rgbaColor(0.04)};
-    }
-  }
-`;

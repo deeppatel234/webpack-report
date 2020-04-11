@@ -8,19 +8,18 @@ import Typography from 'Components/Typography';
 import SizeChart from 'Components/SizeChart';
 import Modal from 'Components/Modal';
 import Table from 'Components/Table';
-
-import ModuleTable from '../ModuleDetails/ModuleTable';
-
 import {
+  DetailsTable,
+  ChunkLink,
   DetailsWrapper,
   SideBar,
   Body,
-  ListItem,
-  InfoWrapper,
   Title,
-  ChunkDetailsTable,
-  ChunkLink,
-} from './styled';
+} from 'Components/Styles';
+
+import ModuleTable from '../ModuleDetails/ModuleTable';
+
+import { ListItem, InfoWrapper } from './styled';
 
 const originHeader = [
   { key: 'moduleName', header: 'Module Name', sort: true },
@@ -103,7 +102,7 @@ const ChunkDetails = ({ match }) => {
       </SideBar>
       <Body>
         <SizeChart id={`chunk-id-${chunkId}`} data={chunkData.modules} />
-        <ChunkDetailsTable>
+        <DetailsTable margin="16px 0 30px 0">
           <tr>
             <th>id</th>
             <td>{chunkData.id}</td>
@@ -148,7 +147,7 @@ const ChunkDetails = ({ match }) => {
               </Typography>
             </td>
           </tr>
-        </ChunkDetailsTable>
+        </DetailsTable>
         <ModuleTable
           title={`Modules (${chunkData.modules.length})`}
           data={chunkData.modules}

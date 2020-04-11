@@ -11,14 +11,9 @@ import NofileIcon from 'Components/Icons/NoFile';
 import Table from 'Components/Table';
 import Empty from 'Components/Empty';
 
-import {
-  DetailsWrapper,
-  SideBar,
-  Body,
-  ListItem,
-  InfoWrapper,
-  Title,
-} from './styled';
+import { DetailsWrapper, SideBar, Body, Title } from 'Components/Styles';
+
+import { ListItem, InfoWrapper } from './styled';
 
 const headers = [
   { key: 'name', header: 'Name', sort: true },

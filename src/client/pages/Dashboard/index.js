@@ -12,6 +12,8 @@ import DuplicateIcon from 'Components/Icons/Duplicate';
 import Modal from 'Components/Modal';
 import Table from 'Components/Table';
 
+import { DetailsTable } from 'Components/Styles';
+
 import { ASSETS_TYPE } from 'src/const';
 
 import { size, timeConversion } from 'src/utils';
@@ -21,7 +23,6 @@ import {
   StatisticsWrapper,
   StatisticsTitle,
   DetailsCard,
-  DetailsTable,
   InfoButton,
 } from './styled';
 
