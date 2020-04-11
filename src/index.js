@@ -36,6 +36,7 @@ class WebpackDashboard {
       return;
     }
 
+    server.hostBuildFolder(this.clientData.stateData.outputPath);
     server.io.emit('data', this.clientData);
   }
 

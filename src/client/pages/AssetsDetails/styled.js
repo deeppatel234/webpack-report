@@ -53,6 +53,3 @@ export const InfoWrapper = styled.div`
   flex-direction: column;
   margin-left: 14px;
 `;
-
-export const TableWrapper = styled.div`
-`;

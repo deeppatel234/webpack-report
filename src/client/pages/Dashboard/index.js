@@ -23,7 +23,6 @@ import {
   DetailsCard,
   DetailsTable,
   InfoButton,
-  CloseButton,
 } from './styled';
 
 const detailsHeaders = [
@@ -81,7 +80,9 @@ const Dashboard = () => {
           )}
         </Modal.Body>
         <Modal.Footer center>
-          <CloseButton onClick={onCloseDetailsModal}>Close</CloseButton>
+          <Modal.FooterButton onClick={onCloseDetailsModal}>
+            Close
+          </Modal.FooterButton>
         </Modal.Footer>
       </Modal>
       <DetailsCard>

@@ -6,7 +6,7 @@ import Modal from 'Components/Modal';
 
 import InfoIcon from 'Components/Icons/Info';
 
-import { ModuleDetailsTable, ChunkLink, CloseButton } from './styled';
+import { ModuleDetailsTable, ChunkLink } from './styled';
 
 const headers = [
   { key: 'name', header: 'Name', sort: true },
@@ -120,7 +120,7 @@ const ModuleTable = props => {
           )}
         </Modal.Body>
         <Modal.Footer center>
-          <CloseButton onClick={onCloseReason}>Close</CloseButton>
+          <Modal.FooterButton onClick={onCloseReason}>Close</Modal.FooterButton>
         </Modal.Footer>
       </Modal>
 

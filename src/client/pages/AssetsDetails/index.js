@@ -18,7 +18,6 @@ import {
   ListItem,
   InfoWrapper,
   Title,
-  TableWrapper,
 } from './styled';
 
 const headers = [
@@ -30,13 +29,20 @@ const headers = [
     sort: true,
     className: 'size-column',
   },
+  {
+    key: 'open',
+    className: 'link-column',
+    render: ({ rowData }) => {
+      const serverUrl = 'http://localhost:5060';
+      const url = `${serverUrl}/build/${rowData.name}`;
+      return (
+        <a href={url} target="_blank" rel="noopener noreferrer">
+          Open File
+        </a>
+      );
+    },
+  },
 ];
-
-// const chunksHeaders = [
-//   { key: 'name', header: 'Name', sort: true },
-//   { key: 'chunks', header: 'Chunks', sort: true, render: ({ data }) => data && data.join(' ') },
-//   { key: 'size', header: 'Size', fileSize: true, sort: true },
-// ];
 
 const AssetsDetails = ({ match }) => {
   const { stateData } = useContext(AppContext);
@@ -76,14 +82,12 @@ const AssetsDetails = ({ match }) => {
         {assetsState[type].assets.length ? (
           <>
             <SizeChart id={type} data={assetsState[type].assets} />
-            <TableWrapper>
-              <Table
-                searchKey="name"
-                title={`${assetsData.header} (${assetsState[type].assets.length})`}
-                headers={headers}
-                data={assetsState[type].assets}
-              />
-            </TableWrapper>
+            <Table
+              searchKey="name"
+              title={`${assetsData.header} (${assetsState[type].assets.length})`}
+              headers={headers}
+              data={assetsState[type].assets}
+            />
           </>
         ) : (
           <Empty message="No Assets Found">

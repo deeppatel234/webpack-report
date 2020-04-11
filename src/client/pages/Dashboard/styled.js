@@ -72,12 +72,3 @@ export const DetailsTable = styled.table`
     }
   }
 `;
-
-export const CloseButton = styled.button`
-  background: ${props => props.theme.palette.info};
-  padding: 8px 24px;
-  color: ${props => props.theme.palette.white};
-  border: 0;
-  border-radius: 3px;
-  cursor: pointer;
-`;

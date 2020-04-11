@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 
 import ModalComponent from './ModalComponent';
 
-import { ModalBody, ModalFooter } from './styled';
+import { ModalBody, ModalFooter, Button } from './styled';
 
 const modalRoot = document.body;
 
@@ -28,6 +28,7 @@ const Modal = ({ visible, component: Component, destroyOnClose, ...rest }) => {
 
 Modal.Body = ModalBody;
 Modal.Footer = ModalFooter;
+Modal.FooterButton = Button;
 
 Modal.defaultProps = {
   component: ModalComponent,

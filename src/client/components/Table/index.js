@@ -31,6 +31,7 @@ const Table = ({
   searchKey,
   subRow: SubRow,
   summary: Summary,
+  rowProps,
   subRowProps,
 }) => {
   const [tableData, setTableData] = useState([]);
@@ -152,7 +153,7 @@ const Table = ({
                   {headers.map(({ key, fileSize, render, className }) => (
                     <td key={key} className={className}>
                       {render
-                        ? render({ data: d[key], rowData: d, key })
+                        ? render({ data: d[key], rowData: d, key, rowProps })
                         : fileSize
                         ? size(d[key])
                         : d[key]}

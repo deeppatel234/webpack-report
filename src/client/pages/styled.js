@@ -12,7 +12,7 @@ export const PageWrapper = styled.div`
   }
 
   .css {
-    color: #264de4;
+    color: #25a1e1;
   }
 
   .nodejs {
@@ -29,5 +29,11 @@ export const PageWrapper = styled.div`
 
   .info-column {
     text-align: right;
+  }
+
+  .link-column {
+    text-align: right;
+    text-decoration: underline;
+    color: ${props => props.theme.palette.info};
   }
 `;
