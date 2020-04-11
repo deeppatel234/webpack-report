@@ -10,6 +10,7 @@ import SizeChart from 'Components/SizeChart';
 import NofileIcon from 'Components/Icons/NoFile';
 import Table from 'Components/Table';
 import Empty from 'Components/Empty';
+import GraphWarning from 'Components/GraphWarning';
 
 import { DetailsWrapper, SideBar, Body, Title } from 'Components/Styles';
 
@@ -76,7 +77,12 @@ const AssetsDetails = ({ match }) => {
       <Body>
         {assetsState[type].assets.length ? (
           <>
-            <SizeChart id={type} data={assetsState[type].assets} />
+            <GraphWarning
+              id={type}
+              dataLength={assetsState[type].assets.length}
+            >
+              <SizeChart id={type} data={assetsState[type].assets} />
+            </GraphWarning>
             <Table
               searchKey="name"
               title={`${assetsData.header} (${assetsState[type].assets.length})`}

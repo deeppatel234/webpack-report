@@ -7,6 +7,7 @@ import Table from 'Components/Table';
 import Empty from 'Components/Empty';
 import SizeChart from 'Components/SizeChart';
 import InfoIcon from 'Components/Icons/Info';
+import GraphWarning from 'Components/GraphWarning';
 
 import { size } from 'src/utils';
 
@@ -86,7 +87,9 @@ const NodeModules = () => {
 
   return (
     <>
-      <SizeChart id="node_modules" data={list} />
+      <GraphWarning id="node_modules" dataLength={list.length}>
+        <SizeChart id="node_modules" data={list} />
+      </GraphWarning>
       <Table
         searchKey="name"
         title={`Node Modules (${moduleState.totalPackagesModule} - ${moduleState.totalPackages} packages)`}

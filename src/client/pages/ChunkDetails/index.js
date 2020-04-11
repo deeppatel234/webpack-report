@@ -8,6 +8,8 @@ import Typography from 'Components/Typography';
 import SizeChart from 'Components/SizeChart';
 import Modal from 'Components/Modal';
 import Table from 'Components/Table';
+import GraphWarning from 'Components/GraphWarning';
+
 import {
   DetailsTable,
   ChunkLink,
@@ -102,7 +104,12 @@ const ChunkDetails = ({ match }) => {
         ))}
       </SideBar>
       <Body>
-        <SizeChart id={`chunk-id-${chunkId}`} data={chunkData.modules} />
+        <GraphWarning
+          id={`chunk-id-${chunkId}`}
+          dataLength={chunkData.modules.length}
+        >
+          <SizeChart id={`chunk-id-${chunkId}`} data={chunkData.modules} />
+        </GraphWarning>
         <DetailsTable margin="16px 0 30px 0">
           <tr>
             <th>id</th>
