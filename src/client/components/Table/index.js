@@ -31,6 +31,7 @@ const Table = ({
   searchKey,
   subRow: SubRow,
   summary: Summary,
+  subRowProps,
 }) => {
   const [tableData, setTableData] = useState([]);
   const [masterData, setMasterData] = useState([]);
@@ -157,7 +158,7 @@ const Table = ({
                 {SubRow && showSubRow[rowKey] && (
                   <TableRow disableHover noBorder>
                     <SubRowWrapper colSpan={headers.length}>
-                      <SubRow rowData={d} />
+                      <SubRow rowData={d} {...subRowProps} />
                     </SubRowWrapper>
                   </TableRow>
                 )}

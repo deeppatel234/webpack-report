@@ -40,6 +40,12 @@ export const Element = styled.p`
     css`
       text-transform: uppercase;
     `}
+
+  ${props =>
+    props.cursor &&
+    css`
+      cursor: ${props.cursor};
+    `}
 `;
 
 export default Element;
