@@ -42,6 +42,19 @@ module.exports = {
   <img src="assets/screenshots/chunks.png?raw=true" width="30%"/>
 </p>
 
+## Options
+```js
+  new WebpackReport(options)
+```
+
+| Name  | Type  | Default | Description  |
+| ------ | ------ | ------ | ------ |
+| `host`  | string  | localhost  | webpack-report server host name |
+| `port`  | number  | 5060  | webpack-report server run at this port  |
+| `open`  | boolean  | true  |  open report in default browser  |
+| `statsOptions`  | object  |   | options passed in `stats.toJson()` method.  |
+| `packageJsonPath`  | string  |   | project package.json custom file path  |
+
 
 ## License
 
