@@ -1,16 +1,25 @@
 const webpack = require('webpack');
 const opener = require('opener');
+const chalk = require('chalk');
 
 const server = require('./server');
 const utils = require('./utils');
 
+const defaultOptions = {
+  host: 'localhost',
+  port: 5060,
+  open: true,
+  statsOptions: {},
+  packageJsonPath: undefined,
+};
+
+const defaultstateOptions = {
+  color: true,
+};
+
 class WebpackDashboard {
   constructor(props = {}) {
-    this.options = props;
-
-    this.options.host = props.host || 'localhost';
-    this.options.port = parseInt(props.port || 5060, 10);
-    this.options.open = true;
+    this.options = { ...defaultOptions, ...props };
 
     const packageJson = utils.getPackageJson(this.options.packageJsonPath);
 
@@ -26,11 +35,17 @@ class WebpackDashboard {
   }
 
   doneCallBack(stats) {
-    this.clientData.stateData = utils.formateState(
-      stats.toJson({
-        color: true,
-      }),
-    );
+    try {
+      this.clientData.stateData = utils.formateState(
+        stats.toJson({
+          ...defaultstateOptions,
+          ...this.options.statsOptions,
+        }),
+      );
+    } catch (e) {
+      console.log(chalk.red(`Error in parsing state data`));
+      console.log(chalk.red(e.message));
+    }
 
     if (!this.isServerStarted) {
       return;
@@ -58,11 +73,14 @@ class WebpackDashboard {
     const { http, io } = server;
 
     http.listen(port, host, () => {
-      console.log(`Starting dashboard on: http://${host}:${port}`);
+      const url = `http://${host}:${port}`;
+
+      console.log(chalk.green(`Starting dashboard on: ${chalk.bold(url)}`));
+
       this.isServerStarted = true;
 
       if (open) {
-        opener(`http://${host}:${port}`);
+        opener(url);
       }
 
       io.on('connection', socket => {
@@ -73,6 +91,8 @@ class WebpackDashboard {
 
   apply(compiler) {
     this.startServer();
+
+    console.log(chalk.green(`Initialize webpack-report plugin`));
 
     const doneCallBack = this.doneCallBack.bind(this);
     const progressCallBack = this.progressCallBack.bind(this);

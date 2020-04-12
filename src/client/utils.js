@@ -13,7 +13,6 @@ export const setThemeInLocal = theme => {
 export const size = fileSize.partial({ base: 10 });
 
 export const timeConversion = millisec => {
-
   const seconds = (millisec / 1000).toFixed(1);
   const minutes = (millisec / (1000 * 60)).toFixed(1);
   const hours = (millisec / (1000 * 60 * 60)).toFixed(1);
@@ -30,4 +29,4 @@ export const timeConversion = millisec => {
   }
 
   return `${millisec}millisec`;
-}
+};

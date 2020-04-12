@@ -25,6 +25,7 @@ module.exports = async () => {
       contentBase: './',
       historyApiFallback: true,
       hot: true,
+      open: true,
       compress: true,
       writeToDisk: false,
     },

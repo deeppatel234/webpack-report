@@ -29,8 +29,7 @@ const headers = [
     key: 'open',
     className: 'link-column',
     render: ({ rowData }) => {
-      const serverUrl = 'http://localhost:5060';
-      const url = `${serverUrl}/build/${rowData.name}`;
+      const url = `/build/${rowData.name}`;
       return (
         <a href={url} target="_blank" rel="noopener noreferrer">
           Open File

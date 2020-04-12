@@ -1,6 +1,7 @@
 const importFrom = require('import-from');
 const fs = require('fs');
 const ANSIToHtml = require('ansi-to-html');
+const chalk = require('chalk');
 
 const { computeAssetsState, removeUnusedAssetsData } = require('./assets');
 
@@ -13,15 +14,18 @@ const {
 } = require('./modules');
 
 const getPackageJson = packageJsonPath => {
+  let fileData = {};
   let path = packageJsonPath;
-  if (!path || !fs.existsSync(path)) {
-    path = process.cwd();
-  }
 
-  const fileData = importFrom(path, './package.json');
+  try {
+    if (!path || !fs.existsSync(path)) {
+      path = process.cwd();
+    }
 
-  if (!fileData) {
-    return {};
+    fileData = importFrom(path, './package.json') || {};
+  } catch (e) {
+    console.log(chalk.red(`Error in fetching package.json data`));
+    console.log(chalk.red(e.message));
   }
 
   return {

@@ -1,3 +1,4 @@
+/* global NODE_ENV */
 import React, { useState, useEffect } from 'react';
 import io from 'socket.io-client';
 import _isEmpty from 'lodash/isEmpty';
@@ -17,10 +18,11 @@ import { getThemeFromLocal, setThemeInLocal } from './utils';
 
 const { port, hostname } = document.location;
 
-// TODO: change with port
-const socket = io(`${hostname}:${5060}`);
+const socketPort = NODE_ENV === 'development' ? 5060 : port;
 
-const DEFAULT_THEME = getThemeFromLocal() || 'light';
+const socket = io(`${hostname}:${socketPort}`);
+
+const DEFAULT_THEME = getThemeFromLocal() || 'dark';
 
 const App = () => {
   const [isLoading, setIsLoading] = useState(true);
