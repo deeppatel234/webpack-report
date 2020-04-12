@@ -3,7 +3,7 @@ const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const WebpackDashboard = require('my-webpack-dashboard');
+const WebpackReport = require('webpack-report');
 
 const PUBLIC_DIR = path.resolve(__dirname, './public');
 const DIST_DIR = path.resolve(__dirname, './build');
@@ -49,6 +49,6 @@ module.exports = {
       template: `${PUBLIC_DIR}/index.html`,
     }),
     new MiniCssExtractPlugin(),
-    new WebpackDashboard(),
+    new WebpackReport(),
   ],
 };

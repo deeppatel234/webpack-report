@@ -17,7 +17,7 @@ const defaultstateOptions = {
   color: true,
 };
 
-class WebpackDashboard {
+class WebpackReport {
   constructor(props = {}) {
     this.options = { ...defaultOptions, ...props };
 
@@ -75,7 +75,7 @@ class WebpackDashboard {
     http.listen(port, host, () => {
       const url = `http://${host}:${port}`;
 
-      console.log(chalk.green(`Starting dashboard on: ${chalk.bold(url)}`));
+      console.log(chalk.green(`Starting webpack-report on: ${chalk.bold(url)}`));
 
       this.isServerStarted = true;
 
@@ -100,11 +100,11 @@ class WebpackDashboard {
     compiler.apply(new webpack.ProgressPlugin(progressCallBack));
 
     if (compiler.hooks) {
-      compiler.hooks.done.tapAsync('my-webpack-dashboard', doneCallBack);
+      compiler.hooks.done.tapAsync('webpack-report', doneCallBack);
     } else {
       compiler.plugin('done', doneCallBack);
     }
   }
 }
 
-module.exports = WebpackDashboard;
+module.exports = WebpackReport;

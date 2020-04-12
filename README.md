@@ -1,1 +1,1 @@
-# Webpack Dashboard
+# Webpack Report

@@ -25,7 +25,7 @@ const Header = () => {
     <HeaderWrapper>
       <HeaderCol>
         <Link to="/">
-          <Typography color="white">Webpack Dashboard</Typography>
+          <Typography color="white">Webpack Report</Typography>
         </Link>
         {name && (
           <>
