@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/logo-title.png" width="80%"/>
+  <img src="https://github.com/deeppatel234/webpack-report/blob/master/assets/logo-title.png" width="80%"/>
 </p>
 
 <h2 align="center">Webpack Build Analysis Plugin</h2>
@@ -39,12 +39,12 @@ module.exports = {
 ## Screenshots
 
 <p align="center">
-  <img src="assets/screenshots/dashboard.png?raw=true" width="80%"/>
+  <img src="https://github.com/deeppatel234/webpack-report/blob/master/assets/screenshots/dashboard.png?raw=true" width="80%"/>
 </p>
 <p align="center">
-  <img src="assets/screenshots/assets.png?raw=true" width="30%"/>
-  <img src="assets/screenshots/modules.png?raw=true" width="30%"/>
-  <img src="assets/screenshots/chunks.png?raw=true" width="30%"/>
+  <img src="https://github.com/deeppatel234/webpack-report/blob/master/assets/screenshots/assets.png?raw=true" width="30%"/>
+  <img src="https://github.com/deeppatel234/webpack-report/blob/master/assets/screenshots/modules.png?raw=true" width="30%"/>
+  <img src="https://github.com/deeppatel234/webpack-report/blob/master/assets/screenshots/chunks.png?raw=true" width="30%"/>
 </p>
 
 ## Options
