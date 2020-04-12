@@ -34,12 +34,12 @@ module.exports = {
 ## Screenshots
 
 <p align="center">
-  <img src="assets/screenshots/dashboard.png" width="80%"/>
+  <img src="assets/screenshots/dashboard.png?raw=true" width="80%"/>
 </p>
 <p align="center">
-  <img src="assets/screenshots/assets.png" width="30%"/>
-  <img src="assets/screenshots/modules.png" width="30%"/>
-  <img src="assets/screenshots/chunks.png" width="30%"/>
+  <img src="assets/screenshots/assets.png?raw=true" width="30%"/>
+  <img src="assets/screenshots/modules.png?raw=true" width="30%"/>
+  <img src="assets/screenshots/chunks.png?raw=true" width="30%"/>
 </p>
 
 
