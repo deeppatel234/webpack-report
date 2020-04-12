@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://github.com/deeppatel234/webpack-report/blob/master/assets/logo-title.png" width="80%"/>
+  <img src="https://github.com/deeppatel234/webpack-report/blob/master/assets/logo-title.png?raw=true" width="80%"/>
 </p>
 
 <h2 align="center">Webpack Build Analysis Plugin</h2>
@@ -87,4 +87,4 @@ dev server will start in `http://localhost:5070`
 MIT
 
 ## Documentation managed by
-<a href="https://www.editmymd.me/"><img src="assets/editmymd.png" width="20%"/></a>
+<a href="https://www.editmymd.me/"><img src="https://github.com/deeppatel234/webpack-report/blob/master/assets/editmymd.png?raw=true" width="20%"/></a>
