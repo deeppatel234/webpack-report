@@ -6,7 +6,6 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![NPM Download](https://img.shields.io/npm/dt/webpack-report.svg)](https://www.npmjs.com/package/webpack-report) [![NPM](https://img.shields.io/npm/v/webpack-report.svg)](https://www.npmjs.com/package/webpack-report)
 
-
 ## Installation
 
 - Download and install npm package
@@ -30,6 +29,12 @@ module.exports = {
   ]
 }
 ```
+
+## Features
+
+- describe your project informations like dependency, dev-dependency etc.
+- show webpack build informations like warnings, error, build time etc.
+- detailed Assets, Modules and chunks informations with interactive graphs.
 
 ## Screenshots
 
@@ -55,6 +60,27 @@ module.exports = {
 | `statsOptions`  | object  |   | options passed in `stats.toJson()` method.  |
 | `packageJsonPath`  | string  |   | project package.json custom file path  |
 
+## Contribute
+
+- clone repository
+
+- install dependency
+```js
+  npm install
+```
+
+- go to example folder and install dependency too
+```js
+  npm install
+```
+
+- start the dev server using
+
+```js
+  npm start
+```
+
+dev server will start in `http://localhost:5070`
 
 ## License
 
