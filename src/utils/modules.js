@@ -27,8 +27,11 @@ const computePackageSize = moduleList => {
   return nodeModules;
 };
 
-const extractSubModules = moduleList => {
+const extractAndRemoveUnusedModules = moduleList => {
   return moduleList.reduce((acc, moduleItem) => {
+    if (!moduleItem.chunks || !moduleItem.chunks.length) {
+      return acc;
+    }
     if (moduleItem.modules) {
       const mods = moduleItem.modules.map(m => ({
         ...m,
@@ -96,14 +99,14 @@ const removeUnusedChunkData = chunks => {
       parents: c.parents,
       siblings: c.siblings,
       origins: c.origins,
-      modules: removeUnusedModuleData(extractSubModules(c.modules)),
+      modules: removeUnusedModuleData(extractAndRemoveUnusedModules(c.modules)),
     };
   });
 };
 
 module.exports = {
   computePackageSize,
-  extractSubModules,
+  extractAndRemoveUnusedModules,
   computeModuleState,
   convertModulesByKey,
   removeUnusedModuleData,

@@ -41,7 +41,7 @@ const ChunkDetails = ({ match }) => {
   const {
     params: { id },
   } = match;
-  const [chunkId, setChunkID] = useState();
+  const [chunkId, setChunkID] = useState(id);
   const [modalData, setModalData] = useState({ visible: false });
   const { stateData } = useContext(AppContext);
   const { chunks } = stateData;

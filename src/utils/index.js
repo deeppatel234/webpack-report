@@ -7,7 +7,7 @@ const { computeAssetsState, removeUnusedAssetsData } = require('./assets');
 
 const {
   computePackageSize,
-  extractSubModules,
+  extractAndRemoveUnusedModules,
   computeModuleState,
   removeUnusedModuleData,
   removeUnusedChunkData,
@@ -51,7 +51,9 @@ const removeUnusedStateData = state => {
     assets: removeUnusedAssetsData(state.assets),
     entrypoints: state.entrypoints,
     chunks: removeUnusedChunkData(state.chunks),
-    modules: removeUnusedModuleData(extractSubModules(state.modules)),
+    modules: removeUnusedModuleData(
+      extractAndRemoveUnusedModules(state.modules),
+    ),
   };
 };
 
