@@ -80,7 +80,7 @@ module.exports = {
   npm start
 ```
 
-dev server will start in `http://localhost:5070`
+dev server will start
 
 ## License
 
