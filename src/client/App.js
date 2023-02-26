@@ -1,29 +1,29 @@
 /* global NODE_ENV */
-import React, { useState, useEffect } from 'react';
-import io from 'socket.io-client';
-import _isEmpty from 'lodash/isEmpty';
-import { ThemeProvider } from '@emotion/react';
+import React, { useState, useEffect } from "react";
+import io from "socket.io-client";
+import _isEmpty from "lodash/isEmpty";
+import { ThemeProvider } from "@emotion/react";
 
-import AppContext from './AppContext';
-import AppThemeContext from './AppThemeContext';
+import AppContext from "./AppContext";
+import AppThemeContext from "./AppThemeContext";
 
-import Pages from './pages';
-import ProgressOverlay from './pages/ProgressOverlay';
-import LoadingScreen from './pages/ProgressOverlay/LoadingScreen';
+import Pages from "./pages";
+import ProgressOverlay from "./pages/ProgressOverlay";
+import LoadingScreen from "./pages/ProgressOverlay/LoadingScreen";
 
-import GlobalCSS from './GlobalCSS';
-import { theme as themeConfig } from './theme';
-import { getThemeFromLocal, setThemeInLocal } from './utils';
+import GlobalCSS from "./GlobalCSS";
+import { theme as themeConfig } from "./theme";
+import { getThemeFromLocal, setThemeInLocal } from "./utils";
 
 const { port, hostname } = document.location;
 
-const socketPort = NODE_ENV === 'development' ? 1237 : port;
+const socketPort = NODE_ENV === "development" ? 1237 : port;
 
 const socket = io(`${hostname}:${socketPort}`);
 
-const DEFAULT_THEME = getThemeFromLocal() || 'dark';
+const DEFAULT_THEME = getThemeFromLocal() || "dark";
 
-const App = () => {
+function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [appData, setAppData] = useState({
     progress: {},
@@ -31,14 +31,14 @@ const App = () => {
   const [theme, setTheme] = useState(DEFAULT_THEME);
 
   useEffect(() => {
-    socket.on('data', event => {
+    socket.on("data", (event) => {
       setAppData(event);
       setIsLoading(false);
     });
   }, []);
 
   const toggleTheme = () => {
-    const themeToSet = theme === 'light' ? 'dark' : 'light';
+    const themeToSet = theme === "light" ? "dark" : "light";
     setTheme(themeToSet);
     setThemeInLocal(themeToSet);
   };
@@ -60,6 +60,6 @@ const App = () => {
       </AppThemeContext.Provider>
     </AppContext.Provider>
   );
-};
+}
 
 export default App;

@@ -1,11 +1,11 @@
-const _keyBy = require('lodash/keyBy');
+const _keyBy = require("lodash/keyBy");
 
-const computePackageSize = moduleList => {
+const computePackageSize = (moduleList) => {
   const nodeModules = moduleList
-    .filter(n => n.name.startsWith('./node_modules'))
-    .map(n => {
+    .filter((n) => n.name.startsWith("./node_modules"))
+    .map((n) => {
       return {
-        name: n.name.split('/')[2],
+        name: n.name.split("/")[2],
         module: n,
       };
     })
@@ -27,13 +27,13 @@ const computePackageSize = moduleList => {
   return nodeModules;
 };
 
-const extractAndRemoveUnusedModules = moduleList => {
+const extractAndRemoveUnusedModules = (moduleList) => {
   return moduleList.reduce((acc, moduleItem) => {
     if (!moduleItem.chunks || !moduleItem.chunks.length) {
       return acc;
     }
     if (moduleItem.modules) {
-      const mods = moduleItem.modules.map(m => ({
+      const mods = moduleItem.modules.map((m) => ({
         ...m,
         chunks: moduleItem.chunks,
       }));
@@ -43,9 +43,9 @@ const extractAndRemoveUnusedModules = moduleList => {
   }, []);
 };
 
-const convertModulesByKey = modules => _keyBy(modules, 'id');
+const convertModulesByKey = (modules) => _keyBy(modules, "id");
 
-const computeModuleState = state => {
+const computeModuleState = (state) => {
   const packageJsonModules = Object.keys(state.packageSize).reduce(
     (acc, key) => {
       return acc + state.packageSize[key].modules.length;
@@ -54,7 +54,7 @@ const computeModuleState = state => {
   );
 
   const duplicateModules = state.modules.filter(
-    m => m.chunks && m.chunks.length > 1,
+    (m) => m.chunks && m.chunks.length > 1,
   );
 
   const moduleState = {
@@ -67,8 +67,8 @@ const computeModuleState = state => {
   return moduleState;
 };
 
-const removeUnusedModuleData = modules => {
-  return modules.map(m => {
+const removeUnusedModuleData = (modules) => {
+  return modules.map((m) => {
     return {
       id: m.id,
       name: m.name,
@@ -85,8 +85,8 @@ const removeUnusedModuleData = modules => {
   });
 };
 
-const removeUnusedChunkData = chunks => {
-  return chunks.map(c => {
+const removeUnusedChunkData = (chunks) => {
+  return chunks.map((c) => {
     return {
       id: c.id,
       initial: c.initial,

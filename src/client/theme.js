@@ -1,12 +1,12 @@
 // default font size for app
 const HtmlFontSize = 16;
-const FontFamily = 'Montserrat,sans-serif';
+const FontFamily = "Montserrat,sans-serif";
 
 // html default font size calculation
 const EM_PX_SIZE = 16;
 
 // pixel to rem converter
-const pxToRem = size => `${size / EM_PX_SIZE}rem`;
+const pxToRem = (size) => `${size / EM_PX_SIZE}rem`;
 
 // font weight
 const FontWeight = {
@@ -18,38 +18,38 @@ const FontWeight = {
 
 const palette = {
   light: {
-    white: '#ffffff',
-    black: '#000000',
-    dark: '#000000',
-    light: '#ffffff',
-    warning: '#faad14',
-    error: '#DC3545',
-    info: '#17a2b8',
-    text: 'rgba(0,0,0,.85)',
-    muted: '#6c757d',
-    icon: '#555',
-    background: '#fff',
-    cardBackground: '#fff',
-    cardBorderColor: 'rgba(0,0,0,0.12)',
-    headerBackground: '#2b3a42',
-    hover: 'rgba(0,0,0,0.04)',
+    white: "#ffffff",
+    black: "#000000",
+    dark: "#000000",
+    light: "#ffffff",
+    warning: "#faad14",
+    error: "#DC3545",
+    info: "#17a2b8",
+    text: "rgba(0,0,0,.85)",
+    muted: "#6c757d",
+    icon: "#555",
+    background: "#fff",
+    cardBackground: "#fff",
+    cardBorderColor: "rgba(0,0,0,0.12)",
+    headerBackground: "#2b3a42",
+    hover: "rgba(0,0,0,0.04)",
   },
   dark: {
-    white: '#ffffff',
-    black: '#000000',
-    dark: '#ffffff',
-    light: '#000000',
-    warning: '#faad14',
-    error: '#DC3545',
-    info: '#17a2b8',
-    text: '#fff',
-    muted: '#ffffff',
-    icon: '#ffffff',
-    background: '#212121',
-    cardBackground: '#333333',
-    cardBorderColor: 'rgba(255, 255, 255, 0.12)',
-    headerBackground: '#333333',
-    hover: 'rgba(255,255,255,0.12)',
+    white: "#ffffff",
+    black: "#000000",
+    dark: "#ffffff",
+    light: "#000000",
+    warning: "#faad14",
+    error: "#DC3545",
+    info: "#17a2b8",
+    text: "#fff",
+    muted: "#ffffff",
+    icon: "#ffffff",
+    background: "#212121",
+    cardBackground: "#333333",
+    cardBorderColor: "rgba(255, 255, 255, 0.12)",
+    headerBackground: "#333333",
+    hover: "rgba(255,255,255,0.12)",
   },
 };
 
@@ -101,8 +101,8 @@ const typography = {
   },
 };
 
-const getRGBAColor = code => {
-  return a => `rgba(${code}, ${code}, ${code}, ${a})`;
+const getRGBAColor = (code) => {
+  return (a) => `rgba(${code}, ${code}, ${code}, ${a})`;
 };
 
 export const theme = {

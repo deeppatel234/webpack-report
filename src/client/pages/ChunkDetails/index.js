@@ -1,14 +1,14 @@
-import React, { useContext, useState, useEffect } from 'react';
-import { Navigate, useParams } from 'react-router-dom';
+import React, { useContext, useState, useEffect } from "react";
+import { Navigate, useParams } from "react-router-dom";
 
-import AppContext from 'src/AppContext';
-import { size } from 'src/utils';
+import AppContext from "src/AppContext";
+import { size } from "src/utils";
 
-import Typography from 'Components/Typography';
-import SizeChart from 'Components/SizeChart';
-import Modal from 'Components/Modal';
-import Table from 'Components/Table';
-import GraphWarning from 'Components/GraphWarning';
+import Typography from "Components/Typography";
+import SizeChart from "Components/SizeChart";
+import Modal from "Components/Modal";
+import Table from "Components/Table";
+import GraphWarning from "Components/GraphWarning";
 
 import {
   DetailsTable,
@@ -18,26 +18,26 @@ import {
   Body,
   Title,
   ChunkWrapper,
-} from 'Components/Styles';
+} from "Components/Styles";
 
-import ModuleTable from '../ModuleDetails/ModuleTable';
+import ModuleTable from "../ModuleDetails/ModuleTable";
 
-import { ListItem, InfoWrapper } from './styled';
+import { ListItem, InfoWrapper } from "./styled";
 
 const originHeader = [
-  { key: 'moduleName', header: 'Module Name', sort: true },
+  { key: "moduleName", header: "Module Name", sort: true },
   {
-    key: 'request',
-    header: 'Request',
+    key: "request",
+    header: "Request",
     sort: true,
   },
   {
-    key: 'loc',
-    header: 'LOC',
+    key: "loc",
+    header: "LOC",
   },
 ];
 
-const ChunkDetails = () => {
+function ChunkDetails() {
   const { id } = useParams();
   const [chunkId, setChunkID] = useState(id);
   const [modalData, setModalData] = useState({ visible: false });
@@ -48,9 +48,9 @@ const ChunkDetails = () => {
     setChunkID(id);
   }, [id]);
 
-  const chunkData = chunks.find(c => `${c.id}` === `${chunkId}`);
+  const chunkData = chunks.find((c) => `${c.id}` === `${chunkId}`);
 
-  if (typeof id === 'undefined' || !chunkData) {
+  if (typeof id === "undefined" || !chunkData) {
     return <Navigate to={`/chunks/${chunks[0].id}`} />;
   }
 
@@ -97,7 +97,7 @@ const ChunkDetails = () => {
                 {size(fileSize)}
               </Typography>
             </InfoWrapper>
-            <Typography varient="helpText">{names.join(' ')}</Typography>
+            <Typography varient="helpText">{names.join(" ")}</Typography>
           </ListItem>
         ))}
       </SideBar>
@@ -113,15 +113,15 @@ const ChunkDetails = () => {
             <th>id</th>
             <td>{chunkData.id}</td>
             <th>initial</th>
-            <td>{chunkData.initial ? 'Yes' : 'No'}</td>
+            <td>{chunkData.initial ? "Yes" : "No"}</td>
             <th>entry</th>
-            <td>{chunkData.entry ? 'Yes' : 'No'}</td>
+            <td>{chunkData.entry ? "Yes" : "No"}</td>
             <th>size</th>
             <td>{size(chunkData.size)}</td>
           </tr>
           <tr>
             <th>files</th>
-            <td colSpan="5">{chunkData.files.join(' , ')}</td>
+            <td colSpan="5">{chunkData.files.join(" , ")}</td>
             <th>hash</th>
             <td>{chunkData.hash}</td>
           </tr>
@@ -130,7 +130,7 @@ const ChunkDetails = () => {
             <td colSpan="3">
               <div>
                 <ChunkWrapper>
-                  {chunkData.children.map(c => (
+                  {chunkData.children.map((c) => (
                     <ChunkLink to={`/chunks/${c}`}>{c}</ChunkLink>
                   ))}
                 </ChunkWrapper>
@@ -139,7 +139,7 @@ const ChunkDetails = () => {
             <th>parents</th>
             <td colSpan="3">
               <ChunkWrapper>
-                {chunkData.parents.map(c => (
+                {chunkData.parents.map((c) => (
                   <ChunkLink to={`/chunks/${c}`}>{c}</ChunkLink>
                 ))}
               </ChunkWrapper>
@@ -149,7 +149,7 @@ const ChunkDetails = () => {
             <th>siblings</th>
             <td colSpan="3">
               <ChunkWrapper>
-                {chunkData.siblings.map(c => (
+                {chunkData.siblings.map((c) => (
                   <ChunkLink to={`/chunks/${c}`}>{c}</ChunkLink>
                 ))}
               </ChunkWrapper>
@@ -169,6 +169,6 @@ const ChunkDetails = () => {
       </Body>
     </DetailsWrapper>
   );
-};
+}
 
 export default ChunkDetails;

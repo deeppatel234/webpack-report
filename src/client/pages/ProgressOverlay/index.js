@@ -1,14 +1,14 @@
-import React, { useContext } from 'react';
-import AppContext from '../../AppContext';
+import React, { useContext } from "react";
+import AppContext from "../../AppContext";
 
 import {
   Wrapper,
   ProgressTitle,
   ProgressMessage,
   ProgressCount,
-} from './styled';
+} from "./styled";
 
-const ProgressOverlay = () => {
+function ProgressOverlay() {
   const { progress = {} } = useContext(AppContext);
   const { percentage, message } = progress;
 
@@ -16,10 +16,10 @@ const ProgressOverlay = () => {
     <Wrapper>
       <ProgressTitle>
         <ProgressCount>{percentage}%</ProgressCount>
-        <ProgressMessage>{message || 'Loading'}</ProgressMessage>
+        <ProgressMessage>{message || "Loading"}</ProgressMessage>
       </ProgressTitle>
     </Wrapper>
   );
-};
+}
 
 export default ProgressOverlay;

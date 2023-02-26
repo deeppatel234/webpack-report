@@ -1,48 +1,48 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
-import Table from 'Components/Table';
-import Typography from 'Components/Typography';
-import Modal from 'Components/Modal';
+import Table from "Components/Table";
+import Typography from "Components/Typography";
+import Modal from "Components/Modal";
 
-import InfoIcon from 'Components/Icons/Info';
+import InfoIcon from "Components/Icons/Info";
 
-import { DetailsTable, ChunkLink, ChunkWrapper } from 'Components/Styles';
+import { DetailsTable, ChunkLink, ChunkWrapper } from "Components/Styles";
 
 const headers = [
-  { key: 'name', header: 'Name', sort: true },
+  { key: "name", header: "Name", sort: true },
   {
-    key: 'size',
-    header: 'Size',
+    key: "size",
+    header: "Size",
     fileSize: true,
     sort: true,
-    className: 'size-column',
+    className: "size-column",
   },
   {
-    key: 'info',
+    key: "info",
     render: () => <InfoIcon />,
-    className: 'info-column',
+    className: "info-column",
   },
 ];
 
 const reasonHeader = [
-  { key: 'moduleName', header: 'Module Name', sort: true },
+  { key: "moduleName", header: "Module Name", sort: true },
   {
-    key: 'type',
-    header: 'Type',
+    key: "type",
+    header: "Type",
     sort: true,
   },
   {
-    key: 'userRequest',
-    header: 'User Request',
+    key: "userRequest",
+    header: "User Request",
     sort: true,
   },
   {
-    key: 'loc',
-    header: 'LOC',
+    key: "loc",
+    header: "LOC",
   },
 ];
 
-const ModuleDetails = ({ rowData, onClickReason }) => {
+function ModuleDetails({ rowData, onClickReason }) {
   return (
     <div>
       <DetailsTable>
@@ -50,21 +50,21 @@ const ModuleDetails = ({ rowData, onClickReason }) => {
           <th>id</th>
           <td>{rowData.id}</td>
           <th>built</th>
-          <td>{rowData.built ? 'Yes' : 'No'}</td>
+          <td>{rowData.built ? "Yes" : "No"}</td>
           <th>cacheable</th>
-          <td>{rowData.cacheable ? 'Yes' : 'No'}</td>
+          <td>{rowData.cacheable ? "Yes" : "No"}</td>
         </tr>
         <tr>
           <th>chunks</th>
           <td colSpan="3">
             <ChunkWrapper>
-              {rowData.chunks.map(n => (
+              {rowData.chunks.map((n) => (
                 <ChunkLink to={`/chunks/${n}`}>{n}</ChunkLink>
               ))}
             </ChunkWrapper>
           </td>
           <th>prefetched</th>
-          <td>{rowData.prefetched ? 'Yes' : 'No'}</td>
+          <td>{rowData.prefetched ? "Yes" : "No"}</td>
         </tr>
         <tr>
           <th>issuer</th>
@@ -89,12 +89,12 @@ const ModuleDetails = ({ rowData, onClickReason }) => {
       </DetailsTable>
     </div>
   );
-};
+}
 
-const ModuleTable = props => {
+function ModuleTable(props) {
   const [modalData, setModalData] = useState({ visible: false, data: [] });
 
-  const onClickReason = reasons => {
+  const onClickReason = (reasons) => {
     setModalData({
       visible: true,
       data: reasons,
@@ -135,6 +135,6 @@ const ModuleTable = props => {
       />
     </>
   );
-};
+}
 
 export default ModuleTable;

@@ -1,5 +1,5 @@
-import styled from '@emotion/styled';
-import { css } from '@emotion/react';
+import styled from "@emotion/styled";
+import { css } from "@emotion/react";
 
 export const TableWrapper = styled.div`
   width: 100%;
@@ -30,7 +30,7 @@ export const TableElement = styled.table`
 
   thead {
     tr {
-      border-bottom: 2px solid ${props => props.theme.rgbaColor(0.4)};
+      border-bottom: 2px solid ${(props) => props.theme.rgbaColor(0.4)};
     }
   }
 
@@ -44,34 +44,29 @@ export const HeaderWrapper = styled.div`
   align-items: center;
   user-select: none;
 
-  ${props =>
-    props.sort &&
+  ${(props) => props.sort &&
     css`
       cursor: pointer;
     `}
 `;
 
 export const TableRow = styled.tr`
-  ${props =>
-    !props.noBorder &&
+  ${(props) => !props.noBorder &&
     css`
       border-bottom: 1px solid ${props.theme.rgbaColor(0.12)};
     `}
 
-  ${props =>
-    props.clickable &&
+  ${(props) => props.clickable &&
     css`
       cursor: pointer;
     `}
 
-  ${props =>
-    props.isSubRowOpen &&
+  ${(props) => props.isSubRowOpen &&
     css`
       border-bottom: none;
     `}
 
-  ${props =>
-    !props.disableHover &&
+  ${(props) => !props.disableHover &&
     css`
       &:hover {
         background-color: ${props.theme.rgbaColor(0.12)};
@@ -82,5 +77,5 @@ export const TableRow = styled.tr`
 export const SubRowWrapper = styled.td`
   width: 100%;
   padding: 32px 18px;
-  background-color: ${props => props.theme.rgbaColor(0.04)};
+  background-color: ${(props) => props.theme.rgbaColor(0.04)};
 `;

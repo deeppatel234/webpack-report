@@ -1,53 +1,53 @@
-import JavascriptIcon from 'Components/Icons/Javascript';
-import CSSIcon from 'Components/Icons/CSS';
-import FileIcon from 'Components/Icons/File';
-import ImageFileIcon from 'Components/Icons/ImageFile';
+import JavascriptIcon from "Components/Icons/Javascript";
+import CSSIcon from "Components/Icons/CSS";
+import FileIcon from "Components/Icons/File";
+import ImageFileIcon from "Components/Icons/ImageFile";
 
 export const ASSETS_TYPE = [
   {
-    key: 'totalAssetsSize',
-    displayName: 'Total Assets Size',
-    header: 'All Assets',
+    key: "totalAssetsSize",
+    displayName: "Total Assets Size",
+    header: "All Assets",
     icon: FileIcon,
   },
   {
-    key: 'totalJSSize',
-    displayName: 'Total Javascript Size',
-    header: 'Javascript Files',
+    key: "totalJSSize",
+    displayName: "Total Javascript Size",
+    header: "Javascript Files",
     icon: JavascriptIcon,
-    className: 'javascript',
+    className: "javascript",
     showChunks: true,
   },
   {
-    key: 'totalCSSSize',
-    displayName: 'Total CSS Size',
-    header: 'CSS Files',
+    key: "totalCSSSize",
+    displayName: "Total CSS Size",
+    header: "CSS Files",
     icon: CSSIcon,
-    className: 'css',
-    iconWidth: '1.9rem',
+    className: "css",
+    iconWidth: "1.9rem",
     showChunks: true,
   },
   {
-    key: 'initialJSSize',
-    displayName: 'Initial Javascript Size',
-    header: 'Initial Javascript Files',
+    key: "initialJSSize",
+    displayName: "Initial Javascript Size",
+    header: "Initial Javascript Files",
     icon: JavascriptIcon,
-    className: 'javascript',
+    className: "javascript",
     showChunks: true,
   },
   {
-    key: 'initialCSSSize',
-    displayName: 'Initial CSS Size',
-    header: 'Initial CSS Files',
+    key: "initialCSSSize",
+    displayName: "Initial CSS Size",
+    header: "Initial CSS Files",
     icon: CSSIcon,
-    className: 'css',
-    iconWidth: '1.9rem',
+    className: "css",
+    iconWidth: "1.9rem",
     showChunks: true,
   },
   {
-    key: 'totalStaticFileSize',
-    displayName: 'Other Files Size',
-    header: 'Other Files',
+    key: "totalStaticFileSize",
+    displayName: "Other Files Size",
+    header: "Other Files",
     icon: ImageFileIcon,
   },
 ];

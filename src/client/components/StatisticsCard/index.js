@@ -1,11 +1,13 @@
-import React from 'react';
+import React from "react";
 
-import Typography from '../Typography';
-import ArrowRight from '../Icons/ArrowRight';
+import Typography from "../Typography";
+import ArrowRight from "../Icons/ArrowRight";
 
-import { CardWrapper, InfoWrapper, ContentWrapper } from './styled';
+import { CardWrapper, InfoWrapper, ContentWrapper } from "./styled";
 
-const StatisticsCard = ({ icon, header, text, className, to, ...props }) => {
+function StatisticsCard({
+  icon, header, text, className, to, ...props
+}) {
   return (
     <CardWrapper className={`statistics-card ${className}`} to={to} {...props}>
       <ContentWrapper flexStart>
@@ -24,10 +26,10 @@ const StatisticsCard = ({ icon, header, text, className, to, ...props }) => {
       )}
     </CardWrapper>
   );
-};
+}
 
 StatisticsCard.defaultProps = {
-  color: 'white',
+  color: "white",
 };
 
 export default StatisticsCard;

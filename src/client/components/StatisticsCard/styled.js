@@ -1,7 +1,7 @@
-import styled from '@emotion/styled';
-import { css } from '@emotion/react';
+import styled from "@emotion/styled";
+import { css } from "@emotion/react";
 
-import Card from '../Card';
+import Card from "../Card";
 
 export const CardWrapper = styled(Card)`
   display: inline-flex;
@@ -22,8 +22,7 @@ export const InfoWrapper = styled.div`
 export const ContentWrapper = styled.div`
   display: inline-flex;
 
-  ${props =>
-    props.flexStart &&
+  ${(props) => props.flexStart &&
     css`
       align-items: flex-start;
     `}

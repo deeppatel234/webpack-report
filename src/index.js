@@ -1,12 +1,12 @@
-const webpack = require('webpack');
-const opener = require('opener');
-const chalk = require('chalk');
+const webpack = require("webpack");
+const opener = require("opener");
+const chalk = require("chalk");
 
-const server = require('./server');
-const utils = require('./utils');
+const server = require("./server");
+const utils = require("./utils");
 
 const defaultOptions = {
-  host: 'localhost',
+  host: "localhost",
   port: 1237,
   open: true,
   statsOptions: {},
@@ -50,7 +50,6 @@ class WebpackReport {
         ...this.options.statsOptions,
       });
       this.clientData.stateData = utils.formateState(statsObj);
-
     } catch (e) {
       console.log(chalk.red(`Error in parsing state data`));
       console.log(chalk.red(e.message));
@@ -61,7 +60,7 @@ class WebpackReport {
     }
 
     server.hostBuildFolder(this.clientData.stateData.outputPath);
-    server.io.emit('data', this.clientData);
+    server.io.emit("data", this.clientData);
   }
 
   progressCallBack(percentage, message) {
@@ -74,7 +73,7 @@ class WebpackReport {
       return;
     }
 
-    server.io.emit('data', this.clientData);
+    server.io.emit("data", this.clientData);
   }
 
   startServer() {
@@ -92,8 +91,8 @@ class WebpackReport {
         opener(url);
       }
 
-      io.on('connection', socket => {
-        socket.emit('data', this.clientData);
+      io.on("connection", (socket) => {
+        socket.emit("data", this.clientData);
       });
     });
   }
@@ -111,9 +110,9 @@ class WebpackReport {
     progressPlugin.apply(compiler);
 
     if (compiler.hooks) {
-      compiler.hooks.done.tapAsync('webpack-report', doneCallBack);
+      compiler.hooks.done.tapAsync("webpack-report", doneCallBack);
     } else {
-      compiler.plugin('done', doneCallBack);
+      compiler.plugin("done", doneCallBack);
     }
   }
 }

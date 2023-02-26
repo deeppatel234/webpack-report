@@ -1,17 +1,17 @@
-import React from 'react';
+import React from "react";
 
-import { CardElement, CardLinkElement } from './styled';
+import { CardElement, CardLinkElement } from "./styled";
 
-const Card = ({ to, ...props }) => {
+function Card({ to, ...props }) {
   return to ? (
     <CardLinkElement to={to} {...props} />
   ) : (
     <CardElement {...props} />
   );
-};
+}
 
 Card.defaultProps = {
-  color: 'white',
+  color: "white",
 };
 
 export default Card;

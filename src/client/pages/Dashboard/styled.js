@@ -1,5 +1,5 @@
-import styled from '@emotion/styled';
-import Typography from 'Components/Typography';
+import styled from "@emotion/styled";
+import Typography from "Components/Typography";
 
 export const DashboardBody = styled.div`
   flex: 1;
@@ -24,7 +24,7 @@ export const StatisticsWrapper = styled.div`
 export const StatisticsTitle = styled(Typography)`
   padding: 8px 20px;
   margin: 0 30px;
-  border-bottom: 1px solid ${props => props.theme.rgbaColor(0.04)};
+  border-bottom: 1px solid ${(props) => props.theme.rgbaColor(0.04)};
 `;
 
 export const DetailsCard = styled.div`
@@ -34,6 +34,6 @@ export const DetailsCard = styled.div`
 
 export const InfoButton = styled.span`
   margin: 0 10px;
-  color: ${props => props.theme.palette.info};
+  color: ${(props) => props.theme.palette.info};
   cursor: pointer;
 `;

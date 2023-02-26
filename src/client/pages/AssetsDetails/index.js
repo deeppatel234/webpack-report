@@ -1,33 +1,35 @@
-import React, { useContext } from 'react';
-import { Navigate, useParams } from 'react-router-dom';
+import React, { useContext } from "react";
+import { Navigate, useParams } from "react-router-dom";
 
-import AppContext from 'src/AppContext';
-import { ASSETS_TYPE } from 'src/const';
-import { size } from 'src/utils';
+import AppContext from "src/AppContext";
+import { ASSETS_TYPE } from "src/const";
+import { size } from "src/utils";
 
-import Typography from 'Components/Typography';
-import SizeChart from 'Components/SizeChart';
-import NofileIcon from 'Components/Icons/NoFile';
-import Table from 'Components/Table';
-import Empty from 'Components/Empty';
-import GraphWarning from 'Components/GraphWarning';
+import Typography from "Components/Typography";
+import SizeChart from "Components/SizeChart";
+import NofileIcon from "Components/Icons/NoFile";
+import Table from "Components/Table";
+import Empty from "Components/Empty";
+import GraphWarning from "Components/GraphWarning";
 
-import { DetailsWrapper, SideBar, Body, Title } from 'Components/Styles';
+import {
+  DetailsWrapper, SideBar, Body, Title,
+} from "Components/Styles";
 
-import { ListItem, InfoWrapper } from './styled';
+import { ListItem, InfoWrapper } from "./styled";
 
 const headers = [
-  { key: 'name', header: 'Name', sort: true },
+  { key: "name", header: "Name", sort: true },
   {
-    key: 'size',
-    header: 'Size',
+    key: "size",
+    header: "Size",
     fileSize: true,
     sort: true,
-    className: 'size-column',
+    className: "size-column",
   },
   {
-    key: 'open',
-    className: 'link-column',
+    key: "open",
+    className: "link-column",
     render: ({ rowData }) => {
       const url = `/build/${rowData.name}`;
       return (
@@ -39,7 +41,7 @@ const headers = [
   },
 ];
 
-const AssetsDetails = () => {
+function AssetsDetails() {
   const { type } = useParams();
   const { stateData } = useContext(AppContext);
   const { assetsState } = stateData;
@@ -55,7 +57,9 @@ const AssetsDetails = () => {
       <SideBar>
         <Title variant="h5">Assets</Title>
         {ASSETS_TYPE.map(
-          ({ key, displayName, icon: Icon, iconWidth, ...props }) => (
+          ({
+            key, displayName, icon: Icon, iconWidth, ...props
+          }) => (
             <ListItem key={key} color="info" to={key} {...props}>
               <Icon width="1.5rem" />
               <InfoWrapper>
@@ -94,6 +98,6 @@ const AssetsDetails = () => {
       </Body>
     </DetailsWrapper>
   );
-};
+}
 
 export default AssetsDetails;

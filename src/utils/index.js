@@ -1,9 +1,9 @@
-const importFrom = require('import-from');
-const fs = require('fs');
-const ANSIToHtml = require('ansi-to-html');
-const chalk = require('chalk');
+const importFrom = require("import-from");
+const fs = require("fs");
+const ANSIToHtml = require("ansi-to-html");
+const chalk = require("chalk");
 
-const { computeAssetsState, removeUnusedAssetsData } = require('./assets');
+const { computeAssetsState, removeUnusedAssetsData } = require("./assets");
 
 const {
   computePackageSize,
@@ -11,9 +11,9 @@ const {
   computeModuleState,
   removeUnusedModuleData,
   removeUnusedChunkData,
-} = require('./modules');
+} = require("./modules");
 
-const getPackageJson = packageJsonPath => {
+const getPackageJson = (packageJsonPath) => {
   let fileData = {};
   let path = packageJsonPath;
 
@@ -22,7 +22,7 @@ const getPackageJson = packageJsonPath => {
       path = process.cwd();
     }
 
-    fileData = importFrom(path, './package.json') || {};
+    fileData = importFrom(path, "./package.json") || {};
   } catch (e) {
     console.log(chalk.red(`Error in fetching package.json data`));
     console.log(chalk.red(e.message));
@@ -38,7 +38,7 @@ const getPackageJson = packageJsonPath => {
   };
 };
 
-const removeUnusedStateData = state => {
+const removeUnusedStateData = (state) => {
   return {
     errors: state.errors,
     warnings: state.warnings,
@@ -57,7 +57,7 @@ const removeUnusedStateData = state => {
   };
 };
 
-const formateState = state => {
+const formateState = (state) => {
   const newState = removeUnusedStateData(state);
 
   // errors and warnings
@@ -65,22 +65,22 @@ const formateState = state => {
   const formatter = new ANSIToHtml(newFormat);
 
   try {
-    newState.warnings = newState.warnings.map(warning => {
+    newState.warnings = newState.warnings.map((warning) => {
       if (typeof warning === "object") {
         return warning;
       }
       return {
         htmlInfo: formatter.toHtml(w),
-      }
+      };
     });
 
-    newState.errors = newState.errors.map(error => {
+    newState.errors = newState.errors.map((error) => {
       if (typeof error === "object") {
         return error;
       }
       return {
         htmlInfo: formatter.toHtml(w),
-      }
+      };
     });
   } catch (err) {}
 

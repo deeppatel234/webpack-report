@@ -1,5 +1,5 @@
-import styled from '@emotion/styled';
-import { keyframes, css } from '@emotion/react';
+import styled from "@emotion/styled";
+import { keyframes, css } from "@emotion/react";
 
 const blowUpModal = keyframes`
 
@@ -34,8 +34,7 @@ export const BodyWrapper = styled.div`
   height: 100%;
   background-color: rgba(0, 0, 0, 0.8);
   animation: ${fadeIn} 0.3s;
-  ${props =>
-    props.position === 'top' &&
+  ${(props) => props.position === "top" &&
     css`
       align-items: start;
       padding-top: 10%;
@@ -56,7 +55,7 @@ export const ModalWrapper = styled.div`
   flex-direction: column;
   max-width: calc(100% - 32px);
   max-height: 80%;
-  background-color: ${props => props.theme.palette.background};
+  background-color: ${(props) => props.theme.palette.background};
   border-radius: 3px;
   animation: ${blowUpModal} 0.3s;
 
@@ -75,8 +74,7 @@ export const ModalBody = styled.div`
   padding: 12px;
   overflow: auto;
 
-  ${props =>
-    props.minWidth &&
+  ${(props) => props.minWidth &&
     css`
       min-width: ${props.minWidth};
     `}
@@ -85,15 +83,13 @@ export const ModalBody = styled.div`
 export const ModalFooter = styled.div`
   display: flex;
   padding: 12px;
-  border-top: 1px solid ${props => props.theme.rgbaColor(0.04)};
-  ${props =>
-    props.reverse &&
+  border-top: 1px solid ${(props) => props.theme.rgbaColor(0.04)};
+  ${(props) => props.reverse &&
     css`
       flex-direction: row-reverse;
     `}
 
-  ${props =>
-    props.center &&
+  ${(props) => props.center &&
     css`
       justify-content: center;
     `}
@@ -104,9 +100,9 @@ export const ModalFooter = styled.div`
 `;
 
 export const Button = styled.button`
-  background: ${props => props.theme.palette.info};
+  background: ${(props) => props.theme.palette.info};
   padding: 8px 24px;
-  color: ${props => props.theme.palette.white};
+  color: ${(props) => props.theme.palette.white};
   border: 0;
   border-radius: 3px;
   cursor: pointer;

@@ -1,9 +1,9 @@
-import React, { useCallback } from 'react';
-import { CSSTransition } from 'react-transition-group';
+import React, { useCallback } from "react";
+import { CSSTransition } from "react-transition-group";
 
-import { ModalWrapper, BodyWrapper } from './styled';
+import { ModalWrapper, BodyWrapper } from "./styled";
 
-const ModalComponent = ({
+function ModalComponent({
   visible,
   children,
   onClose,
@@ -11,7 +11,7 @@ const ModalComponent = ({
   setUnMounted,
   position,
   ...restProps
-}) => {
+}) {
   const onCloseModal = useCallback(() => {
     if (onClose) {
       onClose();
@@ -24,7 +24,7 @@ const ModalComponent = ({
     }
   }, []);
 
-  const onClickModalWrapper = useCallback(event => {
+  const onClickModalWrapper = useCallback((event) => {
     event.stopPropagation();
   }, []);
 
@@ -44,13 +44,13 @@ const ModalComponent = ({
       </BodyWrapper>
     </CSSTransition>
   );
-};
+}
 
 ModalComponent.defaultProps = {
   visible: false,
   onClose: false,
   maskClosable: true,
-  position: 'center',
+  position: "center",
 };
 
 export default ModalComponent;

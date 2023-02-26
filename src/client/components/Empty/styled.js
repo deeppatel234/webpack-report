@@ -1,4 +1,4 @@
-import styled from '@emotion/styled';
+import styled from "@emotion/styled";
 
 export const EmptyElement = styled.div`
   display: inline-flex;
@@ -9,7 +9,7 @@ export const EmptyElement = styled.div`
   justify-content: center;
   padding: 30px 0;
 
-  color: ${props => props.theme.rgbaColor(0.4)};
+  color: ${(props) => props.theme.rgbaColor(0.4)};
 `;
 
 export const EmptyChildren = styled.div`

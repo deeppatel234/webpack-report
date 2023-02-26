@@ -1,10 +1,10 @@
-import React from 'react';
+import React from "react";
 
-import { Loader, LoaderWrapper } from 'Components/Styles';
+import { Loader, LoaderWrapper } from "Components/Styles";
 
-import { Wrapper } from './styled';
+import { Wrapper } from "./styled";
 
-const LoadingScreen = () => {
+function LoadingScreen() {
   return (
     <Wrapper>
       <LoaderWrapper>
@@ -12,6 +12,6 @@ const LoadingScreen = () => {
       </LoaderWrapper>
     </Wrapper>
   );
-};
+}
 
 export default LoadingScreen;

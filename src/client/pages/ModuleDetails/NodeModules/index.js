@@ -1,54 +1,54 @@
-import React, { useContext, useState, useEffect } from 'react';
-import _isEmpty from 'lodash/isEmpty';
+import React, { useContext, useState, useEffect } from "react";
+import _isEmpty from "lodash/isEmpty";
 
-import AppContext from 'src/AppContext';
-import NofileIcon from 'Components/Icons/NoFile';
-import Table from 'Components/Table';
-import Empty from 'Components/Empty';
-import SizeChart from 'Components/SizeChart';
-import InfoIcon from 'Components/Icons/Info';
-import GraphWarning from 'Components/GraphWarning';
+import AppContext from "src/AppContext";
+import NofileIcon from "Components/Icons/NoFile";
+import Table from "Components/Table";
+import Empty from "Components/Empty";
+import SizeChart from "Components/SizeChart";
+import InfoIcon from "Components/Icons/Info";
+import GraphWarning from "Components/GraphWarning";
 
-import { size } from 'src/utils';
+import { size } from "src/utils";
 
-import ModuleTable from '../ModuleTable';
+import ModuleTable from "../ModuleTable";
 
 const headers = [
   {
-    key: 'name',
-    header: 'Name',
+    key: "name",
+    header: "Name",
     sort: true,
   },
   {
-    key: 'modules',
-    header: 'Modules',
+    key: "modules",
+    header: "Modules",
     sort: true,
     render: ({ data }) => `${data.length}`,
   },
   {
-    key: 'size',
-    header: 'Size',
+    key: "size",
+    header: "Size",
     fileSize: true,
     sort: true,
-    className: 'size-column',
+    className: "size-column",
   },
   {
-    key: 'info',
+    key: "info",
     render: () => <InfoIcon />,
-    className: 'info-column',
+    className: "info-column",
   },
 ];
 
-const Modules = ({ rowData }) => {
+function Modules({ rowData }) {
   return (
     <ModuleTable
       title={`${rowData.name} (${rowData.modules.length})`}
       data={rowData.modules}
     />
   );
-};
+}
 
-const NodeModuleSummary = ({ tableData }) => {
+function NodeModuleSummary({ tableData }) {
   const totalSize = tableData.reduce((acc, t) => acc + t.size, 0);
   return (
     <tr>
@@ -56,9 +56,9 @@ const NodeModuleSummary = ({ tableData }) => {
       <th colSpan="1">{size(totalSize)}</th>
     </tr>
   );
-};
+}
 
-const NodeModules = () => {
+function NodeModules() {
   const { stateData } = useContext(AppContext);
   const [list, setList] = useState([]);
   const { packageSize, moduleState } = stateData;
@@ -66,7 +66,7 @@ const NodeModules = () => {
   useEffect(() => {
     if (!_isEmpty(packageSize)) {
       setList(
-        Object.keys(packageSize).map(key => {
+        Object.keys(packageSize).map((key) => {
           return {
             name: key,
             modules: packageSize[key].modules,
@@ -100,6 +100,6 @@ const NodeModules = () => {
       />
     </>
   );
-};
+}
 
 export default NodeModules;

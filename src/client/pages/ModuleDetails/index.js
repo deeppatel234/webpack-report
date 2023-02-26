@@ -1,29 +1,35 @@
-import React, { useContext } from 'react';
-import { Outlet } from 'react-router-dom';
+import React, { useContext } from "react";
+import { Outlet } from "react-router-dom";
 
-import AppContext from 'src/AppContext';
+import AppContext from "src/AppContext";
 
-import FileIcon from 'Components/Icons/File';
-import NodeJSIcon from 'Components/Icons/NodeJS';
-import DuplicateIcon from 'Components/Icons/Duplicate';
-import Typography from 'Components/Typography';
-import { DetailsWrapper, SideBar, Body, Title } from 'Components/Styles';
+import FileIcon from "Components/Icons/File";
+import NodeJSIcon from "Components/Icons/NodeJS";
+import DuplicateIcon from "Components/Icons/Duplicate";
+import Typography from "Components/Typography";
+import {
+  DetailsWrapper, SideBar, Body, Title,
+} from "Components/Styles";
 
-import { ListItem, InfoWrapper } from './styled';
+import { ListItem, InfoWrapper } from "./styled";
 
-const SideBarItem = ({ to, displayName, value, icon: Icon, ...props }) => (
-  <ListItem color="info" to={to} {...props}>
-    <Icon width="1.5rem" />
-    <InfoWrapper>
-      <Typography color="muted" variant="helpText" uppercase>
-        {displayName}
-      </Typography>
-      <Typography weight="600">{value}</Typography>
-    </InfoWrapper>
-  </ListItem>
-);
+function SideBarItem({
+  to, displayName, value, icon: Icon, ...props
+}) {
+  return (
+    <ListItem color="info" to={to} {...props}>
+      <Icon width="1.5rem" />
+      <InfoWrapper>
+        <Typography color="muted" variant="helpText" uppercase>
+          {displayName}
+        </Typography>
+        <Typography weight="600">{value}</Typography>
+      </InfoWrapper>
+    </ListItem>
+  );
+}
 
-const ModuleDetails = () => {
+function ModuleDetails() {
   const { stateData } = useContext(AppContext);
 
   const { moduleState } = stateData;
@@ -58,6 +64,6 @@ const ModuleDetails = () => {
       </Body>
     </DetailsWrapper>
   );
-};
+}
 
 export default ModuleDetails;

@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from 'react';
-import _isEmpty from 'lodash/isEmpty';
-import _orderBy from 'lodash/orderBy';
+import React, { useState, useEffect } from "react";
+import _isEmpty from "lodash/isEmpty";
+import _orderBy from "lodash/orderBy";
 
-import { size } from 'src/utils';
+import { size } from "src/utils";
 
-import Typography from 'Components/Typography';
-import SortArrow from 'Components/Icons/SortArrow';
-import SearchIcon from 'Components/Icons/Search';
-import Input from 'Components/Input';
-import Empty from 'Components/Empty';
-import { Loader, LoaderWrapper } from 'Components/Styles';
+import Typography from "Components/Typography";
+import SortArrow from "Components/Icons/SortArrow";
+import SearchIcon from "Components/Icons/Search";
+import Input from "Components/Input";
+import Empty from "Components/Empty";
+import { Loader, LoaderWrapper } from "Components/Styles";
 
 import {
   TableElement,
@@ -18,14 +18,14 @@ import {
   Header,
   SubRowWrapper,
   TableRow,
-} from './styled';
+} from "./styled";
 
 const SORT_ORDER = {
-  ASC: 'asc',
-  DESC: 'desc',
+  ASC: "asc",
+  DESC: "desc",
 };
 
-const Table = ({
+function Table({
   headers,
   data,
   title,
@@ -34,12 +34,12 @@ const Table = ({
   summary: Summary,
   rowProps,
   subRowProps,
-}) => {
+}) {
   const [tableData, setTableData] = useState([]);
   const [masterData, setMasterData] = useState([]);
   const [showSubRow, setShowSubRow] = useState({});
   const [sortData, setSortData] = useState({});
-  const [searchText, setSearchText] = useState('');
+  const [searchText, setSearchText] = useState("");
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -47,7 +47,7 @@ const Table = ({
     setMasterData(data);
     setSortData({});
     setShowSubRow({});
-    setSearchText('');
+    setSearchText("");
     setLoading(false);
   }, [data]);
 
@@ -58,7 +58,7 @@ const Table = ({
     }
   }, [sortData]);
 
-  const onHeaderClick = key => {
+  const onHeaderClick = (key) => {
     if (!sortData.key) {
       setSortData({
         key,
@@ -73,18 +73,16 @@ const Table = ({
     }
   };
 
-  const onChangeSearch = event => {
+  const onChangeSearch = (event) => {
     const { value } = event.target;
     setSearchText(value);
     setSortData({});
 
-    const filteredData = masterData.filter(m =>
-      m[searchKey].toLowerCase().includes(value.toLowerCase()),
-    );
+    const filteredData = masterData.filter((m) => m[searchKey].toLowerCase().includes(value.toLowerCase()));
     setTableData(filteredData);
   };
 
-  const toggleSubRow = key => {
+  const toggleSubRow = (key) => {
     if (!SubRow) {
       return;
     }
@@ -132,7 +130,7 @@ const Table = ({
                       <SortArrow
                         active={
                           sortData.key === key &&
-                          (sortData.order === SORT_ORDER.ASC ? 'up' : 'down')
+                          (sortData.order === SORT_ORDER.ASC ? "up" : "down")
                         }
                       />
                     )}
@@ -149,7 +147,7 @@ const Table = ({
                 </td>
               </tr>
             ) : null}
-            {tableData.map(d => {
+            {tableData.map((d) => {
               const rowKey = d[searchKey];
               return (
                 <>
@@ -159,13 +157,17 @@ const Table = ({
                     isSubRowOpen={!!showSubRow[rowKey]}
                     onClick={() => toggleSubRow(rowKey)}
                   >
-                    {headers.map(({ key, fileSize, render, className }) => (
+                    {headers.map(({
+                      key, fileSize, render, className,
+                    }) => (
                       <td key={key} className={className}>
-                        {render
-                          ? render({ data: d[key], rowData: d, key, rowProps })
-                          : fileSize
-                          ? size(d[key])
-                          : d[key]}
+                        {render ?
+                          render({
+                            data: d[key], rowData: d, key, rowProps,
+                          }) :
+                          fileSize ?
+                            size(d[key]) :
+                            d[key]}
                       </td>
                     ))}
                   </TableRow>
@@ -189,6 +191,6 @@ const Table = ({
       )}
     </TableWrapper>
   );
-};
+}
 
 export default Table;

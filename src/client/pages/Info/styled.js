@@ -1,7 +1,7 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink } from "react-router-dom";
 
-import styled from '@emotion/styled';
-import { css } from '@emotion/react';
+import styled from "@emotion/styled";
+import { css } from "@emotion/react";
 
 export const InfoWrapper = styled.div`
   flex: 1;
@@ -36,17 +36,16 @@ export const ListItem = styled(NavLink)`
   width: 120px;
   margin-right: 12px;
   border-radius: 3px;
-  border: 1px solid ${props => props.theme.palette.cardBorderColor};
+  border: 1px solid ${(props) => props.theme.palette.cardBorderColor};
   cursor: pointer;
 
-  ${props =>
-    props.color &&
+  ${(props) => props.color &&
     css`
       color: ${props.theme.palette[props.color]};
     `}
 
   &.active, &:hover {
-    background-color: ${props => props.theme.palette.hover};
+    background-color: ${(props) => props.theme.palette.hover};
   }
 `;
 

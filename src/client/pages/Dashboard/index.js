@@ -1,22 +1,22 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState } from "react";
 
-import AppContext from 'src/AppContext';
+import AppContext from "src/AppContext";
 
-import StatisticsCard from 'Components/StatisticsCard';
-import WarningIcon from 'Components/Icons/Warning';
-import CloseCircleIcon from 'Components/Icons/CloseCircle';
-import TimeIcon from 'Components/Icons/Time';
-import FileIcon from 'Components/Icons/File';
-import NodeJSIcon from 'Components/Icons/NodeJS';
-import DuplicateIcon from 'Components/Icons/Duplicate';
-import Modal from 'Components/Modal';
-import Table from 'Components/Table';
+import StatisticsCard from "Components/StatisticsCard";
+import WarningIcon from "Components/Icons/Warning";
+import CloseCircleIcon from "Components/Icons/CloseCircle";
+import TimeIcon from "Components/Icons/Time";
+import FileIcon from "Components/Icons/File";
+import NodeJSIcon from "Components/Icons/NodeJS";
+import DuplicateIcon from "Components/Icons/Duplicate";
+import Modal from "Components/Modal";
+import Table from "Components/Table";
 
-import { DetailsTable, WordBreak } from 'Components/Styles';
+import { DetailsTable, WordBreak } from "Components/Styles";
 
-import { ASSETS_TYPE } from 'src/const';
+import { ASSETS_TYPE } from "src/const";
 
-import { size, timeConversion } from 'src/utils';
+import { size, timeConversion } from "src/utils";
 
 import {
   DashboardBody,
@@ -24,21 +24,21 @@ import {
   StatisticsTitle,
   DetailsCard,
   InfoButton,
-} from './styled';
+} from "./styled";
 
 const detailsHeaders = [
-  { key: 'name', header: 'Name', sort: true },
+  { key: "name", header: "Name", sort: true },
   {
-    key: 'version',
-    header: 'Version',
+    key: "version",
+    header: "Version",
   },
 ];
 
-const Dashboard = () => {
+function Dashboard() {
   const [modalData, setModalData] = useState({
     visible: false,
     data: [],
-    title: '',
+    title: "",
   });
   const { packageJson, stateData } = useContext(AppContext);
   const {
@@ -54,7 +54,7 @@ const Dashboard = () => {
     setModalData({
       title,
       visible: true,
-      data: Object.keys(data).map(d => ({ name: d, version: data[d] })),
+      data: Object.keys(data).map((d) => ({ name: d, version: data[d] })),
     });
   };
 
@@ -65,7 +65,7 @@ const Dashboard = () => {
     });
   };
 
-  const formatedBuiltAt = builtAt ? new Date(builtAt).toLocaleString() : '';
+  const formatedBuiltAt = builtAt ? new Date(builtAt).toLocaleString() : "";
 
   return (
     <DashboardBody>
@@ -101,9 +101,7 @@ const Dashboard = () => {
             <td colSpan="2">
               {Object.keys(packageJson.dependencies).length}
               <InfoButton
-                onClick={() =>
-                  onClickDetails(packageJson.dependencies, 'Dependencies')
-                }
+                onClick={() => onClickDetails(packageJson.dependencies, "Dependencies")}
               >
                 details
               </InfoButton>
@@ -118,12 +116,10 @@ const Dashboard = () => {
             <td colSpan="2">
               {Object.keys(packageJson.devDependencies).length}
               <InfoButton
-                onClick={() =>
-                  onClickDetails(
-                    packageJson.devDependencies,
-                    'Dev Dependencies',
-                  )
-                }
+                onClick={() => onClickDetails(
+                  packageJson.devDependencies,
+                  "Dev Dependencies",
+                )}
               >
                 details
               </InfoButton>
@@ -162,7 +158,9 @@ const Dashboard = () => {
       <StatisticsTitle variant="h6">Assets</StatisticsTitle>
       <StatisticsWrapper>
         {ASSETS_TYPE.map(
-          ({ key, displayName, icon: Icon, iconWidth = '2rem', ...props }) => (
+          ({
+            key, displayName, icon: Icon, iconWidth = "2rem", ...props
+          }) => (
             <StatisticsCard
               key={key}
               to={`/assets/${key}`}
@@ -201,6 +199,6 @@ const Dashboard = () => {
       </StatisticsWrapper>
     </DashboardBody>
   );
-};
+}
 
 export default Dashboard;

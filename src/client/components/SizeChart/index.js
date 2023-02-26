@@ -1,29 +1,29 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from "react";
 
-import { DataView } from '@antv/data-set';
-import { Chart } from '@antv/g2';
-import { size } from 'src/utils';
+import { DataView } from "@antv/data-set";
+import { Chart } from "@antv/g2";
+import { size } from "src/utils";
 
-const getDataNodes = data => {
+const getDataNodes = (data) => {
   const rootData = {
-    name: 'root',
+    name: "root",
     children: data,
   };
 
   const dv = new DataView();
 
   dv.source(rootData, {
-    type: 'hierarchy',
+    type: "hierarchy",
   }).transform({
-    field: 'size',
-    type: 'hierarchy.treemap',
-    tile: 'treemapResquarify',
-    as: ['x', 'y'],
+    field: "size",
+    type: "hierarchy.treemap",
+    tile: "treemapResquarify",
+    as: ["x", "y"],
   });
 
   const nodes = [];
-  dv.getAllNodes().forEach(node => {
-    if (node.data.name === 'root') {
+  dv.getAllNodes().forEach((node) => {
+    if (node.data.name === "root") {
       return;
     }
 
@@ -38,12 +38,12 @@ const getDataNodes = data => {
   return nodes;
 };
 
-const SizeChart = ({ id, data }) => {
+function SizeChart({ id, data }) {
   const graphRef = useRef(null);
   const graphId = `graph-${id}`;
 
   useEffect(() => {
-    graphRef.current.innerHTML = '';
+    graphRef.current.innerHTML = "";
     const chart = new Chart({
       container: graphId,
       autoFit: true,
@@ -67,9 +67,9 @@ const SizeChart = ({ id, data }) => {
     });
     chart
       .polygon()
-      .position('x*y')
-      .color('name')
-      .tooltip('name*size', (name, fileSize) => {
+      .position("x*y")
+      .color("name")
+      .tooltip("name*size", (name, fileSize) => {
         return {
           name,
           value: size(fileSize),
@@ -77,24 +77,24 @@ const SizeChart = ({ id, data }) => {
       })
       .style({
         lineWidth: 1,
-        stroke: '#fff',
+        stroke: "#fff",
       })
-      .label('name', {
+      .label("name", {
         offset: 0,
         style: {
-          textBaseline: 'middle',
+          textBaseline: "middle",
         },
-        content: obj => (obj.name !== 'root' ? obj.name : ''),
+        content: (obj) => (obj.name !== "root" ? obj.name : ""),
         layout: {
-          type: 'limit-in-shape',
+          type: "limit-in-shape",
         },
       });
-    chart.interaction('element-active');
+    chart.interaction("element-active");
 
     chart.render();
   }, [id]);
 
   return <div id={graphId} className="size-graph" ref={graphRef} />;
-};
+}
 
 export default SizeChart;

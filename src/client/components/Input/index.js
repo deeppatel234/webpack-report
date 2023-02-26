@@ -1,7 +1,9 @@
-import React from 'react';
-import { Wrapper, AffixWrapper, InputEle } from './styled';
+import React from "react";
+import { Wrapper, AffixWrapper, InputEle } from "./styled";
 
-const Input = ({ suffix, prefix, width, ...props }) => {
+function Input({
+  suffix, prefix, width, ...props
+}) {
   return (
     <Wrapper width={width}>
       {prefix && <AffixWrapper left>{prefix}</AffixWrapper>}
@@ -9,6 +11,6 @@ const Input = ({ suffix, prefix, width, ...props }) => {
       {suffix && <AffixWrapper right>{suffix}</AffixWrapper>}
     </Wrapper>
   );
-};
+}
 
 export default Input;

@@ -1,4 +1,4 @@
-import styled from '@emotion/styled';
+import styled from "@emotion/styled";
 
 export const AlertWrapper = styled.div`
   display: flex;
@@ -6,7 +6,7 @@ export const AlertWrapper = styled.div`
   margin-bottom: 25px;
   border-radius: 3px;
   padding: 10px;
-  background-color: ${props => props.theme.palette.info};
+  background-color: ${(props) => props.theme.palette.info};
   cursor: pointer;
 `;
 

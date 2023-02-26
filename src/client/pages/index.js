@@ -1,20 +1,22 @@
-import React from 'react';
-import { HashRouter, Navigate, Route, Routes } from 'react-router-dom';
+import React from "react";
+import {
+  HashRouter, Navigate, Route, Routes,
+} from "react-router-dom";
 
-import Header from 'Components/Header';
+import Header from "Components/Header";
 
-import Dashboard from './Dashboard';
-import Info from './Info';
-import AssetsDetails from './AssetsDetails';
-import ModuleDetails from './ModuleDetails';
-import ChunkDetails from './ChunkDetails';
-import TotalModles from './ModuleDetails/TotalModules';
-import NodeModules from './ModuleDetails/NodeModules';
-import DuplicateModules from './ModuleDetails/DuplicateModules';
+import Dashboard from "./Dashboard";
+import Info from "./Info";
+import AssetsDetails from "./AssetsDetails";
+import ModuleDetails from "./ModuleDetails";
+import ChunkDetails from "./ChunkDetails";
+import TotalModles from "./ModuleDetails/TotalModules";
+import NodeModules from "./ModuleDetails/NodeModules";
+import DuplicateModules from "./ModuleDetails/DuplicateModules";
 
-import { PageWrapper } from './styled';
+import { PageWrapper } from "./styled";
 
-const Pages = () => {
+function Pages() {
   return (
     <PageWrapper>
       <HashRouter>
@@ -35,6 +37,6 @@ const Pages = () => {
       </HashRouter>
     </PageWrapper>
   );
-};
+}
 
 export default Pages;

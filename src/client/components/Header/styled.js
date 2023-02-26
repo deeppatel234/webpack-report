@@ -1,13 +1,13 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink } from "react-router-dom";
 
-import styled from '@emotion/styled';
-import Typography from 'Components/Typography';
+import styled from "@emotion/styled";
+import Typography from "Components/Typography";
 
 export const HeaderWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: ${props => props.theme.palette.headerBackground};
+  background-color: ${(props) => props.theme.palette.headerBackground};
   padding: 8px 14px;
   font-size: 0.9rem;
 `;
@@ -45,10 +45,10 @@ export const NavLinks = styled(NavLink)`
   font-size: 0.8rem;
   letter-spacing: 0.5px;
   transition: all 250ms;
-  color: ${props => props.theme.palette.white};
+  color: ${(props) => props.theme.palette.white};
 
   &:hover {
-    color: ${props => props.theme.palette.info};
+    color: ${(props) => props.theme.palette.info};
   }
 
   &.active {
@@ -59,7 +59,7 @@ export const NavLinks = styled(NavLink)`
       height: 3px;
       top: 100%;
       left: 0;
-      background: ${props => props.theme.palette.info};
+      background: ${(props) => props.theme.palette.info};
     }
   }
 `;

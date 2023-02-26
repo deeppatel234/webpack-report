@@ -1,11 +1,11 @@
-import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext } from "react";
+import { Link } from "react-router-dom";
 
-import AppContext from 'src/AppContext';
-import AppThemeContext from 'src/AppThemeContext';
-import Typography from 'Components/Typography';
-import LightThemeIcon from 'Components/Icons/LightTheme';
-import DarkThemeIcon from 'Components/Icons/DarkTheme';
+import AppContext from "src/AppContext";
+import AppThemeContext from "src/AppThemeContext";
+import Typography from "Components/Typography";
+import LightThemeIcon from "Components/Icons/LightTheme";
+import DarkThemeIcon from "Components/Icons/DarkTheme";
 
 import {
   HeaderWrapper,
@@ -14,9 +14,9 @@ import {
   VersionName,
   ThemeButton,
   NavLinks,
-} from './styled';
+} from "./styled";
 
-const Header = () => {
+function Header() {
   const { packageJson } = useContext(AppContext);
   const { theme, toggleTheme } = useContext(AppThemeContext);
   const { name, version } = packageJson;
@@ -44,7 +44,7 @@ const Header = () => {
         <NavLinks to="/modules">Modules</NavLinks>
         <NavLinks to="/chunks">Chunks</NavLinks>
         <ThemeButton onClick={toggleTheme}>
-          {theme === 'light' ? (
+          {theme === "light" ? (
             <LightThemeIcon color="white" width="1.5rem" />
           ) : (
             <DarkThemeIcon color="white" width="1.5rem" />
@@ -53,6 +53,6 @@ const Header = () => {
       </HeaderCol>
     </HeaderWrapper>
   );
-};
+}
 
 export default Header;

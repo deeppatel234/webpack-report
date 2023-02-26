@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 
-import { AlertWrapper, AlertButton } from './styled';
+import { AlertWrapper, AlertButton } from "./styled";
 
-const GraphWarning = ({ id, children, limit = 300, dataLength }) => {
+function GraphWarning({
+  id, children, limit = 300, dataLength,
+}) {
   const [isRendred, setIsRendered] = useState(false);
 
   useEffect(() => {
@@ -19,6 +21,6 @@ const GraphWarning = ({ id, children, limit = 300, dataLength }) => {
       <AlertButton>Show Graph</AlertButton>
     </AlertWrapper>
   );
-};
+}
 
 export default GraphWarning;

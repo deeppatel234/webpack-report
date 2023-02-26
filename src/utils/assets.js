@@ -1,40 +1,40 @@
 const FILE_TYPES = {
-  JAVASCRIPT: 'javascript',
-  CSS: 'css',
+  JAVASCRIPT: "javascript",
+  CSS: "css",
 };
 
-const isValidName = name => {
+const isValidName = (name) => {
   if (!name) {
     return false;
   }
 
   return !(
-    name.endsWith('.map') ||
-    name.endsWith('.gz') ||
-    name.endsWith('.map.js')
+    name.endsWith(".map") ||
+    name.endsWith(".gz") ||
+    name.endsWith(".map.js")
   );
 };
 
-const getFileType = name => {
+const getFileType = (name) => {
   if (!isValidName(name)) {
-    return '';
+    return "";
   }
 
-  const extension = name.substring(name.lastIndexOf('.') + 1);
+  const extension = name.substring(name.lastIndexOf(".") + 1);
 
   switch (extension) {
-    case 'js':
+    case "js":
       return FILE_TYPES.JAVASCRIPT;
 
-    case 'css':
+    case "css":
       return FILE_TYPES.CSS;
 
     default:
-      return '';
+      return "";
   }
 };
 
-const computeAssetsState = state => {
+const computeAssetsState = (state) => {
   const assetsState = {
     totalJSSize: {
       size: 0,
@@ -86,8 +86,8 @@ const computeAssetsState = state => {
     return true;
   });
 
-  const entrypointCallBack = key => (acc, name) => {
-    const asset = state.assets.find(a => a.name === name);
+  const entrypointCallBack = (key) => (acc, name) => {
+    const asset = state.assets.find((a) => a.name === name);
     if (asset) {
       assetsState[key].assets.push({
         name: asset.name,
@@ -101,28 +101,26 @@ const computeAssetsState = state => {
 
   Object.values(state.entrypoints).forEach(({ assets }) => {
     const jsFiles = assets.filter(
-      asset => {
+      (asset) => {
         if (typeof asset === "object") {
           return getFileType(asset.name) === FILE_TYPES.JAVASCRIPT;
-        } else {
-          return getFileType(asset) === FILE_TYPES.JAVASCRIPT;
         }
+        return getFileType(asset) === FILE_TYPES.JAVASCRIPT;
       },
     );
-    const cssFiles = assets.filter(asset => {
+    const cssFiles = assets.filter((asset) => {
       if (typeof asset === "object") {
         return getFileType(asset.name) === FILE_TYPES.CSS;
-      } else {
-        return getFileType(asset) === FILE_TYPES.CSS;
       }
+      return getFileType(asset) === FILE_TYPES.CSS;
     });
 
     assetsState.initialJSSize.size = jsFiles.reduce(
-      entrypointCallBack('initialJSSize'),
+      entrypointCallBack("initialJSSize"),
       0,
     );
     assetsState.initialCSSSize.size = cssFiles.reduce(
-      entrypointCallBack('initialCSSSize'),
+      entrypointCallBack("initialCSSSize"),
       0,
     );
   });
@@ -130,8 +128,8 @@ const computeAssetsState = state => {
   return assetsState;
 };
 
-const removeUnusedAssetsData = assets => {
-  return assets.map(a => {
+const removeUnusedAssetsData = (assets) => {
+  return assets.map((a) => {
     return {
       name: a.name,
       size: a.size,

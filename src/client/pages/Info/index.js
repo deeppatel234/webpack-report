@@ -9,21 +9,27 @@ import Empty from "Components/Empty";
 import WarningIcon from "Components/Icons/Warning";
 import CloseCircleIcon from "Components/Icons/CloseCircle";
 
-import { InfoWrapper, InfoHeader, InfoBody, ListItem, ListInfo } from "./styled";
+import {
+  InfoWrapper, InfoHeader, InfoBody, ListItem, ListInfo,
+} from "./styled";
 
-const BadgeItem = ({ displayName, value, icon: Icon, ...props }) => (
-  <ListItem color="info" {...props}>
-    <Icon width="1.5rem" />
-    <ListInfo>
-      <Typography color="muted" variant="helpText" uppercase>
-        {displayName}
-      </Typography>
-      <Typography weight="600">{value}</Typography>
-    </ListInfo>
-  </ListItem>
-);
+function BadgeItem({
+  displayName, value, icon: Icon, ...props
+}) {
+  return (
+    <ListItem color="info" {...props}>
+      <Icon width="1.5rem" />
+      <ListInfo>
+        <Typography color="muted" variant="helpText" uppercase>
+          {displayName}
+        </Typography>
+        <Typography weight="600">{value}</Typography>
+      </ListInfo>
+    </ListItem>
+  );
+}
 
-const Info = () => {
+function Info() {
   const { type } = useParams();
   const { stateData } = useContext(AppContext);
 
@@ -83,6 +89,6 @@ const Info = () => {
       </InfoBody>
     </InfoWrapper>
   );
-};
+}
 
 export default Info;

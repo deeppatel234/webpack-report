@@ -1,8 +1,8 @@
-import styled from '@emotion/styled';
-import { css, keyframes } from '@emotion/react';
+import styled from "@emotion/styled";
+import { css, keyframes } from "@emotion/react";
 
-import { Link } from 'react-router-dom';
-import Typography from 'Components/Typography';
+import { Link } from "react-router-dom";
+import Typography from "Components/Typography";
 
 export const DetailsWrapper = styled.div`
   flex: 1;
@@ -14,7 +14,7 @@ export const SideBar = styled.div`
   display: flex;
   flex-direction: column;
   overflow: auto;
-  border-right: 1px solid ${props => props.theme.palette.cardBorderColor};
+  border-right: 1px solid ${(props) => props.theme.palette.cardBorderColor};
 `;
 
 export const Body = styled.div`
@@ -32,17 +32,16 @@ export const DetailsTable = styled.table`
   font-size: 12px;
   border-collapse: collapse;
 
-  ${props =>
-    props.margin &&
+  ${(props) => props.margin &&
     css`
       margin: ${props.margin};
     `}
 
   tr {
-    border-bottom: 1px solid ${props => props.theme.rgbaColor(0.04)};
+    border-bottom: 1px solid ${(props) => props.theme.rgbaColor(0.04)};
 
     &:first-of-type {
-      border-top: 1px solid ${props => props.theme.rgbaColor(0.04)};
+      border-top: 1px solid ${(props) => props.theme.rgbaColor(0.04)};
     }
   }
 
@@ -52,7 +51,7 @@ export const DetailsTable = styled.table`
 
   th {
     white-space: nowrap;
-    background: ${props => props.theme.rgbaColor(0.04)};
+    background: ${(props) => props.theme.rgbaColor(0.04)};
   }
 
   th,
@@ -60,11 +59,11 @@ export const DetailsTable = styled.table`
     padding: 8px;
 
     &:first-child {
-      border-left: 1px solid ${props => props.theme.rgbaColor(0.04)};
+      border-left: 1px solid ${(props) => props.theme.rgbaColor(0.04)};
     }
 
     &:last-child {
-      border-right: 1px solid ${props => props.theme.rgbaColor(0.04)};
+      border-right: 1px solid ${(props) => props.theme.rgbaColor(0.04)};
     }
   }
 `;
@@ -82,8 +81,8 @@ export const ChunkLink = styled(Link)`
   margin: 4px;
   padding: 4px 8px;
   border-radius: 3px;
-  color: ${props => props.theme.palette.white};
-  background: ${props => props.theme.palette.info};
+  color: ${(props) => props.theme.palette.white};
+  background: ${(props) => props.theme.palette.info};
 `;
 
 const spin = keyframes`

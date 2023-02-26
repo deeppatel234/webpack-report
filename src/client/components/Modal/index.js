@@ -1,13 +1,15 @@
-import React, { useState, useEffect } from 'react';
-import ReactDOM from 'react-dom';
+import React, { useState, useEffect } from "react";
+import ReactDOM from "react-dom";
 
-import ModalComponent from './ModalComponent';
+import ModalComponent from "./ModalComponent";
 
-import { ModalBody, ModalFooter, Button } from './styled';
+import { ModalBody, ModalFooter, Button } from "./styled";
 
 const modalRoot = document.body;
 
-const Modal = ({ visible, component: Component, destroyOnClose, ...rest }) => {
+function Modal({
+  visible, component: Component, destroyOnClose, ...rest
+}) {
   const [unMounted, setUnMounted] = useState(true);
 
   useEffect(() => {
@@ -24,7 +26,7 @@ const Modal = ({ visible, component: Component, destroyOnClose, ...rest }) => {
     <Component setUnMounted={setUnMounted} visible={visible} {...rest} />,
     modalRoot,
   );
-};
+}
 
 Modal.Body = ModalBody;
 Modal.Footer = ModalFooter;

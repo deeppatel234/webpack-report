@@ -1,5 +1,5 @@
-import styled from '@emotion/styled';
-import { css } from '@emotion/react';
+import styled from "@emotion/styled";
+import { css } from "@emotion/react";
 
 export const Wrapper = styled.div`
   flex: 1;
@@ -18,23 +18,21 @@ export const ListItem = styled.div`
   width: 120px;
   margin-right: 12px;
   border-radius: 3px;
-  border: 1px solid ${props => props.theme.palette.cardBorderColor};
+  border: 1px solid ${(props) => props.theme.palette.cardBorderColor};
   cursor: pointer;
 
-  ${props =>
-    props.color &&
+  ${(props) => props.color &&
     css`
       color: ${props.theme.palette[props.color]};
     `}
 
-  ${props =>
-    props.active &&
+  ${(props) => props.active &&
     css`
       background-color: ${props.theme.palette.hover};
     `}
 
   &:hover {
-    background-color: ${props => props.theme.palette.hover};
+    background-color: ${(props) => props.theme.palette.hover};
   }
 `;
 

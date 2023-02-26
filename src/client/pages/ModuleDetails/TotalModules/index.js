@@ -1,14 +1,14 @@
-import React, { useContext } from 'react';
+import React, { useContext } from "react";
 
-import AppContext from 'src/AppContext';
+import AppContext from "src/AppContext";
 
-import BaseModules from '../BaseModules';
+import BaseModules from "../BaseModules";
 
-const TotalModules = () => {
+function TotalModules() {
   const { stateData } = useContext(AppContext);
   const { modules } = stateData;
 
   return <BaseModules modules={modules} />;
-};
+}
 
 export default TotalModules;
