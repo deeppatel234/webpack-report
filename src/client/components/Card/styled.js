@@ -10,27 +10,32 @@ export const CardElement = styled.div`
   border: 1px solid ${(props) => props.theme.palette.cardBorderColor};
   background-color: ${(props) => props.theme.palette.cardBackground};
 
-  ${(props) => props.background &&
+  ${(props) =>
+    props.background &&
     css`
       background-color: ${props.theme.palette[props.background]};
     `}
 
-  ${(props) => props.color &&
+  ${(props) =>
+    props.color &&
     css`
       color: ${props.theme.palette[props.color]};
     `}
 
-  ${(props) => props.width &&
+  ${(props) =>
+    props.width &&
     css`
       width: ${props.width};
     `}
 
-  ${(props) => props.margin &&
+  ${(props) =>
+    props.margin &&
     css`
       margin: ${props.margin};
     `}
 
-  ${(props) => props.borderColor &&
+  ${(props) =>
+    props.borderColor &&
     css`
       border-color: ${props.theme.palette[props.borderColor]};
     `}
@@ -44,27 +49,32 @@ export const CardLinkElement = styled(Link)`
   background-color: ${(props) => props.theme.palette.cardBackground};
   text-decoration: none;
 
-  ${(props) => props.background &&
+  ${(props) =>
+    props.background &&
     css`
       background-color: ${props.theme.palette[props.background]};
     `}
 
-  ${(props) => props.color &&
+  ${(props) =>
+    props.color &&
     css`
       color: ${props.theme.palette[props.color]};
     `}
 
-  ${(props) => props.width &&
+  ${(props) =>
+    props.width &&
     css`
       width: ${props.width};
     `}
 
-  ${(props) => props.margin &&
+  ${(props) =>
+    props.margin &&
     css`
       margin: ${props.margin};
     `}
 
-  ${(props) => props.borderColor &&
+  ${(props) =>
+    props.borderColor &&
     css`
       border-color: ${props.theme.palette[props.borderColor]};
     `}

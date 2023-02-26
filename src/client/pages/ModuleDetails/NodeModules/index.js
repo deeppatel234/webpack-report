@@ -41,10 +41,7 @@ const headers = [
 
 function Modules({ rowData }) {
   return (
-    <ModuleTable
-      title={`${rowData.name} (${rowData.modules.length})`}
-      data={rowData.modules}
-    />
+    <ModuleTable title={`${rowData.name} (${rowData.modules.length})`} data={rowData.modules} />
   );
 }
 

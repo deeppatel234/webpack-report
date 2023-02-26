@@ -53,7 +53,7 @@ export const NavLinks = styled(NavLink)`
 
   &.active {
     &::after {
-      content: '';
+      content: "";
       position: absolute;
       width: 100%;
       height: 3px;

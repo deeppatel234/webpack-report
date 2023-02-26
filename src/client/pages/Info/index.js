@@ -9,13 +9,9 @@ import Empty from "Components/Empty";
 import WarningIcon from "Components/Icons/Warning";
 import CloseCircleIcon from "Components/Icons/CloseCircle";
 
-import {
-  InfoWrapper, InfoHeader, InfoBody, ListItem, ListInfo,
-} from "./styled";
+import { InfoWrapper, InfoHeader, InfoBody, ListItem, ListInfo } from "./styled";
 
-function BadgeItem({
-  displayName, value, icon: Icon, ...props
-}) {
+function BadgeItem({ displayName, value, icon: Icon, ...props }) {
   return (
     <ListItem color="info" {...props}>
       <Icon width="1.5rem" />

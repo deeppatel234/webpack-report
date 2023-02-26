@@ -37,9 +37,7 @@ function Header() {
         )}
       </HeaderCol>
       <HeaderCol>
-        <NavLinks to="/">
-          Dashboard
-        </NavLinks>
+        <NavLinks to="/">Dashboard</NavLinks>
         <NavLinks to="/assets">Assets</NavLinks>
         <NavLinks to="/modules">Modules</NavLinks>
         <NavLinks to="/chunks">Chunks</NavLinks>

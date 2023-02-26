@@ -51,9 +51,7 @@ const removeUnusedStateData = (state) => {
     assets: removeUnusedAssetsData(state.assets),
     entrypoints: state.entrypoints,
     chunks: removeUnusedChunkData(state.chunks),
-    modules: removeUnusedModuleData(
-      extractAndRemoveUnusedModules(state.modules),
-    ),
+    modules: removeUnusedModuleData(extractAndRemoveUnusedModules(state.modules)),
   };
 };
 

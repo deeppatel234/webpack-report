@@ -46,16 +46,11 @@ const extractAndRemoveUnusedModules = (moduleList) => {
 const convertModulesByKey = (modules) => _keyBy(modules, "id");
 
 const computeModuleState = (state) => {
-  const packageJsonModules = Object.keys(state.packageSize).reduce(
-    (acc, key) => {
-      return acc + state.packageSize[key].modules.length;
-    },
-    0,
-  );
+  const packageJsonModules = Object.keys(state.packageSize).reduce((acc, key) => {
+    return acc + state.packageSize[key].modules.length;
+  }, 0);
 
-  const duplicateModules = state.modules.filter(
-    (m) => m.chunks && m.chunks.length > 1,
-  );
+  const duplicateModules = state.modules.filter((m) => m.chunks && m.chunks.length > 1);
 
   const moduleState = {
     duplicateModules: duplicateModules.length,

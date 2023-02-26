@@ -1,7 +1,5 @@
 import React from "react";
-import {
-  HashRouter, Navigate, Route, Routes,
-} from "react-router-dom";
+import { HashRouter, Navigate, Route, Routes } from "react-router-dom";
 
 import Header from "Components/Header";
 

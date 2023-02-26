@@ -11,7 +11,8 @@ export const ListItem = styled.div`
     border-top: 1px solid ${(props) => props.theme.palette.cardBorderColor};
   }
 
-  ${(props) => props.active &&
+  ${(props) =>
+    props.active &&
     css`
       background-color: ${props.theme.palette.hover};
     `}

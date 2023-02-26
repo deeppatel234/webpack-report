@@ -8,11 +8,7 @@ const isValidName = (name) => {
     return false;
   }
 
-  return !(
-    name.endsWith(".map") ||
-    name.endsWith(".gz") ||
-    name.endsWith(".map.js")
-  );
+  return !(name.endsWith(".map") || name.endsWith(".gz") || name.endsWith(".map.js"));
 };
 
 const getFileType = (name) => {
@@ -100,14 +96,12 @@ const computeAssetsState = (state) => {
   };
 
   Object.values(state.entrypoints).forEach(({ assets }) => {
-    const jsFiles = assets.filter(
-      (asset) => {
-        if (typeof asset === "object") {
-          return getFileType(asset.name) === FILE_TYPES.JAVASCRIPT;
-        }
-        return getFileType(asset) === FILE_TYPES.JAVASCRIPT;
-      },
-    );
+    const jsFiles = assets.filter((asset) => {
+      if (typeof asset === "object") {
+        return getFileType(asset.name) === FILE_TYPES.JAVASCRIPT;
+      }
+      return getFileType(asset) === FILE_TYPES.JAVASCRIPT;
+    });
     const cssFiles = assets.filter((asset) => {
       if (typeof asset === "object") {
         return getFileType(asset.name) === FILE_TYPES.CSS;
@@ -115,14 +109,8 @@ const computeAssetsState = (state) => {
       return getFileType(asset) === FILE_TYPES.CSS;
     });
 
-    assetsState.initialJSSize.size = jsFiles.reduce(
-      entrypointCallBack("initialJSSize"),
-      0,
-    );
-    assetsState.initialCSSSize.size = cssFiles.reduce(
-      entrypointCallBack("initialCSSSize"),
-      0,
-    );
+    assetsState.initialJSSize.size = jsFiles.reduce(entrypointCallBack("initialJSSize"), 0);
+    assetsState.initialCSSSize.size = cssFiles.reduce(entrypointCallBack("initialCSSSize"), 0);
   });
 
   return assetsState;

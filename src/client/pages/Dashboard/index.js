@@ -41,14 +41,7 @@ function Dashboard() {
     title: "",
   });
   const { packageJson, stateData } = useContext(AppContext);
-  const {
-    errors,
-    warnings,
-    time,
-    assetsState,
-    moduleState,
-    builtAt,
-  } = stateData;
+  const { errors, warnings, time, assetsState, moduleState, builtAt } = stateData;
 
   const onClickDetails = (data, title) => {
     setModalData({
@@ -81,9 +74,7 @@ function Dashboard() {
           )}
         </Modal.Body>
         <Modal.Footer center>
-          <Modal.FooterButton onClick={onCloseDetailsModal}>
-            Close
-          </Modal.FooterButton>
+          <Modal.FooterButton onClick={onCloseDetailsModal}>Close</Modal.FooterButton>
         </Modal.Footer>
       </Modal>
       <DetailsCard>
@@ -100,9 +91,7 @@ function Dashboard() {
             <th>Dependencies</th>
             <td colSpan="2">
               {Object.keys(packageJson.dependencies).length}
-              <InfoButton
-                onClick={() => onClickDetails(packageJson.dependencies, "Dependencies")}
-              >
+              <InfoButton onClick={() => onClickDetails(packageJson.dependencies, "Dependencies")}>
                 details
               </InfoButton>
             </td>
@@ -116,10 +105,7 @@ function Dashboard() {
             <td colSpan="2">
               {Object.keys(packageJson.devDependencies).length}
               <InfoButton
-                onClick={() => onClickDetails(
-                  packageJson.devDependencies,
-                  "Dev Dependencies",
-                )}
+                onClick={() => onClickDetails(packageJson.devDependencies, "Dev Dependencies")}
               >
                 details
               </InfoButton>
@@ -157,21 +143,17 @@ function Dashboard() {
       </StatisticsWrapper>
       <StatisticsTitle variant="h6">Assets</StatisticsTitle>
       <StatisticsWrapper>
-        {ASSETS_TYPE.map(
-          ({
-            key, displayName, icon: Icon, iconWidth = "2rem", ...props
-          }) => (
-            <StatisticsCard
-              key={key}
-              to={`/assets/${key}`}
-              icon={<Icon width={iconWidth} />}
-              text={size(assetsState[key].size)}
-              color="info"
-              {...props}
-              header={displayName}
-            />
-          ),
-        )}
+        {ASSETS_TYPE.map(({ key, displayName, icon: Icon, iconWidth = "2rem", ...props }) => (
+          <StatisticsCard
+            key={key}
+            to={`/assets/${key}`}
+            icon={<Icon width={iconWidth} />}
+            text={size(assetsState[key].size)}
+            color="info"
+            {...props}
+            header={displayName}
+          />
+        ))}
       </StatisticsWrapper>
       <StatisticsTitle variant="h6">Modules</StatisticsTitle>
       <StatisticsWrapper>

@@ -5,9 +5,7 @@ import ArrowRight from "../Icons/ArrowRight";
 
 import { CardWrapper, InfoWrapper, ContentWrapper } from "./styled";
 
-function StatisticsCard({
-  icon, header, text, className, to, ...props
-}) {
+function StatisticsCard({ icon, header, text, className, to, ...props }) {
   return (
     <CardWrapper className={`statistics-card ${className}`} to={to} {...props}>
       <ContentWrapper flexStart>

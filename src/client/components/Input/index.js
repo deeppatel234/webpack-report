@@ -1,9 +1,7 @@
 import React from "react";
 import { Wrapper, AffixWrapper, InputEle } from "./styled";
 
-function Input({
-  suffix, prefix, width, ...props
-}) {
+function Input({ suffix, prefix, width, ...props }) {
   return (
     <Wrapper width={width}>
       {prefix && <AffixWrapper left>{prefix}</AffixWrapper>}

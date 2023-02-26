@@ -22,7 +22,8 @@ export const InfoWrapper = styled.div`
 export const ContentWrapper = styled.div`
   display: inline-flex;
 
-  ${(props) => props.flexStart &&
+  ${(props) =>
+    props.flexStart &&
     css`
       align-items: flex-start;
     `}

@@ -32,7 +32,8 @@ export const DetailsTable = styled.table`
   font-size: 12px;
   border-collapse: collapse;
 
-  ${(props) => props.margin &&
+  ${(props) =>
+    props.margin &&
     css`
       margin: ${props.margin};
     `}

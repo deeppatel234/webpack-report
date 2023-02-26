@@ -21,12 +21,14 @@ export const ListItem = styled.div`
   border: 1px solid ${(props) => props.theme.palette.cardBorderColor};
   cursor: pointer;
 
-  ${(props) => props.color &&
+  ${(props) =>
+    props.color &&
     css`
       color: ${props.theme.palette[props.color]};
     `}
 
-  ${(props) => props.active &&
+  ${(props) =>
+    props.active &&
     css`
       background-color: ${props.theme.palette.hover};
     `}

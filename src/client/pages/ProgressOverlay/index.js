@@ -1,12 +1,7 @@
 import React, { useContext } from "react";
 import AppContext from "../../AppContext";
 
-import {
-  Wrapper,
-  ProgressTitle,
-  ProgressMessage,
-  ProgressCount,
-} from "./styled";
+import { Wrapper, ProgressTitle, ProgressMessage, ProgressCount } from "./styled";
 
 function ProgressOverlay() {
   const { progress = {} } = useContext(AppContext);

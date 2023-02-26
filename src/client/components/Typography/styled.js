@@ -4,38 +4,45 @@ import { css } from "@emotion/react";
 export const Element = styled.p`
   margin: 0;
   ${(props) => (props.variant ? props.theme.typography[props.variant] : "")};
-  ${(props) => props.truncate &&
+  ${(props) =>
+    props.truncate &&
     css`
       overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis;
     `}
-  ${(props) => props.color &&
+  ${(props) =>
+    props.color &&
     css`
       color: ${props.theme.palette[props.color]};
     `}
 
-  ${(props) => props.align &&
+  ${(props) =>
+    props.align &&
     css`
       text-align: ${props.align};
     `}
 
-  ${(props) => props.display &&
+  ${(props) =>
+    props.display &&
     css`
       display: ${props.display};
     `}
 
-  ${(props) => props.weight &&
+  ${(props) =>
+    props.weight &&
     css`
       font-weight: ${props.weight};
     `}
 
-  ${(props) => props.uppercase &&
+  ${(props) =>
+    props.uppercase &&
     css`
       text-transform: uppercase;
     `}
 
-  ${(props) => props.cursor &&
+  ${(props) =>
+    props.cursor &&
     css`
       cursor: ${props.cursor};
     `}

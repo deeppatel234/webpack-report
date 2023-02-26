@@ -44,29 +44,34 @@ export const HeaderWrapper = styled.div`
   align-items: center;
   user-select: none;
 
-  ${(props) => props.sort &&
+  ${(props) =>
+    props.sort &&
     css`
       cursor: pointer;
     `}
 `;
 
 export const TableRow = styled.tr`
-  ${(props) => !props.noBorder &&
+  ${(props) =>
+    !props.noBorder &&
     css`
       border-bottom: 1px solid ${props.theme.rgbaColor(0.12)};
     `}
 
-  ${(props) => props.clickable &&
+  ${(props) =>
+    props.clickable &&
     css`
       cursor: pointer;
     `}
 
-  ${(props) => props.isSubRowOpen &&
+  ${(props) =>
+    props.isSubRowOpen &&
     css`
       border-bottom: none;
     `}
 
-  ${(props) => !props.disableHover &&
+  ${(props) =>
+    !props.disableHover &&
     css`
       &:hover {
         background-color: ${props.theme.rgbaColor(0.12)};

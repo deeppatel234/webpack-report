@@ -67,8 +67,7 @@ function Table({
     } else {
       setSortData({
         key,
-        order:
-          sortData.order === SORT_ORDER.ASC ? SORT_ORDER.DESC : SORT_ORDER.ASC,
+        order: sortData.order === SORT_ORDER.ASC ? SORT_ORDER.DESC : SORT_ORDER.ASC,
       });
     }
   };
@@ -78,7 +77,9 @@ function Table({
     setSearchText(value);
     setSortData({});
 
-    const filteredData = masterData.filter((m) => m[searchKey].toLowerCase().includes(value.toLowerCase()));
+    const filteredData = masterData.filter((m) =>
+      m[searchKey].toLowerCase().includes(value.toLowerCase()),
+    );
     setTableData(filteredData);
   };
 
@@ -121,10 +122,7 @@ function Table({
             <tr>
               {headers.map(({ key, header, sort }) => (
                 <th key={key}>
-                  <HeaderWrapper
-                    sort={sort}
-                    onClick={() => (sort ? onHeaderClick(key) : {})}
-                  >
+                  <HeaderWrapper sort={sort} onClick={() => (sort ? onHeaderClick(key) : {})}>
                     {header}
                     {sort && (
                       <SortArrow
@@ -157,17 +155,18 @@ function Table({
                     isSubRowOpen={!!showSubRow[rowKey]}
                     onClick={() => toggleSubRow(rowKey)}
                   >
-                    {headers.map(({
-                      key, fileSize, render, className,
-                    }) => (
+                    {headers.map(({ key, fileSize, render, className }) => (
                       <td key={key} className={className}>
-                        {render ?
-                          render({
-                            data: d[key], rowData: d, key, rowProps,
-                          }) :
-                          fileSize ?
-                            size(d[key]) :
-                            d[key]}
+                        {render
+                          ? render({
+                              data: d[key],
+                              rowData: d,
+                              key,
+                              rowProps,
+                            })
+                          : fileSize
+                          ? size(d[key])
+                          : d[key]}
                       </td>
                     ))}
                   </TableRow>

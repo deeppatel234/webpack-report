@@ -12,7 +12,8 @@ export const ListItem = styled(NavLink)`
     border-top: 1px solid ${(props) => props.theme.palette.cardBorderColor};
   }
 
-  ${(props) => props.color &&
+  ${(props) =>
+    props.color &&
     css`
       color: ${props.theme.palette[props.color]};
     `}

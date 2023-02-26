@@ -86,11 +86,7 @@ function ChunkDetails() {
       <SideBar>
         <Title variant="h5">Chunks</Title>
         {chunks.map(({ id: key, size: fileSize, names }) => (
-          <ListItem
-            key={key}
-            active={`${key}` === `${chunkId}`}
-            onClick={() => setChunkID(key)}
-          >
+          <ListItem key={key} active={`${key}` === `${chunkId}`} onClick={() => setChunkID(key)}>
             <InfoWrapper>
               <Typography color="info">{key}</Typography>
               <Typography weight="600" color="info">
@@ -102,10 +98,7 @@ function ChunkDetails() {
         ))}
       </SideBar>
       <Body>
-        <GraphWarning
-          id={`chunk-id-${chunkId}`}
-          dataLength={chunkData.modules.length}
-        >
+        <GraphWarning id={`chunk-id-${chunkId}`} dataLength={chunkData.modules.length}>
           <SizeChart id={`chunk-id-${chunkId}`} data={chunkData.modules} />
         </GraphWarning>
         <DetailsTable margin="16px 0 30px 0">
@@ -162,10 +155,7 @@ function ChunkDetails() {
             </td>
           </tr>
         </DetailsTable>
-        <ModuleTable
-          title={`Modules (${chunkData.modules.length})`}
-          data={chunkData.modules}
-        />
+        <ModuleTable title={`Modules (${chunkData.modules.length})`} data={chunkData.modules} />
       </Body>
     </DetailsWrapper>
   );

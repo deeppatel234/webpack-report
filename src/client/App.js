@@ -47,8 +47,7 @@ function App() {
     return <LoadingScreen />;
   }
 
-  const isAppLoaded =
-    appData.progress.percentage === 100 && !_isEmpty(appData.stateData);
+  const isAppLoaded = appData.progress.percentage === 100 && !_isEmpty(appData.stateData);
 
   return (
     <AppContext.Provider value={appData}>

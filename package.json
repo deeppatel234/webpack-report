@@ -17,6 +17,8 @@
     "build:dev": "webpack --config config/webpack.dev.js",
     "lint": "eslint src",
     "lint:fix": "eslint src --fix",
+    "format": "prettier src --check",
+    "format:fix": "npm run format -- --write",
     "prepublishOnly": "npm run build"
   },
   "repository": {

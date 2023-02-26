@@ -7,9 +7,7 @@ import { ModalBody, ModalFooter, Button } from "./styled";
 
 const modalRoot = document.body;
 
-function Modal({
-  visible, component: Component, destroyOnClose, ...rest
-}) {
+function Modal({ visible, component: Component, destroyOnClose, ...rest }) {
   const [unMounted, setUnMounted] = useState(true);
 
   useEffect(() => {

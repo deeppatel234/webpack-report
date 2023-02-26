@@ -34,7 +34,8 @@ export const BodyWrapper = styled.div`
   height: 100%;
   background-color: rgba(0, 0, 0, 0.8);
   animation: ${fadeIn} 0.3s;
-  ${(props) => props.position === "top" &&
+  ${(props) =>
+    props.position === "top" &&
     css`
       align-items: start;
       padding-top: 10%;
@@ -74,7 +75,8 @@ export const ModalBody = styled.div`
   padding: 12px;
   overflow: auto;
 
-  ${(props) => props.minWidth &&
+  ${(props) =>
+    props.minWidth &&
     css`
       min-width: ${props.minWidth};
     `}
@@ -84,12 +86,14 @@ export const ModalFooter = styled.div`
   display: flex;
   padding: 12px;
   border-top: 1px solid ${(props) => props.theme.rgbaColor(0.04)};
-  ${(props) => props.reverse &&
+  ${(props) =>
+    props.reverse &&
     css`
       flex-direction: row-reverse;
     `}
 
-  ${(props) => props.center &&
+  ${(props) =>
+    props.center &&
     css`
       justify-content: center;
     `}

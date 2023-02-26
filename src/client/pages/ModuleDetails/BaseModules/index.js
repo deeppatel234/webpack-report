@@ -11,13 +11,9 @@ import Typography from "Components/Typography";
 
 import ModuleTable from "../ModuleTable";
 
-import {
-  Wrapper, ListWrapper, ListItem, InfoWrapper,
-} from "./styled";
+import { Wrapper, ListWrapper, ListItem, InfoWrapper } from "./styled";
 
-function BadgeItem({
-  displayName, value, icon: Icon, ...props
-}) {
+function BadgeItem({ displayName, value, icon: Icon, ...props }) {
   return (
     <ListItem color="info" {...props}>
       <Icon width="1.5rem" />
@@ -55,9 +51,9 @@ function BaseModules({ modules, moduleString = "Modules" }) {
   const jsModulesLength = modules.filter((m) => patters.js.test(m.name)).length;
   const cssModulesLength = modules.filter((m) => patters.css.test(m.name)).length;
 
-  const filteredData = activeFilter ?
-    modules.filter((m) => patters[activeFilter].test(m.name)) :
-    modules;
+  const filteredData = activeFilter
+    ? modules.filter((m) => patters[activeFilter].test(m.name))
+    : modules;
 
   return (
     <Wrapper>
@@ -86,10 +82,7 @@ function BaseModules({ modules, moduleString = "Modules" }) {
           onClick={() => setFilter("css")}
         />
       </ListWrapper>
-      <ModuleTable
-        title={`${title[activeFilter] || "All"} ${moduleString}`}
-        data={filteredData}
-      />
+      <ModuleTable title={`${title[activeFilter] || "All"} ${moduleString}`} data={filteredData} />
     </Wrapper>
   );
 }

@@ -7,15 +7,11 @@ import FileIcon from "Components/Icons/File";
 import NodeJSIcon from "Components/Icons/NodeJS";
 import DuplicateIcon from "Components/Icons/Duplicate";
 import Typography from "Components/Typography";
-import {
-  DetailsWrapper, SideBar, Body, Title,
-} from "Components/Styles";
+import { DetailsWrapper, SideBar, Body, Title } from "Components/Styles";
 
 import { ListItem, InfoWrapper } from "./styled";
 
-function SideBarItem({
-  to, displayName, value, icon: Icon, ...props
-}) {
+function SideBarItem({ to, displayName, value, icon: Icon, ...props }) {
   return (
     <ListItem color="info" to={to} {...props}>
       <Icon width="1.5rem" />

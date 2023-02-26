@@ -12,9 +12,7 @@ import Table from "Components/Table";
 import Empty from "Components/Empty";
 import GraphWarning from "Components/GraphWarning";
 
-import {
-  DetailsWrapper, SideBar, Body, Title,
-} from "Components/Styles";
+import { DetailsWrapper, SideBar, Body, Title } from "Components/Styles";
 
 import { ListItem, InfoWrapper } from "./styled";
 
@@ -56,31 +54,22 @@ function AssetsDetails() {
     <DetailsWrapper>
       <SideBar>
         <Title variant="h5">Assets</Title>
-        {ASSETS_TYPE.map(
-          ({
-            key, displayName, icon: Icon, iconWidth, ...props
-          }) => (
-            <ListItem key={key} color="info" to={key} {...props}>
-              <Icon width="1.5rem" />
-              <InfoWrapper>
-                <Typography color="muted" variant="helpText" uppercase>
-                  {displayName}
-                </Typography>
-                <Typography weight="600">
-                  {size(assetsState[key].size)}
-                </Typography>
-              </InfoWrapper>
-            </ListItem>
-          ),
-        )}
+        {ASSETS_TYPE.map(({ key, displayName, icon: Icon, iconWidth, ...props }) => (
+          <ListItem key={key} color="info" to={key} {...props}>
+            <Icon width="1.5rem" />
+            <InfoWrapper>
+              <Typography color="muted" variant="helpText" uppercase>
+                {displayName}
+              </Typography>
+              <Typography weight="600">{size(assetsState[key].size)}</Typography>
+            </InfoWrapper>
+          </ListItem>
+        ))}
       </SideBar>
       <Body>
         {assetsState[type].assets.length ? (
           <>
-            <GraphWarning
-              id={type}
-              dataLength={assetsState[type].assets.length}
-            >
+            <GraphWarning id={type} dataLength={assetsState[type].assets.length}>
               <SizeChart id={type} data={assetsState[type].assets} />
             </GraphWarning>
             <Table
