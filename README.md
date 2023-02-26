@@ -85,6 +85,3 @@ dev server will start in `http://localhost:5070`
 ## License
 
 MIT
-
-## Documentation managed by
-<a href="https://www.editmymd.me/"><img src="https://github.com/deeppatel234/webpack-report/blob/master/assets/editmymd.png?raw=true" width="20%"/></a>
