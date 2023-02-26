@@ -63,8 +63,26 @@ const formateState = state => {
   // errors and warnings
   const newFormat = { newline: true, escapeXML: true, colors: true };
   const formatter = new ANSIToHtml(newFormat);
-  newState.warnings = newState.warnings.map(w => formatter.toHtml(w));
-  newState.errors = newState.errors.map(e => formatter.toHtml(e));
+
+  try {
+    newState.warnings = newState.warnings.map(warning => {
+      if (typeof warning === "object") {
+        return warning;
+      }
+      return {
+        htmlInfo: formatter.toHtml(w),
+      }
+    });
+
+    newState.errors = newState.errors.map(error => {
+      if (typeof error === "object") {
+        return error;
+      }
+      return {
+        htmlInfo: formatter.toHtml(w),
+      }
+    });
+  } catch (err) {}
 
   // modules
   newState.packageSize = computePackageSize(newState.modules);

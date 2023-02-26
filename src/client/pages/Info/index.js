@@ -1,21 +1,15 @@
-import React, { useContext } from 'react';
-import { Navigate, useParams } from 'react-router-dom';
+import React, { useContext } from "react";
+import { Navigate, useParams } from "react-router-dom";
 
-import AppContext from 'src/AppContext';
-import Typography from 'Components/Typography';
-import Card from 'Components/Card';
-import Empty from 'Components/Empty';
+import AppContext from "src/AppContext";
+import Typography from "Components/Typography";
+import Card from "Components/Card";
+import Empty from "Components/Empty";
 
-import WarningIcon from 'Components/Icons/Warning';
-import CloseCircleIcon from 'Components/Icons/CloseCircle';
+import WarningIcon from "Components/Icons/Warning";
+import CloseCircleIcon from "Components/Icons/CloseCircle";
 
-import {
-  InfoWrapper,
-  InfoHeader,
-  InfoBody,
-  ListItem,
-  ListInfo,
-} from './styled';
+import { InfoWrapper, InfoHeader, InfoBody, ListItem, ListInfo } from "./styled";
 
 const BadgeItem = ({ displayName, value, icon: Icon, ...props }) => (
   <ListItem color="info" {...props}>
@@ -30,18 +24,17 @@ const BadgeItem = ({ displayName, value, icon: Icon, ...props }) => (
 );
 
 const Info = () => {
-  const {
-    type,
-  } = useParams();
+  const { type } = useParams();
   const { stateData } = useContext(AppContext);
 
-  if (!['errors', 'warnings'].includes(type)) {
+  if (!["errors", "warnings"].includes(type)) {
     return <Navigate to="/" />;
   }
 
   const infoList = stateData[type] || [];
-  const color = type === 'errors' ? 'error' : 'warning';
+  const color = type === "errors" ? "error" : "warning";
 
+  console.log(JSON.stringify(infoList[1], null, 4));
   return (
     <InfoWrapper>
       <InfoHeader>
@@ -62,15 +55,30 @@ const Info = () => {
       </InfoHeader>
       <InfoBody>
         {!infoList.length && <Empty message={`No ${type} found`} />}
-        {infoList.map(info => (
-          <Card
-            key={info}
-            borderColor={color}
-            color={color}
-            margin="6px 12px"
-            className="cards"
-            dangerouslySetInnerHTML={{ __html: info }}
-          />
+        {infoList.map((info) => (
+          <>
+            {!info.htmlInfo ? (
+              <Card
+                key={info}
+                borderColor={color}
+                color={color}
+                margin="6px 12px"
+                className="cards pre-wrap"
+                style={{ whiteSpace: "pre-wrap" }}
+              >
+                {JSON.stringify(info, null, 4)}
+              </Card>
+            ) : (
+              <Card
+                key={info}
+                borderColor={color}
+                color={color}
+                margin="6px 12px"
+                className="cards"
+                dangerouslySetInnerHTML={{ __html: info }}
+              />
+            )}
+          </>
         ))}
       </InfoBody>
     </InfoWrapper>
