@@ -15,6 +15,7 @@ const defaultOptions = {
 
 const defaultstateOptions = {
   color: true,
+  source: true,
 };
 
 class WebpackReport {
@@ -24,6 +25,7 @@ class WebpackReport {
     const packageJson = utils.getPackageJson(this.options.packageJsonPath);
 
     this.isServerStarted = false;
+    this.buildStatus = "compiling";
     this.clientData = {
       packageJson,
       progress: {
@@ -35,13 +37,20 @@ class WebpackReport {
   }
 
   doneCallBack(stats) {
+    this.buildStatus = "done";
+
+    this.clientData.progress = {
+      percentage: 100,
+      message: "done",
+    };
+
     try {
-      this.clientData.stateData = utils.formateState(
-        stats.toJson({
-          ...defaultstateOptions,
-          ...this.options.statsOptions,
-        }),
-      );
+      const statsObj = stats.toJson({
+        ...defaultstateOptions,
+        ...this.options.statsOptions,
+      });
+      this.clientData.stateData = utils.formateState(statsObj);
+
     } catch (e) {
       console.log(chalk.red(`Error in parsing state data`));
       console.log(chalk.red(e.message));
@@ -97,7 +106,9 @@ class WebpackReport {
     const doneCallBack = this.doneCallBack.bind(this);
     const progressCallBack = this.progressCallBack.bind(this);
 
-    compiler.apply(new webpack.ProgressPlugin(progressCallBack));
+    const progressPlugin = new webpack.ProgressPlugin(progressCallBack);
+
+    progressPlugin.apply(compiler);
 
     if (compiler.hooks) {
       compiler.hooks.done.tapAsync('webpack-report', doneCallBack);

@@ -9,7 +9,7 @@ const PUBLIC_DIR = path.resolve(__dirname, './public');
 const DIST_DIR = path.resolve(__dirname, './build');
 const CLIENT_DIR = path.resolve(__dirname, './src');
 
-const PORT = 1237;
+const PORT = 8090;
 
 module.exports = {
   mode: 'development',

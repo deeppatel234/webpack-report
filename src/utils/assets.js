@@ -101,9 +101,21 @@ const computeAssetsState = state => {
 
   Object.values(state.entrypoints).forEach(({ assets }) => {
     const jsFiles = assets.filter(
-      a => getFileType(a) === FILE_TYPES.JAVASCRIPT,
+      asset => {
+        if (typeof asset === "object") {
+          return getFileType(asset.name) === FILE_TYPES.JAVASCRIPT;
+        } else {
+          return getFileType(asset) === FILE_TYPES.JAVASCRIPT;
+        }
+      },
     );
-    const cssFiles = assets.filter(a => getFileType(a) === FILE_TYPES.CSS);
+    const cssFiles = assets.filter(asset => {
+      if (typeof asset === "object") {
+        return getFileType(asset.name) === FILE_TYPES.CSS;
+      } else {
+        return getFileType(asset) === FILE_TYPES.CSS;
+      }
+    });
 
     assetsState.initialJSSize.size = jsFiles.reduce(
       entrypointCallBack('initialJSSize'),

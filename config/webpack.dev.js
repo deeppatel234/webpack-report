@@ -5,8 +5,8 @@ const detect = require("detect-port");
 const common = require("./webpack.common.js");
 
 module.exports = async () => {
-  const PORT = await detect(parseInt(process.env.PORT, 10) || 1236);
-  const HOST = process.env.HOST || "0.0.0.0";
+  const PORT = await detect(parseInt(process.env.PORT, 10));
+  const HOST = process.env.HOST || "localhost";
 
   return merge(common, {
     mode: "development",

@@ -33,8 +33,8 @@ const getPackageJson = packageJsonPath => {
     version: fileData.version,
     description: fileData.description,
     license: fileData.license,
-    devDependencies: fileData.devDependencies,
-    dependencies: fileData.dependencies,
+    devDependencies: fileData.devDependencies || {},
+    dependencies: fileData.dependencies || {},
   };
 };
 
