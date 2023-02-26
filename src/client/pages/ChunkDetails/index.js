@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react';
-import { Redirect } from 'react-router-dom';
+import { redirect } from 'react-router-dom';
 
 import AppContext from 'src/AppContext';
 import { size } from 'src/utils';
@@ -53,7 +53,7 @@ const ChunkDetails = ({ match }) => {
   const chunkData = chunks.find(c => `${c.id}` === `${chunkId}`);
 
   if (typeof id === 'undefined' || !chunkData) {
-    return <Redirect to={`/chunks/${chunks[0].id}`} />;
+    return redirect(`/chunks/${chunks[0].id}`);
   }
 
   const onClickOrigin = () => {

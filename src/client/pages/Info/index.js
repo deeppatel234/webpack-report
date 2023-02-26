@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Redirect } from 'react-router-dom';
+import { redirect } from 'react-router-dom';
 
 import AppContext from 'src/AppContext';
 import Typography from 'Components/Typography';
@@ -36,7 +36,7 @@ const Info = ({ match }) => {
   } = match;
 
   if (!['errors', 'warnings'].includes(type)) {
-    return <Redirect to="/" />;
+    return redirect("/");
   }
 
   const infoList = stateData[type] || [];

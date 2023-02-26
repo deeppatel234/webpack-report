@@ -1,4 +1,4 @@
-import { fileSize } from "filesize";
+import { partial } from "filesize";
 
 const THEME = "theme";
 
@@ -10,7 +10,7 @@ export const setThemeInLocal = (theme) => {
   localStorage.setItem(THEME, theme);
 };
 
-export const size = fileSize.partial({ base: 10 });
+export const size = partial({ base: 10 });
 
 export const timeConversion = (millisec) => {
   const seconds = (millisec / 1000).toFixed(1);

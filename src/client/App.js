@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import io from 'socket.io-client';
 import _isEmpty from 'lodash/isEmpty';
-import { ThemeProvider } from 'emotion-theming';
+import { ThemeProvider } from '@emotion/react';
 
 import AppContext from './AppContext';
 import AppThemeContext from './AppThemeContext';

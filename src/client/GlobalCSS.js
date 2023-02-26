@@ -1,6 +1,5 @@
 import React from 'react';
-import { Global, css } from '@emotion/core';
-import { useTheme } from 'emotion-theming';
+import { Global, css, useTheme } from '@emotion/react';
 
 const GlobalStyle = () => {
   const { typography, palette, rgbaColor } = useTheme();

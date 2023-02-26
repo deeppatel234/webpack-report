@@ -39,7 +39,7 @@ const ModuleDetails = ({ match }) => {
   } = match;
 
   if (!moduleRoutes.includes(type)) {
-    return <Redirect to={`/modules/${moduleRoutes[0]}`} />;
+    return redirect(`/modules/${moduleRoutes[0]}`);
   }
 
   return (

@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { css, keyframes } from '@emotion/core';
+import { css, keyframes } from '@emotion/react';
 
 import { Link } from 'react-router-dom';
 import Typography from 'Components/Typography';

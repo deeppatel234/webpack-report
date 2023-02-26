@@ -2,7 +2,7 @@ const path = require('path');
 
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-// const WebpackReport = require('webpack-report');
+const WebpackReport = require('webpack-report');
 const bebelConfig = require("../config/babel.config");
 
 const PUBLIC_DIR = path.resolve(__dirname, './public');
@@ -81,6 +81,6 @@ module.exports = {
       insert: (linkTag) => document.body.appendChild(linkTag),
       ignoreOrder: true,
     }),
-    // new WebpackReport(),
+    new WebpackReport(),
   ],
 };

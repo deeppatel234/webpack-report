@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Redirect } from 'react-router-dom';
+import { redirect } from 'react-router-dom';
 
 import AppContext from 'src/AppContext';
 import { ASSETS_TYPE } from 'src/const';
@@ -48,7 +48,7 @@ const AssetsDetails = ({ match }) => {
   } = match;
 
   if (!assetsState[type]) {
-    return <Redirect to={`/assets/${ASSETS_TYPE[0].key}`} />;
+    return redirect(`/assets/${ASSETS_TYPE[0].key}`);
   }
 
   const assetsData = ASSETS_TYPE.find(({ key }) => type === key);
