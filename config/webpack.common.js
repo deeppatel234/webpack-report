@@ -14,8 +14,6 @@ const NODE_ENV = process.env.NODE_ENV || "development";
 const isEnvDevelopment = NODE_ENV === "development";
 const isEnvProduction = NODE_ENV === "production";
 
-console.log(PATHS);
-
 module.exports = {
   devtool: false,
   entry: {
