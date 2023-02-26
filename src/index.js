@@ -7,7 +7,7 @@ const utils = require('./utils');
 
 const defaultOptions = {
   host: 'localhost',
-  port: 5060,
+  port: 1237,
   open: true,
   statsOptions: {},
   packageJsonPath: undefined,

@@ -1,18 +1,18 @@
-import fileSize from 'filesize';
+import { fileSize } from "filesize";
 
-const THEME = 'theme';
+const THEME = "theme";
 
 export const getThemeFromLocal = () => {
   return localStorage.getItem(THEME);
 };
 
-export const setThemeInLocal = theme => {
+export const setThemeInLocal = (theme) => {
   localStorage.setItem(THEME, theme);
 };
 
 export const size = fileSize.partial({ base: 10 });
 
-export const timeConversion = millisec => {
+export const timeConversion = (millisec) => {
   const seconds = (millisec / 1000).toFixed(1);
   const minutes = (millisec / (1000 * 60)).toFixed(1);
   const hours = (millisec / (1000 * 60 * 60)).toFixed(1);

@@ -2,7 +2,6 @@
 import React, { useState, useEffect } from 'react';
 import io from 'socket.io-client';
 import _isEmpty from 'lodash/isEmpty';
-import ContextDevTool from 'react-context-devtool';
 import { ThemeProvider } from 'emotion-theming';
 
 import AppContext from './AppContext';
@@ -56,11 +55,6 @@ const App = () => {
       <AppThemeContext.Provider value={{ theme, toggleTheme }}>
         <ThemeProvider theme={themeConfig[theme]}>
           <GlobalCSS />
-          <ContextDevTool
-            context={AppContext}
-            id="appData"
-            displayName="App Data"
-          />
           {isAppLoaded ? <Pages /> : <ProgressOverlay />}
         </ThemeProvider>
       </AppThemeContext.Provider>

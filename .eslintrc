@@ -1,26 +1,17 @@
 {
-  "extends": [
-    "airbnb",
-    "prettier",
-    "prettier/react",
-    "plugin:jsx-a11y/recommended"
-  ],
-  "plugins": ["react", "prettier", "jsx-a11y"],
-  "parser": "babel-eslint",
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "extends": ["airbnb", "airbnb/hooks"],
+  "overrides": [],
   "parserOptions": {
-    "ecmaVersion": 6,
+    "ecmaVersion": "latest",
     "sourceType": "module",
     "ecmaFeatures": {
       "jsx": true,
       "generators": true
     }
-  },
-  "env": {
-    "browser": true,
-    "commonjs": true,
-    "es6": true,
-    "jest": true,
-    "node": true
   },
   "settings": {
     "import/ignore": [
@@ -32,22 +23,23 @@
       "node": {
         "extensions": [".js", ".json"]
       },
-      "webpack": {
-        "config": "config/webpack.common.js"
+      "alias": {
+        "map": [
+          ["src", "./src/client"],
+          ["Components", "./src/client/components"]
+        ]
       }
-    },
-    "react": {
-      "version": "16.13.0"
     }
   },
   "globals": {
-    "window": true,
-    "document": true,
-    "localStorage": true,
-    "FormData": true,
-    "FileReader": true,
-    "Blob": true,
-    "navigator": true
+    "NODE_ENV": "readonly",
+    "window": "readonly",
+    "document": "readonly",
+    "localStorage": "readonly",
+    "FormData": "readonly",
+    "FileReader": "readonly",
+    "Blob": "readonly",
+    "navigator": "readonly"
   },
   "rules": {
     "react/jsx-filename-extension": [
@@ -56,22 +48,26 @@
         "extensions": [".js", ".jsx"]
       }
     ],
-    "import/no-unresolved": [
-      "error",
-      {
-        "ignore": ["test-utils"]
-      }
-    ],
+    "no-lone-blocks": 0,
+    "no-param-reassign": 0,
+    "react/sort-comp": 0,
+    "react/jsx-props-no-spreading": 0,
     "no-console": "off",
     "react/prop-types": 0,
     "no-underscore-dangle": 0,
     "import/imports-first": ["error", "absolute-first"],
     "import/newline-after-import": "error",
-    "prettier/prettier": "error",
-    "import/no-extraneous-dependencies": 0,
+    "quote-props": 0,
+    "import/prefer-default-export": 0,
+    "quotes": ["error", "double", { "allowTemplateLiterals": true }],
+    "import/no-extraneous-dependencies": ["error", { "devDependencies": ["**/*.test.js"] }],
+    "class-methods-use-this": 0,
+    "arrow-body-style": 0,
+    "react/default-props-match-prop-types": 0,
+    "jsx-a11y/label-has-associated-control": 0,
+    "jsx-a11y/no-static-element-interactions": 0,
     "jsx-a11y/click-events-have-key-events": 0,
-    "react/jsx-props-no-spreading": 0,
-    "no-param-reassign": 0,
-    "import/prefer-default-export": 0
+    "operator-linebreak": ["error", "after"],
+    "react/jsx-one-expression-per-line": 0
   }
 }

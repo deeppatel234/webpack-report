@@ -1,39 +1,39 @@
-const merge = require('webpack-merge');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const detect = require('detect-port');
+const webpack = require("webpack");
+const { merge } = require("webpack-merge");
+const detect = require("detect-port");
 
-const common = require('./webpack.common.js');
-const PATHS = require('./paths');
-
-const PORT = parseInt(process.env.PORT, 10) || 5070;
-const HOST = process.env.HOST || '0.0.0.0';
+const common = require("./webpack.common.js");
 
 module.exports = async () => {
-  const port = await detect(PORT);
+  const PORT = await detect(parseInt(process.env.PORT, 10) || 1236);
+  const HOST = process.env.HOST || "0.0.0.0";
 
   return merge(common, {
-    mode: 'development',
-    devtool: 'cheap-module-source-map',
+    mode: "development",
     output: {
-      path: PATHS.DIST_DIR,
-      filename: 'static/js/[name].[hash].js',
-      publicPath: '/',
+      filename: "static/js/[name].[contenthash].js",
+      chunkFilename: "static/js/[name].[contenthash].js",
     },
     devServer: {
-      port,
+      port: PORT,
       host: HOST,
-      contentBase: './',
-      historyApiFallback: true,
-      hot: true,
-      open: true,
+      client: {
+        overlay: {
+          errors: true,
+          warnings: false,
+        },
+        progress: false,
+        reconnect: 20,
+      },
+      https: false,
+      http2: false,
       compress: true,
-      writeToDisk: false,
+      historyApiFallback: true,
+      static: false,
+      hot: false,
+      liveReload: true,
+      open: true,
     },
-    plugins: [
-      new HtmlWebpackPlugin({
-        filename: `${PATHS.DIST_DIR}/index.html`,
-        template: `${PATHS.PUBLIC_DIR}/index.html`,
-      }),
-    ],
+    plugins: [new webpack.SourceMapDevToolPlugin({})],
   });
 };
