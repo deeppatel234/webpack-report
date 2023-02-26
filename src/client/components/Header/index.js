@@ -37,7 +37,7 @@ const Header = () => {
         )}
       </HeaderCol>
       <HeaderCol>
-        <NavLinks exact to="/">
+        <NavLinks to="/">
           Dashboard
         </NavLinks>
         <NavLinks to="/assets">Assets</NavLinks>

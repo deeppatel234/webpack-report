@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { redirect } from 'react-router-dom';
+import { Navigate, useParams } from 'react-router-dom';
 
 import AppContext from 'src/AppContext';
 import Typography from 'Components/Typography';
@@ -29,14 +29,14 @@ const BadgeItem = ({ displayName, value, icon: Icon, ...props }) => (
   </ListItem>
 );
 
-const Info = ({ match }) => {
-  const { stateData } = useContext(AppContext);
+const Info = () => {
   const {
-    params: { type },
-  } = match;
+    type,
+  } = useParams();
+  const { stateData } = useContext(AppContext);
 
   if (!['errors', 'warnings'].includes(type)) {
-    return redirect("/");
+    return <Navigate to="/" />;
   }
 
   const infoList = stateData[type] || [];

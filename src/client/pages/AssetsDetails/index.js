@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { redirect } from 'react-router-dom';
+import { Navigate, useParams } from 'react-router-dom';
 
 import AppContext from 'src/AppContext';
 import { ASSETS_TYPE } from 'src/const';
@@ -39,16 +39,13 @@ const headers = [
   },
 ];
 
-const AssetsDetails = ({ match }) => {
+const AssetsDetails = () => {
+  const { type } = useParams();
   const { stateData } = useContext(AppContext);
   const { assetsState } = stateData;
 
-  const {
-    params: { type },
-  } = match;
-
   if (!assetsState[type]) {
-    return redirect(`/assets/${ASSETS_TYPE[0].key}`);
+    return <Navigate to={`/assets/${ASSETS_TYPE[0].key}`} />;
   }
 
   const assetsData = ASSETS_TYPE.find(({ key }) => type === key);

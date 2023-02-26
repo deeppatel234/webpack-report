@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react';
-import { redirect } from 'react-router-dom';
+import { Navigate, useParams } from 'react-router-dom';
 
 import AppContext from 'src/AppContext';
 import { size } from 'src/utils';
@@ -37,10 +37,8 @@ const originHeader = [
   },
 ];
 
-const ChunkDetails = ({ match }) => {
-  const {
-    params: { id },
-  } = match;
+const ChunkDetails = () => {
+  const { id } = useParams();
   const [chunkId, setChunkID] = useState(id);
   const [modalData, setModalData] = useState({ visible: false });
   const { stateData } = useContext(AppContext);
@@ -53,7 +51,7 @@ const ChunkDetails = ({ match }) => {
   const chunkData = chunks.find(c => `${c.id}` === `${chunkId}`);
 
   if (typeof id === 'undefined' || !chunkData) {
-    return redirect(`/chunks/${chunks[0].id}`);
+    return <Navigate to={`/chunks/${chunks[0].id}`} />;
   }
 
   const onClickOrigin = () => {

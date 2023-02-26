@@ -17,7 +17,7 @@ import { getThemeFromLocal, setThemeInLocal } from './utils';
 
 const { port, hostname } = document.location;
 
-const socketPort = NODE_ENV === 'development' ? 5060 : port;
+const socketPort = NODE_ENV === 'development' ? 1237 : port;
 
 const socket = io(`${hostname}:${socketPort}`);
 
