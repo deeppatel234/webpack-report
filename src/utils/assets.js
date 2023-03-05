@@ -96,13 +96,19 @@ const computeAssetsState = (state) => {
   };
 
   Object.values(state.entrypoints).forEach(({ assets }) => {
-    const jsFiles = assets.filter((asset) => {
+    let assetsToCheck = assets;
+
+    if (typeof assets[0] === "object") {
+      assetsToCheck = assetsToCheck.map((a) => a.name);
+    }
+
+    const jsFiles = assetsToCheck.filter((asset) => {
       if (typeof asset === "object") {
         return getFileType(asset.name) === FILE_TYPES.JAVASCRIPT;
       }
       return getFileType(asset) === FILE_TYPES.JAVASCRIPT;
     });
-    const cssFiles = assets.filter((asset) => {
+    const cssFiles = assetsToCheck.filter((asset) => {
       if (typeof asset === "object") {
         return getFileType(asset.name) === FILE_TYPES.CSS;
       }

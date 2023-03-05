@@ -55,7 +55,7 @@ function AssetsDetails() {
       <SideBar>
         <Title variant="h5">Assets</Title>
         {ASSETS_TYPE.map(({ key, displayName, icon: Icon, iconWidth, ...props }) => (
-          <ListItem key={key} color="info" to={key} {...props}>
+          <ListItem key={key} color="info" to={`/assets/${key}`} {...props}>
             <Icon width="1.5rem" />
             <InfoWrapper>
               <Typography color="muted" variant="helpText" uppercase>
