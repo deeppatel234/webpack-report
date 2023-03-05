@@ -103,20 +103,14 @@ const computeAssetsState = (state) => {
     }
 
     const jsFiles = assetsToCheck.filter((asset) => {
-      if (typeof asset === "object") {
-        return getFileType(asset.name) === FILE_TYPES.JAVASCRIPT;
-      }
       return getFileType(asset) === FILE_TYPES.JAVASCRIPT;
     });
     const cssFiles = assetsToCheck.filter((asset) => {
-      if (typeof asset === "object") {
-        return getFileType(asset.name) === FILE_TYPES.CSS;
-      }
       return getFileType(asset) === FILE_TYPES.CSS;
     });
 
-    assetsState.initialJSSize.size = jsFiles.reduce(entrypointCallBack("initialJSSize"), 0);
-    assetsState.initialCSSSize.size = cssFiles.reduce(entrypointCallBack("initialCSSSize"), 0);
+    assetsState.initialJSSize.size += jsFiles.reduce(entrypointCallBack("initialJSSize"), 0);
+    assetsState.initialCSSSize.size += cssFiles.reduce(entrypointCallBack("initialCSSSize"), 0);
   });
 
   return assetsState;
